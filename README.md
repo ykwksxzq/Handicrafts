@@ -1,4 +1,4 @@
-☆Handicrafts☆
+# Handicrafts
 
 # 概要
 * 手芸が好きな人の為のWebコミュニティサイトです。
