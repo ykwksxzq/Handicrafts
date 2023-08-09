@@ -1,24 +1,18 @@
-# README
+☆Handicrafts☆
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+# 概要
+* 手芸が好きな人の為のWebコミュニティサイトです。
+* 裁縫、編み物など…心をこめて作った作品を投稿して、手芸が好きな人たちで繋がりませんか？
+* いいね機能、コメント機能を使ってコミュニケーションが取れます。
 
-Things you may want to cover:
 
-* Ruby version
+# 使用方法
+* "いいね"して、他ユーザーの気に入った作品をお気に入り登録できます。
+* "コメント"して、作品の素敵な所を伝え合うことができます。
+* "ほしいものノート"で買い物リストを作成することで、材料の買い忘れを予防できます。
+* "お気に入りの道具紹介"では、こだわりのアイテムを紹介して、作品のクオリティを高め合ましょう。
+* "お気に入りのお店リスト"では、店舗によって品揃えは様々なので、ユーザー同士でお店の情報を共有し合うことで、効率的に材料調達できます。
 
-* System dependencies
 
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+# 実装機能リスト
+* https://docs.google.com/spreadsheets/d/1PPYfcgGkP5LEQdmtT1gCPrd7qdEFJ3nACYgIQNNVHrU/edit?usp=sharing
