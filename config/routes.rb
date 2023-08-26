@@ -25,8 +25,8 @@ scope module: :public do
   get 'users/mypage' => 'users#show', as: 'mypage'
   get 'users/information/edit' => 'users#edit', as: 'edit_information'
   patch 'users/information' => 'users#update', as: 'update_information'
-
-
+  get 'users/unsubscribe' => 'users#unsubscribe', as: 'confirm_unsubscribe'
+  patch 'users/withdraw' => 'users#withdraw', as: 'confirm_withdraw'
 
   resources :post_crafts, only:[:index, :new, :create, :show, :edit, :update, :destroy]
 
