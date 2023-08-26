@@ -6,11 +6,52 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
-    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
+     <header>
+    <% if user_signed_in? %>
+     <li>
+       マイページ
+     </li>
+    <li>作品一覧</li>
+    <li>アイテムリスト</li>
+      <li>
+        <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
+      </li>
+
+
+    <% elsif admin_signed_in? %>
+
+    　<li>作品一覧</li>
+      <li>会員一覧</li>
+      <li>アイテム一覧</li>
+      <li>ジャンル一覧</li>
+      <li>
+        <%= link_to "ログアウト", destroy_admin_session_path, method: :delete %>
+      </li>
+
+    <% else %>
+      <li>
+        <%= link_to "新規登録", new_user_registration_path %>
+      </li>
+      <li>
+        <%= link_to "ログイン", new_user_session_path %>
+      </li>
+    <% end %>
+
+
+
+
+  </header>
+
+
+
+
+
+
     <%= yield %>
   </body>
 </html>
