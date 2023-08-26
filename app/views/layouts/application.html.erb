@@ -14,7 +14,7 @@
      <header>
     <% if user_signed_in? %>
      <li>
-       マイページ
+       <%= link_to "マイページ", mypage_path %>
      </li>
     <li>作品一覧</li>
     <li>アイテムリスト</li>
@@ -44,7 +44,7 @@
     <% end %>
 
 
-
+　　<%= flash[:notice] %>
 
 
   </header>

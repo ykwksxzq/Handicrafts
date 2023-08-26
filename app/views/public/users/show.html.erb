@@ -1,0 +1,24 @@
+ユーザー　マイページ
+
+登録情報　編集する
+
+<div>
+  <h3><%= @user.nick_name %></h3>
+  <%= image_tag @user.get_profile_image(100,100) %>
+
+  <%= @user.introduction %>
+  <% if @user == current_user %>
+    <p><%= link_to "プロフィール編集", edit_information_path(@user) %></p>
+  <% end %>
+</div>
+
+
+
+
+作品投稿一覧
+
+アイテムリスト
+
+欲しいものリスト
+
+下書きリスト

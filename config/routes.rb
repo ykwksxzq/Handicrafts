@@ -21,12 +21,20 @@ devise_for :users,skip: [:passwords], controllers: {
 
 scope module: :public do
   root to: "homes#top"
-  
+
+  get 'users/mypage' => 'users#show', as: 'mypage'
+  get 'users/information/edit' => 'users#edit', as: 'edit_information'
+  patch 'users/information' => 'users#update', as: 'update_information'
+
+
+
+  resources :post_crafts, only:[:index, :new, :create, :show, :edit, :update, :destroy]
+
+
 end
 
 devise_scope :user do
   post 'users/guest_sign_in', to: 'public/sessions#guest_sign_in'
 end
-
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
