@@ -1,11 +1,24 @@
 class Public::PostCraftsController < ApplicationController
- 
-  def get_image
-    unless image.attached?
-      file_path = Rails.root.join('app/assets/images/no_image.jpg')
-      image.attach(io: File.open(file_path), filename: 'default-image.jpg', content_type: 'image/jpeg')
-    end
-    image
+
+ def new
+   @post_craft = PostCraft.new
+ end
+
+ def create
+    @post_craft = PostCraft.new(post_craft_params)
+    @post_craft.user_id = current_user.id
+    @post_craft.save
+    redirect_to post_crafts_path
+ end
+
+ def index
+    @post_crafts = PostCraft.all
+ end
+
+
+ private
+
+  def post_craft_params
+    params.require(:post_craft).permit(:user_id, :genre_id, :title, :introduction, :status, :image)
   end
-  
 end

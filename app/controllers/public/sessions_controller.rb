@@ -23,7 +23,7 @@ class Public::SessionsController < Devise::SessionsController
   def user_state
     @user = User.find_by(email: params[:user][:email])
     if @user
-     if @user.valid_passwoed?(params[:user][:password]) && !@user.is_deleted
+     if @user.valid_password?(params[:user][:password]) && !@user.is_deleted
       flash[:danger] = '退会済みです。申し訳ございませんが、別のメールアドレスをお使いください'
       redirect_to new_user_session_path
      end

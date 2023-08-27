@@ -1,0 +1,10 @@
+作品一覧
+
+新規投稿
+<%= link_to "新規投稿", new_post_craft_path %>
+
+<% @post_crafts.each do |post_craft| %>
+<%= image_tag post_craft.get_image(200,200) %>
+<%= post_craft.user.nick_name %>
+<%= post_craft.title %>
+<% end %>

@@ -29,7 +29,7 @@ scope module: :public do
   get 'users/unsubscribe' => 'users#unsubscribe', as: 'confirm_unsubscribe'
   patch 'users/withdraw' => 'users#withdraw', as: 'confirm_withdraw'
 
-  resources :post_crafts, only:[:index, :new, :create, :show, :edit, :update, :destroy]
+  resources :post_crafts, only:[:new, :create, :index, :show, :edit, :update, :destroy]
 
 
 end
