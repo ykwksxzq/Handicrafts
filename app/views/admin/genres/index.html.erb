@@ -1,0 +1,16 @@
+<h4>ジャンル管理</h4>
+
+ジャンル新規登録
+
+<%= form_with model: @genre, url:admin_genres_path, method: :post do |f| %>
+
+ジャンル名
+　<%= f.text_field :name %>
+  <%= f.submit '投稿' %>
+<% end %>
+
+ジャンル一覧
+<% @genres.each do |genre| %>
+<%= genre.name %>
+
+<% end %>

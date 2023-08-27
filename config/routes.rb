@@ -8,6 +8,7 @@ devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
 
 namespace :admin do
   get 'top' => 'homes#top', as: 'top'
+  resources :genres, only:[:create, :index, :edit, :update]
 end
 
 

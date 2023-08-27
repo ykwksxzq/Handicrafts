@@ -28,7 +28,8 @@
     　<li>作品一覧</li>
       <li>会員一覧</li>
       <li>アイテム一覧</li>
-      <li>ジャンル一覧</li>
+      <li>
+        <%= link_to "ジャンル一覧", admin_genres_path %></li>
       <li>
         <%= link_to "ログアウト", destroy_admin_session_path, method: :delete %>
       </li>
