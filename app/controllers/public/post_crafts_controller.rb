@@ -15,6 +15,10 @@ class Public::PostCraftsController < ApplicationController
     @post_crafts = PostCraft.all
  end
 
+ def show
+    @post_craft = PostCraft.find(params[:id])
+ end
+
 
  private
 
