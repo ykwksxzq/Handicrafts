@@ -19,6 +19,11 @@ class Public::PostCraftsController < ApplicationController
     @post_craft = PostCraft.find(params[:id])
  end
 
+ def destroy
+    @post_craft = PostCraft.find(params[:id])
+    @post_craft.destroy
+    redirect_to post_crafts_path
+ end
 
  private
 
