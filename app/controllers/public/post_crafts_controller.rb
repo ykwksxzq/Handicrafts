@@ -19,6 +19,20 @@ class Public::PostCraftsController < ApplicationController
     @post_craft = PostCraft.find(params[:id])
  end
 
+ def edit
+   @post_craft = PostCraft.find(params[:id])
+ end
+
+ def update
+  @post_craft = PostCraft.find(params[:id])
+  if @post_craft.update(post_craft_params)
+   flash[:notice] = "You have updated post successfully."
+   redirect_to post_craft_path(@post_craft.id)
+  else
+   render :edit
+  end
+ end
+
  def destroy
     @post_craft = PostCraft.find(params[:id])
     @post_craft.destroy

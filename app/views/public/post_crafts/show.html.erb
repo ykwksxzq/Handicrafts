@@ -8,5 +8,6 @@
 <%= @post_craft.introduction %>
 
 <% if @post_craft.user == current_user %>
-<%= link_to "削除", post_craft_path, method: :delete, "data-confirm" => "本当に削除しますか？" %>
+<%= link_to "編集", edit_post_craft_path %>
+<%= link_to "削除", post_craft_path(@post_craft.id), method: :delete, "data-confirm" => "本当に削除しますか？" %>
 <% end %>
