@@ -17,6 +17,7 @@ class Public::PostCraftsController < ApplicationController
 
  def show
     @post_craft = PostCraft.find(params[:id])
+    @post_comment = PostComment.new
  end
 
  def edit
@@ -38,6 +39,16 @@ class Public::PostCraftsController < ApplicationController
     @post_craft.destroy
     redirect_to post_crafts_path
  end
+
+ def search
+    if params[:title, :introduction].present?
+      @post_craft = PostCraft.where('title LIKE ? or introduction LIKE ?', "%#{keyword}%", "%#{keyword}%")
+      @keyword = params[:title, :introduction]
+    else
+      @post_crafts = PostCraft.all
+    end
+ end
+
 
  private
 

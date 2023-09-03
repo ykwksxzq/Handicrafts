@@ -11,3 +11,19 @@
 <%= link_to "編集", edit_post_craft_path %>
 <%= link_to "削除", post_craft_path(@post_craft.id), method: :delete, "data-confirm" => "本当に削除しますか？" %>
 <% end %>
+
+
+<div>
+  <p>コメント件数：<%= @post_craft.post_comments.count %></p>
+  <% @post_craft.post_comments.each do |post_comment| %>
+    <p><%= image_tag post_comment.user.get_profile_image(100,100) %></p>
+    <%= post_comment.user.nick_name %>
+    <%= post_comment.created_at.strftime('%Y/%m/%d') %><%= post_comment.comment %>
+  <% end %>
+</div>
+<div>
+  <%= form_with model: [@post_craft, @post_comment] do |f| %>
+    <%= f.text_area :comment, rows: '5', placeholder: "コメントをここに" %>
+    <%= f.submit "送信する" %>
+  <% end %>
+</div>

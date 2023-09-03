@@ -29,8 +29,11 @@ scope module: :public do
   patch 'users/information' => 'users#update', as: 'update_information'
   get 'users/unsubscribe' => 'users#unsubscribe', as: 'confirm_unsubscribe'
   patch 'users/withdraw' => 'users#withdraw', as: 'confirm_withdraw'
+  get 'post_crafts/search' => 'post_crafts#search', as: 'post_crafts_search'
 
-  resources :post_crafts, only:[:new, :create, :index, :show, :edit, :update, :destroy]
+  resources :post_crafts, only:[:new, :create, :index, :show, :edit, :update, :destroy] do
+    resources :post_comments, only: [:create]
+  end
 end
 
 devise_scope :user do

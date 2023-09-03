@@ -3,8 +3,7 @@ class PostCraft < ApplicationRecord
 
   belongs_to :user
   belongs_to :genre
-
-
+  has_many :post_comments, dependent: :destroy
 
   def get_image(width,height)
     unless image.attached?
