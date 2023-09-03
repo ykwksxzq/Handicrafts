@@ -8,11 +8,16 @@ def create
     redirect_to post_craft_path(post_craft.id)
 end
 
-  private
+def destroy
+    PostComment.find(params[:id]).destroy
+    redirect_to post_craft_path(params[:post_craft_id])
+end
 
-  def post_comment_params
-    params.require(:post_comment).permit(:comment)
-  end
+private
+
+def post_comment_params
+  params.require(:post_comment).permit(:comment)
+end
 
 end
 

@@ -4,6 +4,7 @@
 <%= image_tag @post_craft.user.get_profile_image(50,50) %>
 <% end %>
 <%= @post_craft.user.nick_name %>
+<%= @post_craft.created_at.strftime('%Y/%m/%d') %></p>
 <%= @post_craft.title %>
 <%= @post_craft.introduction %>
 
@@ -11,7 +12,15 @@
 <%= link_to "編集", edit_post_craft_path %>
 <%= link_to "削除", post_craft_path(@post_craft.id), method: :delete, "data-confirm" => "本当に削除しますか？" %>
 <% end %>
-
+  <% if @post_craft.favorited_by?(current_user) %>
+      <%= link_to post_craft_favorites_path(@post_craft), method: :delete do %>
+        ♥<%= @post_craft.favorites.count %> いいね
+      <% end %>
+    <% else %>
+      <%= link_to post_craft_favorites_path(@post_craft), method: :post do %>
+        ♡<%= @post_craft.favorites.count %> いいね
+      <% end %>
+  <% end %>
 
 <div>
   <p>コメント件数：<%= @post_craft.post_comments.count %></p>
@@ -19,6 +28,9 @@
     <p><%= image_tag post_comment.user.get_profile_image(100,100) %></p>
     <%= post_comment.user.nick_name %>
     <%= post_comment.created_at.strftime('%Y/%m/%d') %><%= post_comment.comment %>
+    <% if post_comment.user == current_user %>
+      <%= link_to "削除", post_craft_post_comment_path(post_comment.post_craft, post_comment), method: :delete %>
+    <% end %>
   <% end %>
 </div>
 <div>

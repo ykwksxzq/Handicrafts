@@ -32,7 +32,8 @@ scope module: :public do
   get 'post_crafts/search' => 'post_crafts#search', as: 'post_crafts_search'
 
   resources :post_crafts, only:[:new, :create, :index, :show, :edit, :update, :destroy] do
-    resources :post_comments, only: [:create]
+    resource :favorites, only: [:create, :destroy]
+    resources :post_comments, only: [:create, :destroy]
   end
 end
 
