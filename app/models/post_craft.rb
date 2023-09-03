@@ -1,4 +1,7 @@
 class PostCraft < ApplicationRecord
+  
+  enum status: { published: 0, draft: 1 }
+  
   has_one_attached :image
 
   belongs_to :user

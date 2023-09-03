@@ -3,7 +3,7 @@
 
 <% if @favorites.present? %>
 
-<%= @favorites.each do |favorite| %>
+<% @favorites.each do |favorite| %>
 
  ♥<%= @favorites.count %> いいね
   <%= image_tag favorite.post_craft.get_image(200,200) %>

@@ -31,6 +31,7 @@ scope module: :public do
   patch 'users/withdraw' => 'users#withdraw', as: 'confirm_withdraw'
   get 'users/favorites' => 'users#favorites', as: 'favorites'
   get 'post_crafts/search' => 'post_crafts#search', as: 'post_crafts_search'
+  get 'post_crafts/confirm' => 'post_crafts#confirm', as: 'post_crafts_confirm'
 
   resources :post_crafts, only:[:new, :create, :index, :show, :edit, :update, :destroy] do
     resource :favorites, only: [:create, :destroy]

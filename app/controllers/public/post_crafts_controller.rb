@@ -12,7 +12,8 @@ class Public::PostCraftsController < ApplicationController
  end
 
  def index
-    @post_crafts = PostCraft.all
+    @post_crafts = PostCraft.published
+    @post_crafts = @post_crafts.where('location LIKE ?', "%#{params[:search]}%") if params[:search].present?
  end
 
  def show
@@ -38,6 +39,10 @@ class Public::PostCraftsController < ApplicationController
     @post_craft = PostCraft.find(params[:id])
     @post_craft.destroy
     redirect_to post_crafts_path
+ end
+
+ def confirm
+  @post_crafts = current_user.post_crafts.draft
  end
 
  def search
