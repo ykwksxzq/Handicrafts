@@ -1,0 +1,21 @@
+
+<%= image_tag @post_craft.get_image(200,200) %>
+<%= link_to mypage_path(@post_craft.user.id) do %>
+<%= image_tag @post_craft.user.get_profile_image(50,50) %>
+<% end %>
+<%= @post_craft.user.nick_name %>
+<%= @post_craft.created_at.strftime('%Y/%m/%d') %></p>
+<%= @post_craft.title %>
+<%= @post_craft.introduction %>
+
+ ♥<%= @post_craft.favorites.count %> いいね
+
+<div>
+  <p>コメント件数：<%= @post_craft.post_comments.count %></p>
+  <% @post_craft.post_comments.each do |post_comment| %>
+    <p><%= image_tag post_comment.user.get_profile_image(100,100) %></p>
+    <%= post_comment.user.nick_name %>
+    <%= post_comment.created_at.strftime('%Y/%m/%d') %><%= post_comment.comment %>
+    <%= link_to "削除", post_craft_post_comment_path(post_comment.post_craft, post_comment), method: :delete %>
+  <% end %>
+</div>

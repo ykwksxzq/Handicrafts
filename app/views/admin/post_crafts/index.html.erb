@@ -1,10 +1,10 @@
 
-<%= current_user.nick_name %>さんの作品一覧
 
-<% @post_craft.each do |post_craft| %>
-<%= link_to post_craft_path(post_craft.id) do %>
+<% @post_crafts.each do |post_craft| %>
+<%= link_to admin_post_craft_path(post_craft.id) do %>
 <%= image_tag post_craft.get_image(200,200) %>
 <% end %>
+
 <%= post_craft.user.nick_name %>
 <%= post_craft.title %>
 ♥<%= post_craft.favorites.count %>

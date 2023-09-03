@@ -1,0 +1,15 @@
+
+
+<% if @favorites.present? %>
+
+<% @favorites.each do |favorite| %>
+
+  <%= link_to post_crafts_path(favorite.post_craft_id) do %>
+  <%= image_tag favorite.post_craft.user.get_profile_image(50,50) %>
+  <% end %>
+  <%= favorite.post_craft.user.nick_name %>さん
+  <% end %>
+
+ <% else %>
+    いいねしたユーザーはいません
+ <% end %>

@@ -5,7 +5,11 @@ class Public::UsersController < ApplicationController
  end
 
  def index
-  @post_crafts = PostCraft.published.where(user_id: current_user.id)
+  @post_craft = PostCraft.published.where(user_id: current_user.id)
+ end
+
+ def index_user
+  @post_crafts = PostCraft.published.where(user_id: params[:id])
  end
 
  def edit
@@ -22,6 +26,10 @@ class Public::UsersController < ApplicationController
  end
 
  def favorites
+  @favorites = Favorite.where(user_id: current_user.id)
+ end
+
+ def favorite_users
   @favorites = Favorite.where(user_id: current_user.id)
  end
 

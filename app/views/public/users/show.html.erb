@@ -1,4 +1,4 @@
-<%= current_user.nick_name %>さんのマイページ
+<%= @user.nick_name %>さんのマイページ
 
 登録情報
 
@@ -13,20 +13,22 @@
 </div>
 
 
-
-
-<%= link_to "作品投稿一覧", user_post_crafts_path %>
-
 アイテムリスト
 
 <% if @user == current_user %>
 
+<%= link_to "作品投稿一覧", user_post_crafts_path %>
+
+
 <%= link_to "新規投稿", new_post_craft_path %>
 <%= link_to "いいねした作品一覧", favorites_path %>
+<%= link_to "いいねしたユーザー一覧", favorite_users_path %>
 
 
 欲しいものリスト
 
 <%= link_to "下書き一覧", post_crafts_confirm_path %>
 
- <% end %>
+<% else %>
+<%= link_to "作品投稿一覧", index_user_path(@user.id) %>
+<% end %>
