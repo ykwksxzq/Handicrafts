@@ -25,6 +25,7 @@ scope module: :public do
   root to: "homes#top"
 
   get 'users/mypage/:id' => 'users#show', as: 'mypage'
+  get 'users/post_crafts' => 'users#index', as: 'user_post_crafts'
   get 'users/information/edit' => 'users#edit', as: 'edit_information'
   patch 'users/information' => 'users#update', as: 'update_information'
   get 'users/unsubscribe' => 'users#unsubscribe', as: 'confirm_unsubscribe'

@@ -8,7 +8,7 @@ class Public::PostCraftsController < ApplicationController
     @post_craft = PostCraft.new(post_craft_params)
     @post_craft.user_id = current_user.id
     @post_craft.save
-    redirect_to post_crafts_path
+     redirect_to post_crafts_path(@post_craft)
  end
 
  def index
@@ -38,7 +38,7 @@ class Public::PostCraftsController < ApplicationController
  def destroy
     @post_craft = PostCraft.find(params[:id])
     @post_craft.destroy
-    redirect_to post_crafts_path
+    redirect_to user_post_crafts_path
  end
 
  def confirm

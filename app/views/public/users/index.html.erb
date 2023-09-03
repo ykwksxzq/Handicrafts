@@ -1,4 +1,6 @@
 
+<%= current_user.nick_name %>さんの作品一覧
+
 <% @post_crafts.each do |post_craft| %>
 <%= link_to post_craft_path(post_craft.id) do %>
 <%= image_tag post_craft.get_image(200,200) %>

@@ -4,6 +4,10 @@ class Public::UsersController < ApplicationController
    @user = User.find(params[:id])
  end
 
+ def index
+  @post_crafts = PostCraft.published.where(user_id: current_user.id)
+ end
+
  def edit
   @user = User.find(current_user.id)
  end
