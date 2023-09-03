@@ -17,6 +17,10 @@ class Public::UsersController < ApplicationController
   end
  end
 
+ def favorites
+  @favorites = Favorite.where(user_id: current_user.id)
+ end
+
  private
 
  def user_params
