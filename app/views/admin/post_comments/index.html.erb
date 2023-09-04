@@ -1,0 +1,13 @@
+投稿作品コメント一覧
+
+<% @post_comments.each do |post_comment| %>
+
+会員
+<%= post_comment.user_id %>
+<%= post_comment.user.nick_name %>
+コメント
+
+<%= post_comment.comment %>
+<%= link_to "詳細を確認する", admin_post_comment_path(post_comment.id) %>
+
+<% end %>

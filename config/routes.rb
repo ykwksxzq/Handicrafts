@@ -12,7 +12,8 @@ namespace :admin do
   get 'top' => 'homes#top', as: 'top'
   resources :genres, only:[:create, :index, :edit, :update]
   resources :post_crafts, only:[:index, :show]
-  resources :users, only:[:index, :show]
+  resources :users, only:[:index, :show, :edit, :update]
+  resources :post_comments, only: [:index, :show, :destroy]
 end
 
 # 顧客用

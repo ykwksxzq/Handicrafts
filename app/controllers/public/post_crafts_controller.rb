@@ -45,9 +45,9 @@ class Public::PostCraftsController < ApplicationController
   @post_crafts = current_user.post_crafts.draft
  end
 
- def search
+ def self.search(keyword)
     if params[:title, :introduction].present?
-      @post_craft = PostCraft.where('title LIKE ? or introduction LIKE ?', "%#{keyword}%", "%#{keyword}%")
+      @post_craft = PostCraft.published.where('title LIKE ? or introduction LIKE ?', "%#{keyword}%", "%#{keyword}%", "%#{keyword}%")
       @keyword = params[:title, :introduction]
     else
       @post_crafts = PostCraft.all

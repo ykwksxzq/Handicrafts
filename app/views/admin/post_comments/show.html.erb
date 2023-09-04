@@ -1,0 +1,9 @@
+投稿作品コメント詳細
+
+会員ID<%= @post_comment.user_id %>
+
+ニックネーム<%= @post_comment.user.nick_name %>
+
+コメント<%= @post_comment.comment %>
+
+<%= link_to "コメントを削除する", admin_post_comment_path(@post_comment), class: "btn btn-danger btn-lg", method: :delete, "data-confirm" => "本当にコメントを削除しますか?" %>
