@@ -1,0 +1,15 @@
+<h1>編集フォーム</h1>
+<%= form_with model: @wish_list, url:wish_list_path(@wish_list.id), method: :patch do |f| %>
+  <h4>アイテム名</h4>
+  <%= f.text_field :item_name %>
+  <h4>備考</h4>
+  <%= f.text_field :memo %>
+
+  <h4>ジャンル</h4>
+  <%= f.collection_select :genre_id, Genre.all, :id, :name %>
+
+  <%= f.select :status, PostCraft.statuses.keys.map { |k| [t("enums.post.status.#{k}"),k]}, {}, {class: "custom-select w-25"} %>
+
+
+  <%= f.submit '保存' %>
+<% end %>

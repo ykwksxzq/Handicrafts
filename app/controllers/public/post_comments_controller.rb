@@ -20,7 +20,7 @@ def ensure_correct_user
     unless @post_comment.user == current_end_user
       redirect_to post_craft_path, notice: "投稿者以外コメントは削除できません。"
     end
- end
+end
 
 def post_comment_params
   params.require(:post_comment).permit(:user_id, :post_craft_id,:comment)

@@ -43,6 +43,7 @@ scope module: :public do
     resource :favorites, only: [:create, :destroy]
     resources :post_comments, only: [:create, :destroy]
   end
+    resources :wish_lists, only: [:index, :create, :edit, :update, :destroy]
 end
 
 devise_scope :user do

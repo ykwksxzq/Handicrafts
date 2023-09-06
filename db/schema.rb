@@ -116,6 +116,7 @@ ActiveRecord::Schema.define(version: 2023_09_03_010017) do
 
   create_table "wish_lists", force: :cascade do |t|
     t.integer "user_id", null: false
+    t.integer "genre_id", null: false
     t.string "item_name", null: false
     t.text "memo"
     t.datetime "created_at", precision: 6, null: false
