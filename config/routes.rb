@@ -14,6 +14,8 @@ namespace :admin do
   resources :post_crafts, only:[:index, :show]
   resources :users, only:[:index, :show, :edit, :update]
   resources :post_comments, only: [:index, :show, :destroy]
+  resources :item_lists, only: [:index, :show]
+  resources :item_list_comments, only: [:index, :show, :destroy]
 end
 
 # 顧客用

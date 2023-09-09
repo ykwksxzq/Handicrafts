@@ -1,0 +1,8 @@
+作品コメント一覧
+
+会員ID<%= @item_list_comment.user.id %>
+ニックネーム<%= @item_list_comment.user.nick_name %>
+コメント<%= @item_list_comment.comment %>
+
+<%= link_to "コメントを削除する", admin_item_list_comment_path(@item_list_comment), class: "btn btn-danger btn-lg", method: :delete, "data-confirm" => "本当にコメントを削除しますか?" %>
+<% 

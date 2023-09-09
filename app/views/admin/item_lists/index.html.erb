@@ -1,0 +1,12 @@
+アイテム一覧
+
+<% @item_lists.each do |item_list| %>
+<%= link_to admin_item_list_path(item_list.id) do %>
+<%= image_tag item_list.get_image(200,200) %>
+<% end %>
+<%= item_list.user.nick_name %>
+<%= item_list.item_name %>
+<%= item_list.genre.name %>
+♥<%= item_list.item_favorites.count %>
+<%= link_to "#{item_list.item_list_comments.count} コメント", admin_item_list_path(item_list.id) %>
+<% end %>

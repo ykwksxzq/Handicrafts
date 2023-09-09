@@ -25,11 +25,11 @@
 
 
     <% elsif admin_signed_in? %>
-
-    　<li><%= link_to "作品一覧", admin_post_crafts_path %> </li>
       <li><%= link_to "会員一覧", admin_users_path %></li>
-      <li><%= link_to "コメント一覧", admin_post_comments_path %></li>
-      <li>アイテム一覧</li>
+    　<li><%= link_to "作品一覧", admin_post_crafts_path %> </li>
+      <li><%= link_to "作品コメント一覧", admin_post_comments_path %></li>
+      <li><%= link_to "アイテム一覧", admin_item_lists_path %></li>
+      <li><%= link_to "アイテムコメント一覧", admin_item_list_comments_path %></li>
       <li>
         <%= link_to "ジャンル一覧", admin_genres_path %></li>
       <li>
