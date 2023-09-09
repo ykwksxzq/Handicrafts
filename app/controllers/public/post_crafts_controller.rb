@@ -8,7 +8,7 @@ class Public::PostCraftsController < ApplicationController
     @post_craft = PostCraft.new(post_craft_params)
     @post_craft.user_id = current_user.id
     @post_craft.save
-     redirect_to post_crafts_path(@post_craft)
+     redirect_to post_craft_path(@post_craft.id)
  end
 
  def index

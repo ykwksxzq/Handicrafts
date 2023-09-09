@@ -42,8 +42,14 @@ scope module: :public do
   resources :post_crafts, only:[:new, :create, :index, :show, :edit, :update, :destroy] do
     resource :favorites, only: [:create, :destroy]
     resources :post_comments, only: [:create, :destroy]
-  end
-    resources :wish_lists, only: [:index, :create, :edit, :update, :destroy]
+   end
+
+  resources :item_lists, only: [:new, :create, :index, :show, :edit, :update, :destroy] do
+    resource :item_favorites, only: [:create, :destroy]
+    resources :item_list_comments, only: [:create, :destroy]
+   end
+
+  resources :wish_lists, only: [:index, :create, :edit, :update, :destroy]
 end
 
 devise_scope :user do
