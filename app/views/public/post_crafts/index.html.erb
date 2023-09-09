@@ -1,5 +1,7 @@
 作品一覧
 
+<% if @post_crafts.present? %>
+
 新規投稿
 <%= link_to "新規投稿", new_post_craft_path %>
 
@@ -13,3 +15,6 @@
 ♥<%= post_craft.favorites.count %>
 <%= link_to "#{post_craft.post_comments.count} コメント", post_craft_path(post_craft.id) %>
 <% end %>
+<% else %>
+    投稿している作品はありません
+ <% end %>

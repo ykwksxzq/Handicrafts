@@ -1,5 +1,7 @@
 会員一覧
 
+
+
 <% @users.each do |user| %>
 <%= link_to index_user_path(user.id) do %>
 <%= user.nick_name %>

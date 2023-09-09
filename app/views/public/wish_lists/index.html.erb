@@ -1,4 +1,6 @@
 <h1><% current_user.nick_name %>さんのほしいものリスト</h1>
+
+<% if @wish_lists.present? %>
 <%= form_with model: @wish_list, url:wish_lists_path, method: :post do |f| %>
   <h4>アイテム名</h4>
   <%= f.text_field :item_name %>
@@ -21,4 +23,8 @@
 
 <%= link_to '編集する', edit_wish_list_path(wish_list.id) %>
 <%= link_to "削除", wish_list_path(wish_list.id), method: :delete %>
+<% end %>
+
+<% else %>
+    保存している投稿はありません
 <% end %>

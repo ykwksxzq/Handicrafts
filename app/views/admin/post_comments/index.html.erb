@@ -1,5 +1,7 @@
 投稿作品コメント一覧
 
+<% if @post_comments.present? %>
+
 <% @post_comments.each do |post_comment| %>
 
 会員
@@ -11,3 +13,6 @@
 <%= link_to "詳細を確認する", admin_post_comment_path(post_comment.id) %>
 
 <% end %>
+<% else %>
+    投稿しているコメントはありません
+ <% end %>

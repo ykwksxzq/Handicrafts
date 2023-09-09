@@ -1,5 +1,7 @@
 投稿アイテムコメント一覧
 
+<% if @item_list_comments.present? %>
+
 <% @item_list_comments.each do |item_list_comment| %>
 
 会員
@@ -10,4 +12,8 @@
 <%= item_list_comment.comment %>
 <%= link_to "詳細を確認する", admin_item_list_comment_path(item_list_comment.id) %>
 
+<% end %>
+
+<% else %>
+    投稿しているコメントはありません
 <% end %>

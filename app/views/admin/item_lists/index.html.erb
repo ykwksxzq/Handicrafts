@@ -1,4 +1,5 @@
 アイテム一覧
+<% if @item_lists.present? %>
 
 <% @item_lists.each do |item_list| %>
 <%= link_to admin_item_list_path(item_list.id) do %>
@@ -10,3 +11,6 @@
 ♥<%= item_list.item_favorites.count %>
 <%= link_to "#{item_list.item_list_comments.count} コメント", admin_item_list_path(item_list.id) %>
 <% end %>
+<% else %>
+    保存しているアイテムはありません
+ <% end %>

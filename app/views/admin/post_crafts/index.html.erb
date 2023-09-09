@@ -1,4 +1,4 @@
-
+<% if @post_crafts.present? %>
 
 <% @post_crafts.each do |post_craft| %>
 <%= link_to admin_post_craft_path(post_craft.id) do %>
@@ -10,3 +10,6 @@
 ♥<%= post_craft.favorites.count %>
 <%= link_to "#{post_craft.post_comments.count} コメント", admin_post_craft_path(post_craft.id) %>
 <% end %>
+<% else %>
+    投稿している作品はありません
+ <% end %>

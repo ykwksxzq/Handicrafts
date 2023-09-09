@@ -1,6 +1,8 @@
 
 <%= current_user.nick_name %>さんの作品一覧
 
+<% if @post_craft.present? %>
+
 <% @post_craft.each do |post_craft| %>
 <%= link_to post_craft_path(post_craft.id) do %>
 <%= image_tag post_craft.get_image(200,200) %>
@@ -9,4 +11,8 @@
 <%= post_craft.title %>
 ♥<%= post_craft.favorites.count %>
 <%= link_to "#{post_craft.post_comments.count} コメント", post_craft_path(post_craft.id) %>
+<% end %>
+
+<% else %>
+    保存している投稿はありません
 <% end %>

@@ -3,6 +3,8 @@
 新規投稿
 <%= link_to "新規投稿", new_item_list_path %>
 
+<% if @item_lists.present? %>
+
 <% @item_lists.each do |item_list| %>
 <%= link_to item_list_path(item_list.id) do %>
 <%= image_tag item_list.get_image(200,200) %>
@@ -12,4 +14,7 @@
 <%= item_list.genre.name %>
 ♥<%= item_list.item_favorites.count %>
 <%= link_to "#{item_list.item_list_comments.count} コメント", item_list_path(item_list.id) %>
+<% end %>
+<% else %>
+    保存しているアイテムはありません
 <% end %>
