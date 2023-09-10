@@ -10,6 +10,10 @@
   <h4>ジャンル</h4>
   <%= f.collection_select :genre_id, Genre.all, :id, :name %>
 
+  <h4>タグ</h4>
+  <%= f.label :tag_list, "タグ (コンマで区切って入力)" %>
+  <%= f.text_field :tag_list, value: @post_craft.tag_list.join(',') %>
+
   <h4>下書きとして保存</h4>
   <%= f.select :status, PostCraft.statuses.keys.map { |k| [t("enums.post.status.#{k}"),k]}, {}, {class: "custom-select w-25"} %>
 

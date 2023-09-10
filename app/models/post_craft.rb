@@ -25,4 +25,7 @@ class PostCraft < ApplicationRecord
     where("title LIKE ? OR introduction LIKE ?", "%#{query}%", "%#{query}%")
   end
 
+  acts_as_taggable
+  acts_as_taggable_on :skills, :interests
+
 end

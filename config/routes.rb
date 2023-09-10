@@ -44,6 +44,7 @@ scope module: :public do
   get 'users/item_list' => 'users#item_list', as: 'user_item_list'
   get 'post_crafts/search' => 'post_crafts#search', as: 'post_crafts_search'
   get 'post_crafts/confirm' => 'post_crafts#confirm', as: 'post_crafts_confirm'
+  get 'post_crafts/tags' => 'post_crafts#tags', as: 'post_crafts_tags'
 
   resources :post_crafts, only:[:new, :create, :index, :show, :edit, :update, :destroy] do
     resource :favorites, only: [:create, :destroy]
