@@ -34,13 +34,14 @@ scope module: :public do
 
   get 'users/mypage/:id' => 'users#show', as: 'mypage'
   get 'users/post_crafts' => 'users#index', as: 'user_post_crafts'
-  get 'users/index_user/:id' => 'users#index_user', as: 'index_user'
+  get 'users/user_list/:id' => 'users#user_list', as: 'user_list'
   get 'users/information/edit' => 'users#edit', as: 'edit_information'
   patch 'users/information' => 'users#update', as: 'update_information'
   get 'users/unsubscribe' => 'users#unsubscribe', as: 'confirm_unsubscribe'
   patch 'users/withdraw' => 'users#withdraw', as: 'confirm_withdraw'
   get 'users/favorites' => 'users#favorites', as: 'favorites'
-  get 'users/favorite_users' => 'users#favorite_users', as:'favorite_users'
+  get 'users/favorite_users' => 'users#favorite_users', as: 'favorite_users'
+  get 'users/item_list' => 'users#item_list', as: 'user_item_list'
   get 'post_crafts/search' => 'post_crafts#search', as: 'post_crafts_search'
   get 'post_crafts/confirm' => 'post_crafts#confirm', as: 'post_crafts_confirm'
 

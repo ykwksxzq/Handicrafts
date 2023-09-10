@@ -1,5 +1,11 @@
 作品一覧
 
+<%= form_tag(post_crafts_path, method: :get) do %>
+  <%= text_field_tag(:q, params[:q], placeholder: "キーワードを入力") %>
+  <%= submit_tag("検索") %>
+<% end %>
+
+
 <% if @post_crafts.present? %>
 
 新規投稿

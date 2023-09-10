@@ -13,7 +13,7 @@ class Public::PostCraftsController < ApplicationController
 
  def index
     @post_crafts = PostCraft.published
-    @post_crafts = @post_crafts.where('location LIKE ?', "%#{params[:search]}%") if params[:search].present?
+    @post_crafts = PostCraft.search(params[:q])
  end
 
  def show

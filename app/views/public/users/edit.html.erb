@@ -1,5 +1,5 @@
 <h2>プロフィール編集</h2>
-<%= form_with model: @user, url:admin_user_path, method: :patch do |f| %>
+<%= form_with model: @user, url:edit_information_path, method: :patch do |f| %>
   <label for="inputName">ニックネーム</label>
   <%= f.text_field :nick_name, autofocus: true, id:"inputName", placeholder:"ニックネーム"%>
   <label for="inputImage">ProfileImage</label>
@@ -7,17 +7,7 @@
   <label for="inputText">自己紹介</label>
   <%= f.text_field :introduction, autofocus: true, id:"inputText", placeholder:"自己紹介"%>
   
-  会員ステータス　<% @user.is_deleted %></div>
-
-  <div class="col-sm-5">
-　<%= f.radio_button :is_deleted, "ture" %>
-　<%= f.label :is_deleted_false, "有効" %>
-
-　<%= f.radio_button :is_deleted, "false" %>
-　<%= f.label :is_deleted_false, "退会" %>
-　</div>
-
-  <%= f.submit "変更を保存" %>
-  
+   <%= f.submit "変更を保存" %>
+  <%= link_to "退会する", confirm_unsubscribe_path %>
 
 <% end %>

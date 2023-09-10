@@ -12,6 +12,10 @@ class Public::UsersController < ApplicationController
   @post_crafts = PostCraft.published.where(user_id: params[:id])
  end
 
+ def item_list
+  @item_lists = ItemList.where(user_id: current_user.id)
+ end
+
  def edit
   @user = User.find(current_user.id)
  end
