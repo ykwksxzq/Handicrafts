@@ -6,59 +6,84 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
-    <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
-     <header>
-       
-    
+  <header>
+  <nav class="navbar navbar-expand-lg navbar-light">
+    <div class="container-fluid">
+     <a class="navbar-brand p-6" href="/">
+       <%= link_to root_path do %><%= image_tag('logo/logo4.jpg') %><% end %></a>
+
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
+                        aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+    <ul class="navbar-nav ml-auto mb-2 mb-lg-0">
 
     <% if user_signed_in? %>
-     <li>
-       <%= link_to "マイページ", mypage_path(current_user.id) %>
+     <li class="nav-item">
+       <%= link_to "マイページ", mypage_path(current_user.id), class: 'nav-link' %>
      </li>
-     <li><%= link_to "作品一覧", post_crafts_path %></li>
-     <li><%= link_to "アイテム一覧", item_lists_path %></li>
-
-      <li>
-        <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
+     <li class="nav-item">
+        <%= link_to "作品一覧", post_crafts_path, class: 'nav-link' %></li>
+      <li class="nav-item">
+        <%= link_to "アイテム一覧", item_lists_path, class: 'nav-link' %></li>
+      <li class="nav-item">
+        <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: 'nav-link' %>
       </li>
 
     <% elsif admin_signed_in? %>
-      <li><%= link_to "会員一覧", admin_users_path %></li>
-    　<li><%= link_to "作品一覧", admin_post_crafts_path %> </li>
-      <li><%= link_to "作品コメント一覧", admin_post_comments_path %></li>
-      <li><%= link_to "アイテム一覧", admin_item_lists_path %></li>
-      <li><%= link_to "アイテムコメント一覧", admin_item_list_comments_path %></li>
-      <li>
-        <%= link_to "ジャンル一覧", admin_genres_path %></li>
-      <li>
-        <%= link_to "ログアウト", destroy_admin_session_path, method: :delete %>
+      <li class="nav-item">
+        <%= link_to "会員一覧", admin_users_path, class: 'nav-link' %></li>
+      <li class="nav-item">
+        <%= link_to "作品一覧", admin_post_crafts_path, class: 'nav-link' %></li>
+      <li class="nav-item">
+        <%= link_to "作品コメント一覧", admin_post_comments_path, class: 'nav-link' %></li>
+      <li class="nav-item">
+        <%= link_to "アイテム一覧", admin_item_lists_path, class: 'nav-link' %></li>
+       <li class="nav-item">
+        <%= link_to "アイテムコメント一覧", admin_item_list_comments_path, class: 'nav-link' %></li>
+       <li class="nav-item">
+        <%= link_to "ジャンル一覧", admin_genres_path, class: 'nav-link' %></li>
+       <li class="nav-item">
+        <%= link_to "ログアウト", destroy_admin_session_path, method: :delete, class: 'nav-link' %>
       </li>
 
     <% else %>
-      <li>
-        <%= link_to "新規登録", new_user_registration_path %>
-      </li>
-      <li>
-        <%= link_to "ログイン", new_user_session_path %>
-      </li>
-      <%= link_to 'ゲストログイン（閲覧用）', users_guest_sign_in_path, method: :post %>
+       <li class="nav-item">
+        <%= link_to "新規登録", new_user_registration_path, class: 'nav-link' %>
+       </li>
+       <li class="nav-item">
+        <%= link_to "ログイン", new_user_session_path, class: 'nav-link' %>
+       </li>
+       <li class="nav-item">
+        <%= link_to 'ゲストログイン（閲覧用）', users_guest_sign_in_path, method: :post ,class: 'nav-link' %>
+        </li>
     <% end %>
 
-
-　　<%= flash[:notice] %>
-
-
+    </div>
+    </div>
+   </nav>
   </header>
 
+   <main>
+    <div>
+     <%= flash[:notice] %>
+    </div>
 
+     <%= yield %>
 
+   </main>
 
-
-
-    <%= yield %>
+  <footer class="bg-light text-white pt-5 pb-4">
+  <div class="container">
+              </li>
+            </ul>
+          </div>
+    </footer>
   </body>
 </html>

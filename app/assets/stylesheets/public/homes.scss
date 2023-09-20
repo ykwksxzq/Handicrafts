@@ -1,3 +1,109 @@
 // Place all the styles related to the public/Homes controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
+
+.header-content {
+    display: flex;
+    justify-content: space-between;
+    width: 960px;
+    margin: 0 auto;
+    .logo {
+      padding: 10px 10px;
+      font-family: "Century";
+      text-decoration: none;
+    }
+
+    .image_tag {
+       height: 20px;
+       width: 20px;
+    }
+
+    ul {
+      justify-content: flex-end;
+      p {
+        padding: 10px 20px 10px 10px;
+      }
+      li {
+        list-style: none;
+        a {
+          display: block;
+          min-width: 110px;
+          padding: 10px;
+          text-align: center;
+          text-decoration: none;
+          color: #333;
+        }
+      }
+      li:hover {
+        cursor: pointer;
+        background-color: #fcc;
+        a {
+          color: #fff;
+        }
+      }
+    }
+  }
+
+.admin_header {
+  background-color: #aaf;
+  .header-content {
+    ul {
+      li:hover {
+        cursor: pointer;
+        background-color: #ccf;
+      }
+    }
+    form {
+      width: 510px;
+      position: absolute;
+      top: 43px;
+      right: 0;
+      display: flex;
+      justify-content: space-between;
+      input[name="search[content]"] {
+        width: 280px;
+      }
+    }
+  }
+}
+main {
+
+}
+
+.title {
+  font-family: cursive;
+}
+
+sub-title {
+  font-family: serif;
+}
+
+.cover {
+  height: 700px;
+  width: 900px;
+  justify-content: center;
+  display: table;
+  background-image: url(/assets/429991.png);
+  background-color:rgba(255,255,255,0.4);
+  background-blend-mode:lighten;
+  background-size: 100% 100%;
+}
+
+.text-center {
+  display: table-cell;
+  vertical-align: middle;
+}
+
+.card-group {
+   padding: 10px;
+   margin: 10px auto;
+}
+
+
+
+footer {
+  padding: 15px 0;
+  font-size: 14px;
+  text-align: center;
+  background-color: #ccc;
+}

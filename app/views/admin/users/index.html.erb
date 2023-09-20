@@ -3,7 +3,7 @@
 
 
 <% @users.each do |user| %>
-<%= link_to index_user_path(user.id) do %>
+<%= link_to admin_user_path(user.id) do %>
 <%= user.nick_name %>
 <% end %>
 ♥<%= user.favorites.count %>

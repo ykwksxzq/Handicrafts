@@ -45,11 +45,14 @@ scope module: :public do
   get 'post_crafts/search' => 'post_crafts#search', as: 'post_crafts_search'
   get 'post_crafts/confirm' => 'post_crafts#confirm', as: 'post_crafts_confirm'
   get 'post_crafts/tags' => 'post_crafts#tags', as: 'post_crafts_tags'
+  get 'post_crafts/post_crafts_by_tag' => 'post_crafts#post_crafts_by_tag', as: 'post_crafts_by_tag'
 
   resources :post_crafts, only:[:new, :create, :index, :show, :edit, :update, :destroy] do
     resource :favorites, only: [:create, :destroy]
     resources :post_comments, only: [:create, :destroy]
    end
+
+  resources :tags, only: [:new, :create, :edit, :update]
 
   resources :item_lists, only: [:new, :create, :index, :show, :edit, :update, :destroy] do
     resource :item_favorites, only: [:create, :destroy]

@@ -54,10 +54,17 @@ class Public::PostCraftsController < ApplicationController
  end
 
  def tags
-  @tags = PostCraft.tag_counts_on(:tags).order('count DESC')     # 全タグ(Postモデルからtagsカラムを降順で取得)
-  @tag = params[:tag]   # タグ検索用
-  @post_craft = PostCraft.tagged_with(params[:tag])   # タグに紐付く投稿
+   if params[:tag]
+     @post_crafts = PostCraft.tagged_with(params[:tag])
+     @post_crafts = PostCraft.all
+   end
  end
+
+ def post_crafts_by_tag
+    @tag = ActsAsTaggableOn::Tag.find_by(name: params[:name])
+    @post_crafts = PostCraft.tagged_with(@tag)
+ end
+
 
  def self.search(keyword)
     if params[:title, :introduction, :tag_list].present?
@@ -73,5 +80,9 @@ class Public::PostCraftsController < ApplicationController
 
   def post_craft_params
     params.require(:post_craft).permit(:user_id, :genre_id, :title, :introduction, :status, :image, :tag_list)
+  end
+
+  def tag_params
+  params.require(:tag).permit(:name)
   end
 end

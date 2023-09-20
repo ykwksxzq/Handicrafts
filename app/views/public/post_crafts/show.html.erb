@@ -8,6 +8,7 @@
 <%= @post_craft.title %>
 <%= @post_craft.introduction %>
 <%= @post_craft.genre.name %>
+<%= @post_craft.tag_list %>
 
 <% if @post_craft.user == current_user %>
 <%= link_to "編集", edit_post_craft_path %>

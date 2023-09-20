@@ -1,1 +1,67 @@
-トップページ
+
+
+<div class="container-fluid">
+<div class="row">
+<div class="cover">
+<div class="text-center">
+<h1 class="title mb-2">Handi Crafts</h1>
+<p class="sub-title">〜手芸が好きな人のためのWebコミュニティサイト〜</p>
+ <p class="text">裁縫、編み物など...あなたの作った作品を投稿して、<br>
+    手芸が好きな人同士で繋がることが目的です。</p>
+    <%= link_to "新規登録", new_user_registration_path, class: "btn btn-primary mr-2" %>
+    <%= link_to "ログイン", new_user_session_path, class: "btn btn-success ml-2" %>
+    <%= link_to 'ゲストログイン（閲覧用）', users_guest_sign_in_path, class: "btn btn-info ml-2", method: :post %>
+
+  </div>
+</div>
+</div>
+
+
+<div class="row">
+<div class="card-group">
+<div class="col-sm">
+<div class="card text-center">
+<div class="card-body">
+<h5 class="card-title">投稿作品リスト</h5>
+<p class="card-text">
+あなたの作品を投稿して、見せ合いっこしましょう！<br>
+すてきな作品があったら、いいねしたり、コメントして、みんなでコミュニケーションをとろう！</p>
+<% if user_signed_in? %>
+<%= link_to "作品一覧を見る", post_crafts_path %>
+<% end %>
+</div>
+</div>
+</div>
+
+<div class="col-sm">
+<div class="card text-center">
+<div class="card-body">
+<h5 class="card-title">アイテムリスト</h5>
+<p class="card-text">
+こだわりの道具を紹介しあおう！<br>
+便利で感動した道具、こだわっている材料、道具などを紹介しあって作品のクオリティを高め合おう！</p>
+<% if user_signed_in? %>
+<%= link_to "アイテム一覧を見る", item_lists_path %>
+<% end %>
+</div>
+</div>
+</div>
+
+<div class="col-sm">
+<div class="card text-center">
+<div class="card-body">
+<h5 class="card-title">ほしいものリスト</h5>
+<p class="card-text">
+ほしいものを一覧で登録できます。<br>
+材料のダブり、買い忘れ防止に役立てよう。</br>
+<br></p>
+<% if user_signed_in? %>
+<%= link_to "ほしいものリストを見る", wish_lists_path(current_user.id) %>
+<% end %>
+
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
