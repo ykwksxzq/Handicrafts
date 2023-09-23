@@ -18,9 +18,10 @@ class Public::PostCraftsController < ApplicationController
  end
 
  def index
-    @post_crafts = PostCraft.published
+    @post_crafts = PostCraft.published.page(params[:page]).per(12)
     @post_crafts = PostCraft.search(params[:q])
     @tags = PostCraft.tag_counts_on(:tags).most_used(20)
+    @post_crafts = @post_crafts.page(params[:page]).per(5)
  end
 
  def show
@@ -36,7 +37,7 @@ class Public::PostCraftsController < ApplicationController
  def update
   @post_craft = PostCraft.find(params[:id])
   if @post_craft.update(post_craft_params)
-   flash[:notice] = "You have updated post successfully."
+   flash[:notice] = "投稿を更新しました"
    redirect_to post_craft_path(@post_craft.id)
   else
    render :edit

@@ -13,7 +13,7 @@ class Public::ItemListsController < ApplicationController
 
 
  def index
-  @item_lists = ItemList.all
+  @item_lists = ItemList.all.page(params[:page]).per(12)
  end
 
  def show

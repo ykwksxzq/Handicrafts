@@ -1,26 +1,51 @@
-作品一覧
-
+<div class="container">
+<div class="border-bottom border-info" style="padding:10px;">
+<div class="row justify-content-center">
+<h1 class="title mb-2">作品一覧</h1>
+</div>
+<div class="d-flex justify-content-end">
 <%= form_tag(post_crafts_path, method: :get) do %>
   <%= text_field_tag(:q, params[:q], placeholder: "キーワードを入力") %>
   <%= submit_tag("検索") %>
 <% end %>
+</div>
+<div class="row justify-content-start">
+<%= link_to "新規投稿", new_post_craft_path %>
+</div>
+</div>
 
-
+<div class="card-list-container py-5">
 <% if @post_crafts.present? %>
 
-新規投稿
-<%= link_to "新規投稿", new_post_craft_path %>
-
 <% @post_crafts.each do |post_craft| %>
+<div class="card">
 <%= link_to post_craft_path(post_craft.id) do %>
-<%= image_tag post_craft.get_image(200,200) %>
+<%= image_tag post_craft.get_image(200,200), class:"card-img-top"; %>
 <% end %>
+<div class="card-body">
+<div class="row">
+<div class="col-5">
+<h4 class="card-title">
 <%= post_craft.user.nick_name %>
-<%= post_craft.title %>
+<%= post_craft.title %></div>
+<p class="card-text">
 <%= post_craft.genre.name %>
-♥<%= post_craft.favorites.count %>
+<span>♥<%= post_craft.favorites.count %> | </span>
 <%= link_to "#{post_craft.post_comments.count} コメント", post_craft_path(post_craft.id) %>
+</div>
+</div>
+</div>
+
 <% end %>
 <% else %>
     投稿している作品はありません
  <% end %>
+
+
+</div>
+
+<div class="pagination">
+  <%= paginate @post_crafts %>
+</div>
+
+</div>
