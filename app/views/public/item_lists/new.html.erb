@@ -1,14 +1,18 @@
-<h1>アイテム投稿フォーム</h1>
+<div class="container">
+<div class="row justify-content-center">
+<div class="col-md-5 col-sm-10">
+<h4 class="text-dark p-4 mb-0">アイテム投稿フォーム</h4>
 <%= form_with model: @item_list, url:item_lists_path, method: :post do |f| %>
-  <h4>アイテム画像</h4>
-  <%= f.file_field :image, accept: "image/*" %>
-  <h4>アイテム名</h4>
-  <%= f.text_field :item_name %>
-  <h4>備考</h4>
-  <%= f.text_area :memo %>
 
-  <h4>ジャンル</h4>
-  <%= f.collection_select :genre_id, Genre.all, :id, :name %>
+  <%= render partial: 'public/item_lists/post_form', locals: {f:f} %>
 
-  <%= f.submit '投稿' %>
+<div class="actions">
+<%= f.submit '投稿',class: "btn btn-primary"%>
+</div>
+
 <% end %>
+  </br>
+  <p><%= link_to "アイテム一覧に戻る", item_lists_path, class: "underline" %></p>
+
+</div>
+</div>
