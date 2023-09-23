@@ -1,17 +1,19 @@
-<h1>編集フォーム</h1>
+<div class="container">
+<div class="row justify-content-center">
+<div class="col-md-5 col-sm-10">
+<h4 class="text-dark p-4 mb-0">編集</h4>
+
 <%= form_with model: @post_craft, url:post_craft_path(@post_craft.id), method: :patch do |f| %>
-  <h4>作品画像</h4>
-  <%= f.file_field :image, accept: "image/*" %>
-  <h4>作品タイトル</h4>
-  <%= f.text_field :title %>
-  <h4>説明</h4>
-  <%= f.text_area :introduction %>
 
-  <h4>ジャンル</h4>
-  <%= f.collection_select :genre_id, Genre.all, :id, :name %>
+<%= render partial: 'public/post_crafts/post_form', locals: {f:f} %>
 
-  <%= f.select :status, PostCraft.statuses.keys.map { |k| [t("enums.post.status.#{k}"),k]}, {}, {class: "custom-select w-25"} %>
+<div class="actions">
+<%= f.submit '更新',class: "btn btn-success"%>
+</div>
 
-
-  <%= f.submit '保存' %>
 <% end %>
+  </br>
+  <p><%= link_to "作品詳細に戻る", post_craft_path(@post_craft.id), class: "underline" %></p>
+
+</div>
+</div>

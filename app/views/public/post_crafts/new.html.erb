@@ -1,21 +1,20 @@
-<h1>作品投稿フォーム</h1>
+<div class="container">
+<div class="row justify-content-center">
+<div class="col-md-5 col-sm-10">
+<h4 class="text-dark p-4 mb-0">新規投稿</h4>
+
 <%= form_with model: @post_craft, url:post_crafts_path, method: :post do |f| %>
-  <h4>作品画像</h4>
-  <%= f.file_field :image, accept: "image/*" %>
-  <h4>作品タイトル</h4>
-  <%= f.text_field :title %>
-  <h4>説明</h4>
-  <%= f.text_area :introduction %>
 
-  <h4>ジャンル</h4>
-  <%= f.collection_select :genre_id, Genre.all, :id, :name %>
+ <%= render partial: 'public/post_crafts/post_form', locals: {f:f} %>
 
-  <h4>タグ</h4>
-  <%= f.label :tag_list, "タグ (,コンマで区切って入力)" %>
-  <%= f.text_field :tag_list, value: @post_craft.tag_list.join(',') %>
+<div class="actions">
+<%= f.submit '投稿',class: "btn btn-primary"%>
+</div>
 
-  <h4>下書きとして保存</h4>
-  <%= f.select :status, PostCraft.statuses.keys.map { |k| [t("enums.post.status.#{k}"),k]}, {}, {class: "custom-select w-25"} %>
 
-  <%= f.submit '投稿' %>
 <% end %>
+  </br>
+  <p><%= link_to "作品一覧に戻る", post_crafts_path, class: "underline" %></p>
+
+</div>
+</div>
