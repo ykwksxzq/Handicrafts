@@ -14,14 +14,19 @@
 </div>
 </div>
 
-<div class="card-list-container py-5">
+<div class="card-group py-5">
+<div class="d-flex flex-column">
+<div class="row">
 <% if @post_crafts.present? %>
 
 <% @post_crafts.each do |post_craft| %>
-<div class="card">
+<div class="col-12 col-md-6 col-lg-4">
+<div class="card h-100 w-100 mx-auto shadow-lg">
+
 <%= link_to post_craft_path(post_craft.id) do %>
-<%= image_tag post_craft.get_image(200,200), class:"card-img-top"; %>
+<%= image_tag post_craft.get_image, class:"card-img-top img-fluid";%>
 <% end %>
+
 <div class="card-body">
 <div class="row">
 <div class="col-5">
@@ -35,12 +40,18 @@
 </div>
 </div>
 </div>
+</div>
 
 <% end %>
+
+</div>
+</div>
+
 <% else %>
     投稿している作品はありません
  <% end %>
-
+</div>
+</div>
 
 </div>
 

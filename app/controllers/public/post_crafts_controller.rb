@@ -21,7 +21,7 @@ class Public::PostCraftsController < ApplicationController
     @post_crafts = PostCraft.published.page(params[:page]).per(12)
     @post_crafts = PostCraft.search(params[:q])
     @tags = PostCraft.tag_counts_on(:tags).most_used(20)
-    @post_crafts = @post_crafts.page(params[:page]).per(5)
+    @post_crafts = @post_crafts.page(params[:page]).per(12)
  end
 
  def show
