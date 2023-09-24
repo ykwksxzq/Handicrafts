@@ -3,7 +3,7 @@
 
 <% @post_crafts.each do |post_craft| %>
 <%= link_to post_craft_path(post_craft.id) do %>
-<%= image_tag post_craft.get_image(200,200) %>
+<%= image_tag post_craft.get_image %>
 <% end %>
 <%= post_craft.user.nick_name %>
 <%= post_craft.title %>

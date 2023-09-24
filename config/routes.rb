@@ -22,7 +22,8 @@ end
 # URL /customers/sign_in ...
 devise_for :users, skip: [:passwords], controllers: {
   registrations: "public/registrations",
-  sessions: 'public/sessions'
+  sessions: 'public/sessions',
+  passwords: 'public/passwords'
 }
 
 devise_scope :user do
@@ -53,6 +54,7 @@ scope module: :public do
    end
 
   resources :tags, only: [:new, :create, :edit, :update]
+  resources :genres, only:[:index]
 
   resources :item_lists, only: [:new, :create, :index, :show, :edit, :update, :destroy] do
     resource :item_favorites, only: [:create, :destroy]

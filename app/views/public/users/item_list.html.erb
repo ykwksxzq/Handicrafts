@@ -8,7 +8,7 @@
 
 <% @item_lists.each do |item_list| %>
 <%= link_to item_list_path(item_list.id) do %>
-<%= image_tag item_list.get_image(200,200) %>
+<%= image_tag item_list.get_image %>
 <% end %>
 <%= item_list.user.nick_name %>
 <%= item_list.item_name %>

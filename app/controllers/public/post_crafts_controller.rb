@@ -19,10 +19,19 @@ class Public::PostCraftsController < ApplicationController
 
  def index
     @post_crafts = PostCraft.published.page(params[:page]).per(12)
-    @post_crafts = PostCraft.search(params[:q])
-    @tags = PostCraft.tag_counts_on(:tags).most_used(20)
+    @post_crafts = PostCraft.published.search(params[:q])
+    @tags = PostCraft.published.tag_counts_on(:tags).most_used(20)
     @post_crafts = @post_crafts.page(params[:page]).per(12)
+    @all_post_crafts_count = PostCraft.published.count
+    @genres = Genre.all
  end
+
+ def genre_search
+    @genre_id = params[:genre_id]
+    @post_crafts = PostCraft.published.where(genre_id: @genre_id)
+    @all_post_crafts = PostCraft.published.includes(:genre)
+ end
+
 
  def show
     @post_craft = PostCraft.find(params[:id])
@@ -79,11 +88,15 @@ class Public::PostCraftsController < ApplicationController
 
  private
 
-  def post_craft_params
+ def post_craft_params
     params.require(:post_craft).permit(:user_id, :genre_id, :title, :introduction, :status, :image, :tag_list)
-  end
+ end
 
-  def tag_params
-  params.require(:tag).permit(:name)
-  end
+ def tag_params
+    params.require(:tag).permit(:name)
+ end
+
+ def genre_rarams
+    params.require(:genre).permit(:name)
+ end
 end
