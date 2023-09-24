@@ -1,9 +1,16 @@
 <div class="container">
 <div class="border-bottom border-info" style="padding:10px;">
 <div class="row justify-content-center">
-<h2 class="title mb-2"><%= @genre.name %>の商品一覧 (全<%= @genre_post_craft_counts %>件)</h2>
+<h2 class="title mb-2"><%= @genre.name %>の商品一覧 (全<%= @post_crafts.total_count %>件)</h2>
 </div>
-
+<div class="row justify-content-end">
+ <%= link_to new_post_craft_path do %>
+<i class="fa-solid fa-circle-plus"> 新規投稿</i>
+<% end %>
+</div>
+<div class="row justify-content-end">
+<%= link_to "作品一覧に戻る", post_crafts_path, class: "underline" %>
+</div>
 
 <div class="row justify-content-start">
  <h5 class="col-auto">ジャンル一覧
