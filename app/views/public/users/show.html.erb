@@ -23,5 +23,5 @@
 <%= link_to "下書き一覧", post_crafts_confirm_path %>
 
 <% else %>
-<%= link_to "作品投稿一覧", index_user_path(@user.id) %>
+<%= link_to "作品投稿一覧", user_post_crafts_path(@user.id) %>
 <% end %>

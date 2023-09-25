@@ -23,34 +23,7 @@
 
 <% if @post_crafts.present? %>
 
-<div class="card-group py-5">
-<div class="d-flex flex-column">
-<div class="row">
-
-<% @post_crafts.each do |post_craft| %>
-<div class="col-12 col-md-6 col-lg-4">
-<div class="card h-100 w-100 shadow-lg">
-<%= link_to post_craft_path(post_craft.id) do %>
-<%= image_tag post_craft.get_image, class:"card-img-top img-fluid";%>
-<% end %>
-
-<div class="card-body">
-<h4 class="card-title">
-<i class="fa-solid fa-user"></i><span><%= post_craft.user.nick_name %></span><br>
-<i class="fa-regular fa-flag"></i><%= post_craft.title %></h4>
-<p class="card-text">
-<%= post_craft.genre.name %>
-<span>♥<%= post_craft.favorites.count %> | </span>
-<%= link_to "#{post_craft.post_comments.count} コメント", post_craft_path(post_craft.id) %></P>
-</div>
-</div>
-</div>
-
-<% end %>
-
-</div>
-</div>
-</div>
+<%= render 'public/post_crafts/index', post_crafts: @post_crafts %>
 
 <% else %>
     投稿している作品はありません
