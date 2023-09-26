@@ -13,15 +13,14 @@
 
 <% if @user == current_user %>
 
-<%= link_to "作品投稿一覧", user_post_crafts_path %>
 <%= link_to "新規投稿", new_post_craft_path %>
+<%= link_to "作品投稿一覧", user_post_crafts_path %>
 <%= link_to "いいねした作品一覧", favorites_path %>
-<%= link_to "いいねしたユーザー一覧", favorite_users_path %>
 <%= link_to "アイテムリスト", user_item_list_path %>
 <%= link_to "欲しいものリスト", wish_lists_path %>
 
 <%= link_to "下書き一覧", post_crafts_confirm_path %>
 
 <% else %>
-<%= link_to "作品投稿一覧", user_post_crafts_path(@user.id) %>
+<%= link_to "作品投稿一覧", user_post_lists_path(@user.id) %>
 <% end %>

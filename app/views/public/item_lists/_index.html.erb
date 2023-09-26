@@ -15,9 +15,10 @@
 <h4 class="card-title">
 <i class="fa-solid fa-user"></i><span><%= item_list.user.nick_name %></span><br>
 <i class="fa-regular fa-flag"></i><%= item_list.item_name %></h4>
+<i class="fa-solid fa-calendar"></i>  <%= item_list.created_at.strftime('%Y/%m/%d') %><br>
 <p class="card-text"><%= item_list.genre.name %>
 <span>♥<%= item_list.item_favorites.count %> | </span>
-<%= link_to "#{item_list.item_list_comments.count} コメント", item_list_path(item_list.id) %>
+<i class="fa-regular fa-comment"></i><%= link_to "#{item_list.item_list_comments.count} コメント", item_list_path(item_list.id) %>
 </div>
 </div>
 </div>

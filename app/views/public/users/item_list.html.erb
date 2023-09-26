@@ -1,23 +1,36 @@
+<div class="container">
+<div class="border-bottom border-info" style="padding:10px;">
+<div class="row justify-content-center">
+<h2 class="title mb-2">
+<%= current_user.nick_name %>さんのアイテム一覧(全<%= @item_lists.total_count %>件)</h>
+</div>
 
-<%= current_user.nick_name %>さんのアイテム一覧
-
-新規投稿
-<%= link_to "新規投稿", new_item_list_path %>
+<div class="row justify-content-start">
+<%= link_to new_item_list_path do %>
+<i class="fa-solid fa-circle-plus"> 新規投稿</i>
+<% end %>
+</div>
+</div>
 
 <% if @item_lists.present? %>
 
-<% @item_lists.each do |item_list| %>
-<%= link_to item_list_path(item_list.id) do %>
-<%= image_tag item_list.get_image %>
-<% end %>
-<%= item_list.user.nick_name %>
-<%= item_list.item_name %>
-<%= item_list.genre.name %>
-♥<%= item_list.item_favorites.count %>
-<%= link_to "#{item_list.item_list_comments.count} コメント", item_list_path(item_list.id) %>
-<% end %>
+<%= render 'public/item_lists/index', item_lists: @item_lists %>
+
 <% else %>
+<div class="container-fluid">
+<div class="row justify-content-center">
+<div class="cover">
+<div class="text-center">
+<h3 class="title mb-2">
     保存しているアイテムはありません
 <% end %>
+</div>
+</div>
+</div>
+</div>
 
+<div class="pagination">
+<%= paginate @item_lists %>
+</div>
 
+</div>

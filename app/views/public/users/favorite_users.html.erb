@@ -1,11 +1,19 @@
-
+<div class="container">
+<div class="border-bottom border-info" style="padding:10px;">
+<div class="row justify-content-center">
+<h2 class="title mb-2">いいねしたユーザー一覧</h2>
+</div>
+</div>
 
 <% if @favorites.present? %>
 
+<div class="card-group py-5">
+<div class="d-flex flex-column">
+<div class="row">
 <% @favorites.each do |favorite| %>
 
   <%= link_to post_crafts_path(favorite.post_craft_id) do %>
-  <%= image_tag favorite.post_craft.user.get_profile_image(50,50) %>
+  <%= image_tag favorite.post_craft.user.get_profile_image(120,120) %>
   <% end %>
   <%= favorite.post_craft.user.nick_name %>さん
   <% end %>

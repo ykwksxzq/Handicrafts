@@ -1,6 +1,11 @@
-<%= current_user.nick_name %>さんのほしいものリスト
+<div class="container">
+<div class="border-bottom border-info" style="padding:10px;">
+<div class="row justify-content-center">
+<h2 class="title mb-2"><%= current_user.nick_name %>さんのほしいものリスト</h2>
+</div>
+</div>
 
-<% if @wish_lists.present? %>
+
 <%= form_with model: @wish_list, url:wish_lists_path, method: :post do |f| %>
   <h4>アイテム名</h4>
   <%= f.text_field :item_name %>
@@ -14,7 +19,7 @@
 
   <%= f.submit '保存' %>
 <% end %>
-
+<% if @wish_lists.present? %>
 <% @wish_lists.each do |wish_list| %>
 
 <%= wish_list.item_name %>
