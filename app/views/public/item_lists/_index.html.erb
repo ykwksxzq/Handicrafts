@@ -1,0 +1,27 @@
+
+<div class="card-group py-5">
+<div class="d-flex flex-column">
+<div class="row">
+
+<% item_lists.each do |item_list| %>
+
+<div class="col-12 col-md-6 col-lg-4">
+<div class="card h-100 w-100 mx-auto shadow-lg">
+<%= link_to item_list_path(item_list.id) do %>
+<%= image_tag item_list.get_image, class:"card-img-top img-fluid"; %>
+<% end %>
+
+<div class="card-body">
+<h4 class="card-title">
+<i class="fa-solid fa-user"></i><span><%= item_list.user.nick_name %></span><br>
+<i class="fa-regular fa-flag"></i><%= item_list.item_name %></h4>
+<p class="card-text"><%= item_list.genre.name %>
+<span>♥<%= item_list.item_favorites.count %> | </span>
+<%= link_to "#{item_list.item_list_comments.count} コメント", item_list_path(item_list.id) %>
+</div>
+</div>
+</div>
+<% end %>
+</div>
+</div>
+</div>

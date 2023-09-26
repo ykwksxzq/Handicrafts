@@ -1,24 +1,23 @@
 <div class="container">
 <div class="border-bottom border-info" style="padding:10px;">
 <div class="row justify-content-center">
-<h2 class="title mb-2">アイテム一覧(全<%= @item_lists.total_count %>件)</h2>
+<h2 class="title mb-2"><%= @genre.name %>のアイテム一覧 (全<%= @item_lists.total_count %>件)</h2>
 </div>
-
 <div class="row justify-content-end">
-  <div class="col-auto">ジャンル一覧
-	<% @genres.each do |genre| %>
-	<%= link_to item_lists_genre_path(genre_id: genre.id) do %>
-	<%= genre.name %>
-	<% end %>
-	<% end %>
-</div>
-</div>
-
-
-<div class="row justify-content-start">
-<%= link_to new_item_list_path do %>
+ <%= link_to new_item_list_path do %>
 <i class="fa-solid fa-circle-plus"> 新規投稿</i>
 <% end %>
+</div>
+<div class="row justify-content-end">
+<%= link_to "アイテム一覧に戻る", item_lists_path, class: "underline" %>
+</div>
+
+<div class="row justify-content-start">
+ <h5 class="col-auto">ジャンル一覧
+	<% @genres.each do |genre| %>
+	<%= link_to genre.name, item_lists_genre_path(genre_id: genre.id), method: :get %>
+	<% end %>
+</h5>
 </div>
 </div>
 

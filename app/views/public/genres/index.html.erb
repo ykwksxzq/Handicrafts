@@ -1,7 +1,7 @@
 <div class="container">
 <div class="border-bottom border-info" style="padding:10px;">
 <div class="row justify-content-center">
-<h2 class="title mb-2"><%= @genre.name %>の商品一覧 (全<%= @post_crafts.total_count %>件)</h2>
+<h2 class="title mb-2"><%= @genre.name %>の作品一覧 (全<%= @post_crafts.total_count %>件)</h2>
 </div>
 <div class="row justify-content-end">
  <%= link_to new_post_craft_path do %>
@@ -26,8 +26,19 @@
 <%= render 'public/post_crafts/index', post_crafts: @post_crafts %>
 
 <% else %>
-    投稿している作品はありません
+<div class="container-fluid">
+<div class="row justify-content-center">
+<div class="cover">
+<div class="text-center">
+<h3 class="title mb-2">
+    投稿している作品はありません</h3>
  <% end %>
+</div>
+</div>
+</div>
+</div>
+
+
 
  <div class="pagination">
   <%= paginate @post_crafts %>

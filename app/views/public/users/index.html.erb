@@ -1,6 +1,9 @@
-
-<%= current_user.nick_name %>さんの作品一覧
-
+<div class="container">
+<div class="border-bottom border-info" style="padding:10px;">
+<div class="row justify-content-center">
+<h2 class="title mb-2">
+<%= current_user.nick_name %>さんの作品一覧</h2>
+</div>
 <% if @post_craft.present? %>
 
 新規投稿

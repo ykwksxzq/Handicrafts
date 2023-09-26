@@ -1,16 +1,32 @@
-下書き一覧
+<div class="container">
+<div class="border-bottom border-info" style="padding:10px;">
+<div class="row justify-content-center">
+<h2 class="title mb-2">下書き一覧(全<%= @post_crafts.total_count %>件)</h2>
+</div>
+
+<div class="row justify-content-start">
+<%= link_to "作品投稿一覧", user_post_crafts_path %>
+</div>
+</div>
+
 <% if @post_crafts.present? %>
 
-<% @post_crafts.each do |post_craft| %>
-<%= link_to post_craft_path(post_craft.id) do %>
-<%= image_tag post_craft.get_image %>
-<% end %>
-<%= post_craft.user.nick_name %>
-<%= post_craft.title %>
-♥<%= post_craft.favorites.count %>
-<%= link_to "#{post_craft.post_comments.count} コメント", post_craft_path(post_craft.id) %>
-<% end %>
+<%= render 'index', post_crafts: @post_crafts %>
 
 <% else %>
-    下書きに保存している投稿はありません
+<div class="container-fluid">
+<div class="row justify-content-center">
+<div class="cover">
+<div class="text-center">
+<h3 class="title mb-2">
+    下書きに保存している投稿はありません</h3>
  <% end %>
+</div>
+</div>
+</div>
+</div>
+<div class="pagination">
+  <%= paginate @post_crafts %>
+</div>
+
+</div>

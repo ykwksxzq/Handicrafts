@@ -7,7 +7,7 @@ class Public::GenresController < ApplicationController
       @genre = Genre.find(params[:genre_id])
       @post_crafts = @genre.post_crafts
       @post_crafts = @post_crafts.published.page(params[:page]).per(12)
-   end
+    end
  end
 
  private

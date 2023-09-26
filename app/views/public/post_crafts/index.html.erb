@@ -2,7 +2,7 @@
 <div class="border-bottom border-info" style="padding:10px;">
 <div class="row justify-content-center">
 <h2 class="title mb-2">
-  作品一覧 (全<%= @all_post_crafts_count %>件)</h1>
+  作品一覧 (全<%= @all_post_crafts_count %>件)</h2>
 </div>
 <div class="row justify-content-end">
 <%= form_tag(post_crafts_path, method: :get) do %>
@@ -27,12 +27,20 @@
 </div>
 
 <% if @post_crafts.present? %>
-
 <%= render 'index', post_crafts: @post_crafts %>
 
 <% else %>
-    投稿している作品はありません
+<div class="container-fluid">
+<div class="row justify-content-center">
+<div class="cover">
+<div class="text-center">
+<h3 class="title mb-2">
+    投稿している作品はありません</h3>
  <% end %>
+</div>
+</div>
+</div>
+</div>
 
  <div class="pagination">
   <%= paginate @post_crafts %>

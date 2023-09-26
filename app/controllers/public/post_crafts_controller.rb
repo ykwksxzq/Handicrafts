@@ -60,7 +60,7 @@ class Public::PostCraftsController < ApplicationController
  end
 
  def confirm
-  @post_crafts = current_user.post_crafts.draft
+  @post_crafts = current_user.post_crafts.draft.page(params[:page]).per(12)
  end
 
  def tags

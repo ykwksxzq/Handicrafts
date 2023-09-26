@@ -14,7 +14,19 @@ class Public::ItemListsController < ApplicationController
 
  def index
   @item_lists = ItemList.all.page(params[:page]).per(12)
+  @genres = Genre.all
  end
+
+ def genre_index
+  @item_lists = ItemList.all.page(params[:page]).per(12)
+  @genres = Genre.all
+  if params[:genre_id].present?
+   @genre = Genre.find(params[:genre_id])
+   @item_lists = @genre.item_lists
+   @item_lists = @item_lists.all.page(params[:page]).per(12)
+  end
+ end
+
 
  def show
   @item_list = ItemList.find(params[:id])
@@ -46,5 +58,9 @@ class Public::ItemListsController < ApplicationController
 
  def item_list_params
    params.require(:item_list).permit(:user_id, :genre_id, :item_name, :memo, :image)
+ end
+
+ def genre_rarams
+    params.require(:genre).permit(:name)
  end
 end
