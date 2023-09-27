@@ -5,31 +5,68 @@
 </div>
 </div>
 
-
+<div class="row">
+<div class="col-md-3 m-3 p-5" style="background-color: #F0F8FF; padding: 20px;">
 <%= form_with model: @wish_list, url:wish_lists_path, method: :post do |f| %>
-  <h4>アイテム名</h4>
-  <%= f.text_field :item_name %>
-  <h4>備考</h4>
-  <%= f.text_field :memo %>
 
-  <h4>ジャンル</h4>
-  <%= f.collection_select :genre_id, Genre.all, :id, :name %>
+  <div class="form-group row">
+  <div class="field">
+  <h6 class="text-dark p-2 mb-0">アイテム名</h6>
+  <%= f.text_field :item_name, class: 'form-control'%>
+  </div>
+  </div>
 
-  <%= f.select :status, PostCraft.statuses.keys.map { |k| [t("enums.post.status.#{k}"),k]}, {}, {class: "custom-select w-25"} %>
+  <div class="form-group row">
+  <div class="field">
+  <h6 class="text-dark p-2 mb-0">備考</h6>
+  <%= f.text_area :memo, class: 'form-control' %>
+  </div>
+  </div>
 
-  <%= f.submit '保存' %>
-<% end %>
+  <div class="form-group row">
+  <div class="field">
+  <h6 class="text-dark p-2 mb-0">ジャンル
+  <%= f.collection_select :genre_id, Genre.all, :id, :name, class: 'form-control'%></h6>
+  </div>
+  </div>
+  <div class="actions">
+  <%= f.submit '保存',class: "btn btn-primary"%>
+  </div>
+  <% end %>
+
+</div>
+
+<div class="col-md-7 m-5 offset-md-1">
+
 <% if @wish_lists.present? %>
+
+<table class="table table-hover table-inverse">
+<thead>
+<tr>
+  <th>#</th>
+  <th>アイテム名</th>
+  <th>備考</th>
+  <th>ジャンル</th>
+  <th></th>
+  <th></th>
+</thead>
 <% @wish_lists.each do |wish_list| %>
+<tbody>
 
-<%= wish_list.item_name %>
-<%= wish_list.genre.name %>
-<%= wish_list.memo %>
-
-<%= link_to '編集する', edit_wish_list_path(wish_list.id) %>
-<%= link_to "削除", wish_list_path(wish_list.id), method: :delete %>
+  <th></th>
+  <td><%= wish_list.item_name %></td>
+  <td><%= wish_list.memo %></td>
+  <td><%= wish_list.genre.name %></td>
+  <td><%= link_to '編集する', edit_wish_list_path(wish_list.id), class: "btn btn-success" %></td>
+  <td><%= link_to "削除", wish_list_path(wish_list.id), class: "btn btn-danger", method: :delete %></td>
 <% end %>
+</tbody>
+</table>
 
 <% else %>
-    保存している投稿はありません
+    保存しているアイテムはありません</h3>
 <% end %>
+</div>
+</div>
+</div>
+

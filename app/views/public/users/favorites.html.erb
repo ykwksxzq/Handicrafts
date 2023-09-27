@@ -20,14 +20,18 @@
 <%= image_tag favorite.post_craft.get_image, class:"card-img-top img-fluid";%>
 <% end %>
 <div class="card-body">
-<h4 class="card-title">♥<%= @favorites.count %> いいね<br>
+<h4 class="card-title">
+♥<%= favorite.post_craft.favorites.count %> いいね<br>
 <%= link_to mypage_path(favorite.post_craft.user_id) do %>
-<i class="fa-solid fa-user"></i><span><%= favorite.post_craft.user.nick_name %>
+ <i class="fa-solid fa-user"></i><span><%= favorite.post_craft.user.nick_name %>
 <% end %>
 </h4>
-<p class="card-text">
+
 <i class="fa-solid fa-calendar"></i> <%= favorite.post_craft.created_at.strftime('%Y/%m/%d') %><br>
-<i class="fa-regular fa-flag"></i><%= favorite.post_craft.title %><br>
+<i class="fa-regular fa-flag"></i><%= favorite.post_craft.title %></p>
+</div>
+</div>
+</div>
 <% end %>
 </div>
 </div>
