@@ -1,16 +1,44 @@
-<h4>ジャンル管理</h4>
+<div class="container">
+<div class="border-bottom border-info" style="padding:10px;">
+<div class="row justify-content-center">
+<h2 class="title mb-2">ジャンル一覧</h2>
+</div>
+</div>
 
-ジャンル新規登録
-
+<div class="row justify-content-center">
+<div class="col-md-3 m-3 p-3">
+<h5 class="title mb-2">ジャンル新規登録</h5>
 <%= form_with model: @genre, url:admin_genres_path, method: :post do |f| %>
 
-ジャンル名
-　<%= f.text_field :name %>
-  <%= f.submit '投稿' %>
+ <div class="form-group row">
+ <div class="field">
+ <h6 class="text-dark p-2 mb-0">ジャンル名</h6>
+　<%= f.text_field :name, class: 'form-control'%>
+ </div>
+ </div>
+ <div class="actions">
+  <%= f.submit '投稿',class: "btn btn-primary" %>
+ </div>
 <% end %>
 
-ジャンル一覧
+</div>
+
+<div class="col-md-8 m-3 p-3 offset-md-1">
+<h5 class="title m-2 p-2 mb-0">ジャンル一覧</h5>
 <% @genres.each do |genre| %>
-<%= genre.name %><%= link_to '編集', edit_admin_genre_path(genre.id) %>
 
+<table class="table hover table-inverse">
+<tbody>
+<tr>
+<th scope="col-lg-"><%= genre.name %></th>
+<th scope="col"><%= link_to '編集', edit_admin_genre_path(genre.id), class: "btn btn-success" %></td>
+<th scope="col"><%= link_to "削除", admin_genre_path(genre.id), class: "btn btn-danger", method: :delete, "data-confirm" => "本当に削除しますか？" %></td>
+</tr>
+</tbody>
+</table>
 <% end %>
+
+</div>
+</div>
+
+</div>
