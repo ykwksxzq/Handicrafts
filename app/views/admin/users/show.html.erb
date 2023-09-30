@@ -1,16 +1,43 @@
-<h2><%= @user.nick_name %>会員情報編集</h2>
+<div class="container">
+<div class="border-bottom border-info" style="padding:10px;">
+<div class="row justify-content-center">
+<h2 class="title mb-2"><%= @user.nick_name %>さんの会員詳細</div>
+</div>
 
-<%= form_with model: @user, url:update_information_path do |f| %>
-  <label for="inputName">ニックネーム</label>
-  <%= f.text_field :nick_name, autofocus: true, id:"inputName", placeholder:"ニックネーム"%>
-  <label for="inputImage">ProfileImage</label>
-  <%= f.file_field :profile_image, placeholder: "プロフィール画像", accept: "image/*" %>
+<div class="row">
+<div class="col-lg-4">
+<div class="card m-3 p-2 shadow-lg">
+  <%= image_tag @user.get_profile_image(300,300),class:"card-img-top img-fluid" %>
+  <div class="card-body">
+  <h2 class="card-title"><%= @user.nick_name %></h2>
+  <h5 class="card-text"><%= @user.introduction %></h5>
+</div>
+</div>
 
+  <p class="text m-3 text-right">
+  <%= link_to "プロフィール編集", edit_admin_user_path(@user.id) %></p>
+</div>
 
-  <label for="inputText">自己紹介</label>
-  <%= f.text_field :introduction, autofocus: true, id:"inputText", placeholder:"自己紹介"%>
-
-  <%= f.submit "変更を保存" %>
-  <%= link_to "退会する", confirm_unsubscribe_path %>
-
+<div class="col-lg-7 m-3 offset-md-1">
+<div class="list-group">
+<li class="list-group-item">
+<h4 class="list-title">
+<%= link_to "作品投稿一覧", user_post_lists_path(@user.id) %>
+</h4>
+<div class="row">
+<% @post_crafts.each do |post_craft| %>
+<div class="col-4"
+<div class="card mb-4 h-100">
+<%= link_to post_craft_path(post_craft.id) do %>
+<%= image_tag post_craft.get_image, class:"card-img-top img-fluid";%>
 <% end %>
+</div>
+<% end %>
+</div>
+</li>
+
+</div>
+</div>
+
+</div>
+</div>

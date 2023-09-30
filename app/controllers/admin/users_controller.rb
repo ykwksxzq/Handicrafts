@@ -3,6 +3,11 @@ class Admin::UsersController < ApplicationController
     @users = User.all
   end
 
+  def show
+     @user = User.find(params[:id])
+     @post_crafts = PostCraft.published.where(user_id: params[:id]).page(params[:page]).per(12)
+  end
+
   def edit
    @user = User.find(params[:id])
   end
