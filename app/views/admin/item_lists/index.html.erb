@@ -1,16 +1,44 @@
-アイテム一覧
+<div class="container">
+<div class="border-bottom border-info" style="padding:10px;">
+<div class="row justify-content-center">
+<h2 class="title mb-2">アイテム一覧(全<%= @item_lists.total_count %>件)</h2>
+</div>
+</div>
 <% if @item_lists.present? %>
 
+<div class="card-group py-5">
+<div class="d-flex flex-column">
+<div class="row">
+
 <% @item_lists.each do |item_list| %>
+
+<div class="col-12 col-md-6 col-lg-4">
+<div class="card h-100 w-100 mx-auto shadow-lg">
 <%= link_to admin_item_list_path(item_list.id) do %>
-<%= image_tag item_list.get_image(200,200) %>
+<%= image_tag item_list.get_image, class:"card-img-top img-fluid"; %>
 <% end %>
-<%= item_list.user.nick_name %>
-<%= item_list.item_name %>
+
+<div class="card-body">
+<h4 class="card-title">
+<%= item_list.user.nick_name %><br>
+<%= item_list.item_name %></h4>
+<p class="card-text">
 <%= item_list.genre.name %>
-♥<%= item_list.item_favorites.count %>
-<%= link_to "#{item_list.item_list_comments.count} コメント", admin_item_list_path(item_list.id) %>
+<span>♥<%= item_list.item_favorites.count %></span>
+<%= link_to "#{item_list.item_list_comments.count} コメント", admin_item_list_path(item_list.id) %></P>
+</div>
+</div>
+</div>
 <% end %>
-<% else %>
-    保存しているアイテムはありません
+</div>
+</div>
+</div>
+
+ <% else %>
+    投稿しているアイテムはありません
  <% end %>
+<div class="pagination justify-content-center">
+<%= paginate @item_lists, theme: 'twitter-bootstrap-4' %>
+</div>
+
+</div>
