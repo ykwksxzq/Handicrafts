@@ -18,10 +18,10 @@ class Public::PostCraftsController < ApplicationController
  end
 
  def index
-    @post_crafts = PostCraft.published.page(params[:page]).per(12)
+    @post_crafts = PostCraft.published.page(params[:page]).per(12).order(created_at: :desc)
     @post_crafts = PostCraft.published.search(params[:q])
-    @tags = PostCraft.published.tag_counts_on(:tags).most_used(20)
-    @post_crafts = @post_crafts.page(params[:page]).per(12)
+    @tags = PostCraft.published.tag_counts_on(:tags).most_used(20).order(created_at: :desc)
+    @post_crafts = @post_crafts.page(params[:page]).per(12).order(created_at: :desc)
     @all_post_crafts_count = PostCraft.published.count
     @genres = Genre.all
  end

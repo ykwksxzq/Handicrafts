@@ -13,17 +13,17 @@ class Public::ItemListsController < ApplicationController
 
 
  def index
-  @item_lists = ItemList.all.page(params[:page]).per(12)
+  @item_lists = ItemList.all.page(params[:page]).per(12).order(created_at: :desc)
   @genres = Genre.all
  end
 
  def genre_index
-  @item_lists = ItemList.all.page(params[:page]).per(12)
+  @item_lists = ItemList.all.page(params[:page]).per(12).order(created_at: :desc)
   @genres = Genre.all
   if params[:genre_id].present?
    @genre = Genre.find(params[:genre_id])
    @item_lists = @genre.item_lists
-   @item_lists = @item_lists.all.page(params[:page]).per(12)
+   @item_lists = @item_lists.all.page(params[:page]).per(12).order(created_at: :desc)
   end
  end
 

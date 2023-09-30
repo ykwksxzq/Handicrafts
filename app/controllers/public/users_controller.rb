@@ -2,6 +2,7 @@ class Public::UsersController < ApplicationController
 
  def show
    @user = User.find(params[:id])
+   @post_crafts = PostCraft.published.where(user_id: params[:id]).page(params[:page]).per(3).order(created_at: :desc)
  end
 
  def index

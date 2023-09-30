@@ -19,41 +19,76 @@
   <% end %>
 </div>
 
-
-<div class="col-lg-6 m-3 p-2 offset-md-1">
-<ul class="list-group list-group-flush">
-<ul class="list-group">
-  <li class="list-group-item">
-
-
-  <%= link_to "作品投稿一覧", user_post_crafts_path %>
-<div class="border-bottom border-info" style="padding:10px;">
-
-</div>
-<div class="row justify-content-end">
 <% if @user == current_user %>
+
+<div class="col-lg-7 m-3 offset-md-1">
+<div class="list-group">
+<li class="list-group-item">
+<h4 class="list-title">
  <%= link_to new_post_craft_path do %>
- <i class="fa-solid fa-circle-plus"> 新規投稿</i>
+ <i class="fa-solid fa-circle-plus"></i> 新規投稿
  <% end %>
- <% link_to edit_information_path(@user) do %>
- <i class="fa-solid fa-user"> プロフィール編集</i></p>
- <% end %>
+ </h4>
+ </li>
+
+
+<li class="list-group-item">
+<h4 class="list-title">
+<%= link_to "作品投稿一覧", user_post_crafts_path %>
+</h4>
+<div class="row">
+<% @post_crafts.each do |post_craft| %>
+<div class="col-4"
+<div class="card mb-4 h-100">
+<%= link_to post_craft_path(post_craft.id) do %>
+<%= image_tag post_craft.get_image, class:"card-img-top img-fluid";%>
 <% end %>
 </div>
-
-<% if @user == current_user %>
-
-<%= link_to "新規投稿", new_post_craft_path %>
-<%= link_to "作品投稿一覧", user_post_crafts_path %>
-<%= link_to "いいねした作品一覧", favorites_path %>
-<%= link_to "アイテムリスト", user_item_list_path %>
-<%= link_to "ほしいものリスト", wish_list_path(@user.id) %>
-
-<%= link_to "下書き一覧", post_crafts_confirm_path %>
-
-<% else %>
-<%= link_to "作品投稿一覧", user_post_lists_path(@user.id) %>
 <% end %>
+</div>
+</li>
+
+<li class="list-group-item">
+<h5 class="list-title">
+<%= link_to "下書き一覧", post_crafts_confirm_path %></h5>
+</li>
+
+<li class="list-group-item">
+<h5 class="list-title">
+<%= link_to "いいねした作品一覧", favorites_path %></h5>
+</li>
+<li class="list-group-item">
+<h5 class="list-title">
+<%= link_to "アイテム一覧", user_item_list_path %></h5>
+</li>
+<li class="list-group-item">
+<h5 class="list-title">
+<%= link_to "ほしいものリスト", wish_list_path(@user.id) %></h5>
+</li>
+<% else %>
+
+
+<div class="col-lg-7 m-3 offset-md-1">
+<div class="list-group">
+<li class="list-group-item">
+<h4 class="list-title">
+<%= link_to "作品投稿一覧", user_post_lists_path(@user.id) %>
+</h4>
+<div class="row">
+<% @post_crafts.each do |post_craft| %>
+<div class="col-4"
+<div class="card mb-4 h-100">
+<%= link_to post_craft_path(post_craft.id) do %>
+<%= image_tag post_craft.get_image, class:"card-img-top img-fluid";%>
+<% end %>
+</div>
+<% end %>
+</div>
+</li>
+<% end %>
+
+</div>
+</div>
 
 </div>
 </div>
