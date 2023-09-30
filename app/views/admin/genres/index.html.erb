@@ -1,7 +1,7 @@
 <div class="container">
 <div class="border-bottom border-info" style="padding:10px;">
 <div class="row justify-content-center">
-<h2 class="title mb-2">ジャンル一覧</h2>
+<h2 class="title mb-2">ジャンル管理</h2>
 </div>
 </div>
 
@@ -30,7 +30,7 @@
 <table class="table hover table-inverse">
 <tbody>
 <tr>
-<th scope="col-lg-"><%= genre.name %></th>
+<th scope="col"><%= genre.name %></th>
 <th scope="col"><%= link_to '編集', edit_admin_genre_path(genre.id), class: "btn btn-success" %></td>
 <th scope="col"><%= link_to "削除", admin_genre_path(genre.id), class: "btn btn-danger", method: :delete, "data-confirm" => "本当に削除しますか？" %></td>
 </tr>

@@ -18,7 +18,7 @@
      <a class="navbar-brand p-6" href="/">
        <%= link_to root_path do %><%= image_tag('logo/logo4.jpg') %><% end %></a>
 
-     <div class="col align-self-center">
+     <div class="col-md-2 align-self-center">
      <% if user_signed_in? %>
      <p class="text-primary">ようこそ、<%= current_user.nick_name %>さん！</p>
      <% end %>
@@ -56,7 +56,7 @@
        <li class="nav-item">
         <%= link_to "アイテムコメント一覧", admin_item_list_comments_path, class: 'nav-link' %></li>
        <li class="nav-item">
-        <%= link_to "ジャンル一覧", admin_genres_path, class: 'nav-link' %></li>
+        <%= link_to "ジャンル管理", admin_genres_path, class: 'nav-link' %></li>
        <li class="nav-item">
         <%= link_to "ログアウト", destroy_admin_session_path, method: :delete, class: 'nav-link' %>
       </li>

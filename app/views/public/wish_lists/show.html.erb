@@ -1,7 +1,14 @@
 <div class="container">
 <div class="border-bottom border-info" style="padding:10px;">
 <div class="row justify-content-center">
+<% if params[:genre_id] %>
+<h2 class="title mb-2"><%= @genre.name %>のほしいものリスト(全<%= @wish_lists.total_count %>件)</h2>
+<% else %>
 <h2 class="title mb-2"><%= current_user.nick_name %>さんのほしいものリスト</h2>
+<% end %>
+</div>
+<div class="row justify-content-end">
+<%= link_to "マイページに戻る", mypage_path(current_user.id), class: "underline" %>
 </div>
 </div>
 
@@ -33,35 +40,38 @@
   <%= f.submit '保存',class: "btn btn-primary"%>
   </div>
   <% end %>
-
 </div>
 
-
-<div class="col-md-8  m-4 offset-md-1">
+<div class="col-md-8-sm-4 m-4 offset-md-1">
 <div class="col-auto m-2"><strong>ジャンル一覧</strong>
   <% @genres.each do |genre| %>
 	<button type="button" class="btn btn-outline-primary">
-	<%= link_to wish_list_path(genre) do %>
-	  <%= genre.name %></button></span>
+	<%= link_to genre.name, wish_list_path(genre_id: genre.id), method: :get %>
+	</button>
 	<% end %>
-	<% end %>
+	</button>
 </div>
+
 
 <% if @wish_lists.present? %>
 
 <%= render 'table', wish_list: @wish_lists %>
 
-
 <% else %>
-    保存しているアイテムはありません</h3>
+<div class="container-fluid">
+<div class="row justify-content-center">
+<div class="cover">
+<div class="text-center">
+<h3 class="title mb-2">
+    保存しているアイテムはありません
 <% end %>
 </div>
 </div>
-
-<%= link_to 'Sort by Name (ASC)', wish_lists_path(@genre, wish_lists: 'asc') %>
-<%= link_to 'Sort by Name (DESC)', wish_lists_path(@genre, wish_lists: 'desc') %>
-
 </div>
+</div>
+
 <div class="pagination justify-content-center">
 <%= paginate @wish_lists, theme: 'twitter-bootstrap-4' %>
+</div>
+
 </div>

@@ -62,7 +62,7 @@ scope module: :public do
     resources :item_list_comments, only: [:create, :destroy]
    end
 
-  resources :wish_lists, only: [:index, :create, :edit, :update, :destroy]
+  resources :wish_lists, only: [:show, :index, :create, :edit, :update, :destroy]
 end
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
