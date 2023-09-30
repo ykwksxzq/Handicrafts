@@ -1,14 +1,44 @@
-<%= @user.nick_name %>さんのマイページ
+<div class="container">
+<div class="border-bottom border-info" style="padding:10px;">
+<div class="row justify-content-center">
+<h2 class="title mb-2"><%= @user.nick_name %>さんのマイページ</div>
+</div>
 
-登録情報
-
-<div>
-  <h3><%= @user.nick_name %></h3>
-  <%= image_tag @user.get_profile_image(100,100) %>
-  <%= @user.introduction %>
+<div class="row">
+<div class="col-lg-4">
+<div class="card m-3 p-2 shadow-lg">
+  <%= image_tag @user.get_profile_image(300,300),class:"card-img-top img-fluid" %>
+  <div class="card-body">
+  <h2 class="card-title"><%= @user.nick_name %></h2>
+  <h5 class="card-text"><%= @user.introduction %></h5>
+</div>
+</div>
   <% if @user == current_user %>
-    <p><%= link_to "プロフィール編集", edit_information_path(@user) %></p>
+  <p class="text m-3 text-right">
+  <%= link_to "プロフィール編集", edit_information_path(@user) %></p>
   <% end %>
+</div>
+
+
+<div class="col-lg-6 m-3 p-2 offset-md-1">
+<ul class="list-group list-group-flush">
+<ul class="list-group">
+  <li class="list-group-item">
+
+
+  <%= link_to "作品投稿一覧", user_post_crafts_path %>
+<div class="border-bottom border-info" style="padding:10px;">
+
+</div>
+<div class="row justify-content-end">
+<% if @user == current_user %>
+ <%= link_to new_post_craft_path do %>
+ <i class="fa-solid fa-circle-plus"> 新規投稿</i>
+ <% end %>
+ <% link_to edit_information_path(@user) do %>
+ <i class="fa-solid fa-user"> プロフィール編集</i></p>
+ <% end %>
+<% end %>
 </div>
 
 <% if @user == current_user %>
@@ -24,3 +54,6 @@
 <% else %>
 <%= link_to "作品投稿一覧", user_post_lists_path(@user.id) %>
 <% end %>
+
+</div>
+</div>

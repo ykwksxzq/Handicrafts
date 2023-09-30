@@ -6,7 +6,8 @@
 </div>
 
 <div class="row">
-<div class="col-md-3 m-3 p-5" style="background-color: #F0F8FF; padding: 20px;">
+<div class="col-lg-3 m-3 p-5">
+<div class="cover3">
 <%= form_with model: @wish_list, url:wish_lists_path, method: :post do |f| %>
 
   <div class="form-group row">
@@ -35,28 +36,32 @@
   <% end %>
 
 </div>
+</div>
 
-<div class="col-md-7 m-5 offset-md-1">
+<%= link_to 'Sort by Name (ASC)', wish_lists_path(@genre, wish_lists: 'asc') %>
+<%= link_to 'Sort by Name (DESC)', wish_lists_path(@genre, wish_lists: 'desc') %>
+
+
+<div class="col-lg-7 m-5 offset-md-1">
 
 <% if @wish_lists.present? %>
 
 <table class="table table-hover table-inverse">
 <thead>
 <tr>
-  <th>#</th>
+  <th>ジャンル</th>
   <th>アイテム名</th>
   <th>備考</th>
-  <th>ジャンル</th>
   <th></th>
   <th></th>
 </thead>
 <% @wish_lists.each do |wish_list| %>
 <tbody>
 
-  <th></th>
+
+  <td><%= wish_list.genre.name %></td>
   <td><%= wish_list.item_name %></td>
   <td><%= wish_list.memo %></td>
-  <td><%= wish_list.genre.name %></td>
   <td><%= link_to '編集する', edit_wish_list_path(wish_list.id), class: "btn btn-success" %></td>
   <td><%= link_to "削除", wish_list_path(wish_list.id), class: "btn btn-danger", method: :delete %></td>
 <% end %>
@@ -68,5 +73,5 @@
 <% end %>
 </div>
 </div>
-</div>
 
+</div>

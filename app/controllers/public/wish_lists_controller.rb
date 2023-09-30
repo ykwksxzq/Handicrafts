@@ -3,7 +3,9 @@ class Public::WishListsController < ApplicationController
   def index
     @wish_list = WishList.new
     @wish_lists = WishList.where(user_id: current_user.id)
+    @genre = Genre.all
   end
+
 
   def create
     @wish_list = WishList.new(wish_list_params)
@@ -38,6 +40,10 @@ class Public::WishListsController < ApplicationController
 
   def wish_list_params
     params.require(:wish_list).permit(:user_id, :genre_id, :item_name, :memo)
+  end
+
+  def genre_rarams
+    params.require(:genre).permit(:name)
   end
 
 end

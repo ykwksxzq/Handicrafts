@@ -1,15 +1,44 @@
+<div class="container">
+<div class="border-bottom border-info" style="padding:10px;">
+<div class="row justify-content-center">
+<h2 class="title mb-2">作品一覧(全<%= @post_crafts.total_count %>件)</h2>
+</div>
+</div>
 <% if @post_crafts.present? %>
 
+<div class="card-group py-5">
+<div class="d-flex flex-column">
+
+<div class="row">
 <% @post_crafts.each do |post_craft| %>
+<div class="col-12 col-md-6 col-lg-4">
+<div class="card h-100 w-100 mx-auto shadow-lg">
+
 <%= link_to admin_post_craft_path(post_craft.id) do %>
-<%= image_tag post_craft.get_image(200,200) %>
+<%= image_tag post_craft.get_image,  class:"card-img-top img-fluid";%>
 <% end %>
 
-<%= post_craft.user.nick_name %>
-<%= post_craft.title %>
-♥<%= post_craft.favorites.count %>
-<%= link_to "#{post_craft.post_comments.count} コメント", admin_post_craft_path(post_craft.id) %>
+<div class="card-body">
+<h4 class="card-title">
+<%= post_craft.user.nick_name %></h4>
+<p class="card-text">
+<%= post_craft.title %><br>
+<span>♥<%= post_craft.favorites.count %> | </span>
+<%= link_to "#{post_craft.post_comments.count} コメント", admin_post_craft_path(post_craft.id) %></p>
+
+</div>
+</div>
+</div>
 <% end %>
+</div>
+</div>
+</div>
+
 <% else %>
     投稿している作品はありません
  <% end %>
+<div class="pagination justify-content-center">
+<%= paginate @post_crafts, theme: 'twitter-bootstrap-4' %>
+</div>
+
+</div>
