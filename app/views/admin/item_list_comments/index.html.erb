@@ -1,19 +1,45 @@
-投稿アイテムコメント一覧
+<div class="container">
+<div class="border-bottom border-info" style="padding:10px;">
+<div class="row justify-content-center">
+<h2 class="title mb-2">投稿アイテムコメント一覧</h2>
+</div>
+</div>
 
 <% if @item_list_comments.present? %>
-
-<% @item_list_comments.each do |item_list_comment| %>
-
-会員
-<%= item_list_comment.user_id %>
-<%= item_list_comment.user.nick_name %>
-コメント
-
-<%= item_list_comment.comment %>
-<%= link_to "詳細を確認する", admin_item_list_path(item_list_comment.item_list_id) %>
-
-<% end %>
-
-<% else %>
-    投稿しているコメントはありません
-<% end %>
+<div class="row justify-content-center">
+<div class="col-10 col-lg-8">
+<table class="table table-hover table-inverse m-4">
+ <thead>
+	<tr>
+	  <th>会員ID</th>
+	  <th>ニックネーム</th>
+	  <th>コメント</th>
+	  <th></th>
+	</tr>
+ </thead>
+ <tbody>
+ <% @item_list_comments.each do |item_list_comment| %>
+    <tr>
+       <td><%= item_list_comment.user_id %></td>
+       <td><%= item_list_comment.user.nick_name %></td>
+       <td><%= item_list_comment.comment %></td>
+       <td><%= link_to "詳細を確認する", admin_item_list_path(item_list_comment.item_list_id), class:"btn btn-primary" %></td>
+    </tr>
+  </tbody>
+  <% end %>
+ </table>
+ </div>
+ </div>
+ <% else %>
+<div class="container-fluid">
+<div class="row justify-content-center">
+<div class="cover">
+<div class="text-center">
+<h3 class="title mb-2">
+    投稿しているコメントはありません</h3>
+ <% end %>
+</div>
+</div>
+</div>
+</div>
+</div>
