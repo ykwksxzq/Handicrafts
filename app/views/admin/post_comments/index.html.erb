@@ -1,4 +1,10 @@
+
+
+
+
 投稿作品コメント一覧
+
+
 
 <% if @post_comments.present? %>
 
@@ -10,7 +16,7 @@
 コメント
 
 <%= post_comment.comment %>
-<%= link_to "詳細を確認する", admin_post_comment_path(post_comment.id) %>
+<%= link_to "詳細を確認する", admin_post_craft_path(post_comment.post_craft_id) %>
 
 <% end %>
 <% else %>

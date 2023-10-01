@@ -11,11 +11,15 @@ devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
 namespace :admin do
   get 'top' => 'homes#top', as: 'top'
   resources :genres, only:[:create, :index, :edit, :update, :destroy]
-  resources :post_crafts, only:[:index, :show]
+  resources :post_crafts, only:[:index, :show] do
+   resources :post_comments, only: [:index, :destroy]
+  end
+  resources :post_comments, only: [:index]
   resources :users, only:[:index, :show, :edit, :update]
-  resources :post_comments, only: [:index, :show, :destroy]
-  resources :item_lists, only: [:index, :show]
-  resources :item_list_comments, only: [:index, :show, :destroy]
+  resources :item_lists, only: [:index, :show] do
+   resources :item_list_comments, only: [:index, :destroy]
+  end
+  resources :item_list_comments, only: [:index]
 end
 
 # 顧客用
@@ -52,7 +56,7 @@ scope module: :public do
   resources :post_crafts, only:[:new, :create, :index, :show, :edit, :update, :destroy] do
     resource :favorites, only: [:create, :destroy]
     resources :post_comments, only: [:create, :destroy]
-   end
+  end
 
   resources :tags, only: [:new, :create, :edit, :update]
   resources :genres, only:[:index]
@@ -60,7 +64,7 @@ scope module: :public do
   resources :item_lists, only: [:new, :create, :index, :show, :edit, :update, :destroy] do
     resource :item_favorites, only: [:create, :destroy]
     resources :item_list_comments, only: [:create, :destroy]
-   end
+  end
 
   resources :wish_lists, only: [:show, :index, :create, :edit, :update, :destroy]
 end

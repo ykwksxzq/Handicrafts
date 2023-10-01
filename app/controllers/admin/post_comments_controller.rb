@@ -10,7 +10,7 @@ end
 
 def destroy
     PostComment.find(params[:id]).destroy
-    redirect_to admin_post_comments_path(params[:post_craft_id]), notice: "不適切なコメントを削除しました"
+    redirect_to admin_post_craft_path(params[:post_craft_id]), notice: "不適切なコメントを削除しました"
 end
 
 

@@ -4,11 +4,10 @@ class Public::WishListsController < ApplicationController
     @wish_list = WishList.new
     @wish_lists = WishList.where(user_id: current_user.id).page(params[:page]).per(10)
     @genres = Genre.all
-    @genre = Genre.find(params[:id])
     if params[:genre_id].present?
      @genre = Genre.find(params[:genre_id])
      @wish_lists = @genre.wish_lists
-     @wish_lists = @wish_lists.all.page(params[:page]).per(10)
+     @wish_lists = current_user.wish_lists.all.page(params[:page]).per(10)
     end
   end
 

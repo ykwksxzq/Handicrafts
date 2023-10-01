@@ -4,16 +4,17 @@
 <h2 class="title mb-2">
 <%= current_user.nick_name %>さんの作品一覧(全<%= @post_crafts.total_count %>件)</h2>
 </div>
-
-<% if @post_craft.present? %>
 <div class="row justify-content-start">
 <%= link_to new_post_craft_path do %>
 <i class="fa-solid fa-circle-plus"> 新規投稿</i>
 <% end %>
 </div>
+<div class="row justify-content-end">
+<%= link_to "マイページに戻る", mypage_path(current_user.id), class: "underline" %>
+</div>
 </div>
 
-
+<% if @post_craft.present? %>
 <%= render 'public/post_crafts/index', post_crafts: @post_crafts %>
 
 <% else %>
@@ -22,7 +23,7 @@
 <div class="cover">
 <div class="text-center">
 <h3 class="title mb-2">
-    保存している作品はありません</h3>
+    投稿している作品はありません</h3>
  <% end %>
 </div>
 </div>

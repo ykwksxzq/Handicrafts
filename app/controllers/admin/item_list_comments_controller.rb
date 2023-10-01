@@ -10,7 +10,7 @@ end
 
 def destroy
     ItemListComment.find(params[:id]).destroy
-    redirect_to admin_item_list_comments_path(params[:item_list_id]), notice: "不適切なコメントを削除しました"
+    redirect_to admin_item_lists_path(params[:item_list_id]), notice: "不適切なコメントを削除しました"
 end
 
 def item_list_comment_params
