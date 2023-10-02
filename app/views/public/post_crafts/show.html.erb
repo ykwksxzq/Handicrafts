@@ -39,26 +39,27 @@
 <i class="fa-solid fa-feather-pointed"></i> 説明:  <%= @post_craft.introduction %></h5>
 <p class="card-text">
 <i class="fa-solid fa-scissors"></i> ジャンル: <%= @post_craft.genre.name %><br>
-<i class="fa-solid fa-tag"></i> タグ: <%= @post_craft.tag_list %></p>
+<i class="fa-solid fa-tag"></i> タグ:
+<% if @tags.present? %>
+  <% @tags.each do |tag| %>
+  <%= link_to "#{tag.name}(#{tag.taggings_count})", post_crafts_tags_path(tag: tag.name) %>
+  <% end %>
+  <% else %>
+   登録されているタグはありません
+<% end %>
+<br>
+<i class="fa-regular fa-comment"></i> コメント件数：<%= @post_craft.post_comments.count %><br>
 
 <% if @post_craft.user == current_user %>
+<h5 class="card-text">
 <i class="fa-solid fa-pen-to-square"></i><%= link_to "編集", edit_post_craft_path %>
 <i class="fa-solid fa-trash"></i><%= link_to "削除", post_craft_path(@post_craft.id), method: :delete, "data-confirm" => "本当に投稿を削除しますか？" %>
 <% end %>
-<br>
-  <% if @tags.present? %>
-  <% @tags.each do |tag| %>
-  <%= link_to "#{tag.name}(#{tag.taggings_count})", post_crafts_tags_path %>
-  <% end %>
-  <% else %>
-  登録されているタグはありません
-  <% end %>
-
-   | <i class="fa-regular fa-comment"></i> コメント件数：<%= @post_craft.post_comments.count %>
-  </div>
-  </div>
-  </div>
-  </div>
+</h5>
+</div>
+</div>
+</div>
+</div>
 
   <div class="card mx-auto m-3">
   <div class="card-body">

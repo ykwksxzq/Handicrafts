@@ -6,13 +6,13 @@ class Public::UsersController < ApplicationController
  end
 
  def index
-  @post_craft = PostCraft.published.where(user_id: current_user.id)
+  @post_craft = PostCraft.published.where(user_id: current_user.id).order(created_at: :desc)
   @post_crafts = @post_craft.page(params[:page]).per(12)
  end
 
  def user_post_lists
   @user = User.find(params[:id])
-  @post_crafts = PostCraft.published.where(user_id: params[:id]).page(params[:page]).per(12)
+  @post_crafts = PostCraft.published.where(user_id: params[:id]).page(params[:page]).per(12).order(created_at: :desc)
  end
 
  def item_list

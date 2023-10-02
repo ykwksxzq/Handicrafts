@@ -1,8 +1,8 @@
 <div class="container">
-<div class="border-bottom border-info" style="padding:10px;">
+<div class="border-bottom border-info m-2 p-1">
 <div class="row justify-content-center">
 <h2 class="title mb-2">
-  作品一覧 (全<%= @all_post_crafts_count %>件)</h2>
+  作品一覧 (全<%= @post_crafts.total_count %>件)</h2>
 </div>
 <div class="row justify-content-end">
 <%= form_tag(post_crafts_path, method: :get) do %>
@@ -10,11 +10,14 @@
   <%= submit_tag("検索") %>
 <% end %>
 </div>
+<br>
 <div class="row justify-content-end">
-  <div class="col-auto">ジャンル一覧
+<div class="col-auto">ジャンル一覧
 	<% @genres.each do |genre| %>
+	<button type="button" class="btn btn-outline-primary">
 	<%= link_to genres_path(genre_id: genre.id) do %>
 	<%= genre.name %>
+	</button>
 	<% end %>
 	<% end %>
 </div>
@@ -24,6 +27,18 @@
 <i class="fa-solid fa-circle-plus"> 新規投稿</i>
 <% end %>
 </div>
+</div>
+
+<div class="row justify-content-end">
+ <div class="col-auto">タグ一覧
+	<% @tags.each do |tag|%>
+	<button type="button" class="btn btn-primary">
+  <%= link_to post_crafts_tags_path(tag: tag.name), class:"text-light", method: :get do %>
+  <%= tag %>
+  </button>
+  <% end %>
+  <% end %>
+ </div>
 </div>
 
 <% if @post_crafts.present? %>

@@ -22,7 +22,6 @@ class Public::PostCraftsController < ApplicationController
     @post_crafts = PostCraft.published.search(params[:q])
     @tags = PostCraft.published.tag_counts_on(:tags).most_used(20).order(created_at: :desc)
     @post_crafts = @post_crafts.page(params[:page]).per(12).order(created_at: :desc)
-    @all_post_crafts_count = PostCraft.published.count
     @genres = Genre.all
  end
 
@@ -31,7 +30,6 @@ class Public::PostCraftsController < ApplicationController
     @post_crafts = PostCraft.published.where(genre_id: @genre_id)
     @all_post_crafts = PostCraft.published.includes(:genre)
  end
-
 
  def show
     @post_craft = PostCraft.find(params[:id])
@@ -63,21 +61,27 @@ class Public::PostCraftsController < ApplicationController
   @post_crafts = current_user.post_crafts.draft.page(params[:page]).per(12)
  end
 
+ def search_by_tag
+  @tag = params[:tag]
+  @post_crafts = PostCraft.tagged_with(@tag)
+ end
+
  def tags
-   if params[:tag]
-     @post_crafts = PostCraft.tagged_with(params[:tag])
-     @post_crafts = PostCraft.all
+   @post_crafts = PostCraft.published.page(params[:page]).per(12).order(created_at: :desc)
+   @tags = PostCraft.tag_counts_on(:tags).most_used(20).order(created_at: :desc)
+   if @tag = params[:tag]
+    @post_crafts = PostCraft.tagged_with(params[:tag]).page(params[:page]).per(12)
    end
  end
 
  def post_crafts_by_tag
-    @tag = ActsAsTaggableOn::Tag.find_by(name: params[:name])
+    @tag_list = ActsAsTaggableOn::Tag.find_by(name: params[:name])
     @post_crafts = PostCraft.tagged_with(@tag)
  end
 
 
  def self.search(keyword)
-    if params[:title, :introduction, :tag_list].present?
+    if params[:title, :introduction ,:tag].present?
       @post_craft = PostCraft.published.where('title LIKE ? or introduction LIKE ? or tag_list LIKE ?', "%#{keyword}%", "%#{keyword}%", "%#{keyword}%")
       @keyword = params[:title, :introduction, :tag_list]
     else

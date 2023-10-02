@@ -15,7 +15,9 @@
 <div class="row justify-content-start">
  <h5 class="col-auto">ジャンル一覧
 	<% @genres.each do |genre| %>
+	<button type="button" class="btn btn-outline-primary">
 	<%= link_to genre.name, item_lists_genre_path(genre_id: genre.id), method: :get %>
+  </button>
 	<% end %>
 </h5>
 </div>

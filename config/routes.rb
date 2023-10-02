@@ -47,7 +47,6 @@ scope module: :public do
   get 'users/favorites' => 'users#favorites', as: 'favorites'
   get 'users/favorite_users' => 'users#favorite_users', as: 'favorite_users'
   get 'users/item_list' => 'users#item_list', as: 'user_item_list'
-  get 'post_crafts/search' => 'post_crafts#search', as: 'post_crafts_search'
   get 'post_crafts/confirm' => 'post_crafts#confirm', as: 'post_crafts_confirm'
   get 'post_crafts/tags' => 'post_crafts#tags', as: 'post_crafts_tags'
   get 'post_crafts/post_crafts_by_tag' => 'post_crafts#post_crafts_by_tag', as: 'post_crafts_by_tag'
