@@ -27,12 +27,12 @@
 <h5 class="title m-2 p-2 mb-0">ジャンル一覧</h5>
 <% @genres.each do |genre| %>
 
-<table class="table hover table-inverse">
+<table class="table hover table-inverse" style="table-layout: auto;">
 <tbody>
 <tr>
 <th scope="col"><%= genre.name %></th>
-<th scope="col"><%= link_to '編集', edit_admin_genre_path(genre.id), class: "btn btn-success" %></td>
-<th scope="col"><%= link_to "削除", admin_genre_path(genre.id), class: "btn btn-danger", method: :delete, "data-confirm" => "本当に削除しますか？" %></td>
+<th scope="col"><%= link_to '編集', edit_admin_genre_path(genre.id), class: "btn btn-success" %></th>
+<th scope="col"><%= link_to "削除", admin_genre_path(genre.id), class: "btn btn-danger", method: :delete, "data-confirm" => "本当に削除しますか？" %></th>
 </tr>
 </tbody>
 </table>

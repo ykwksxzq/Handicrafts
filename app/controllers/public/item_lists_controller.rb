@@ -40,7 +40,7 @@ class Public::ItemListsController < ApplicationController
  def update
   @item_list = ItemList.find(params[:id])
   if @item_list.update(item_list_params)
-   flash[:notice] = "You have updated post successfully."
+   flash[:notice] = "投稿を更新しました"
    redirect_to item_list_path(@item_list.id)
   else
    render :edit
@@ -52,6 +52,17 @@ class Public::ItemListsController < ApplicationController
   @item_list.destroy
   redirect_to item_lists_path
  end
+
+
+ def self.search(keyword)
+    if params[:item_name, :memo].present?
+      @item_list = ItemList.where('item_name LIKE ? or memo LIKE ?', "%#{keyword}%", "%#{keyword}%")
+      @keyword = params[:item_name, :memo]
+    else
+      @item_lists = ItemList.all
+    end
+ end
+
 
 
  private

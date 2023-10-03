@@ -8,12 +8,22 @@ class Public::PostCraftsController < ApplicationController
  def create
     @post_craft = PostCraft.new(post_craft_params)
     @post_craft.user_id = current_user.id
-    if @post_craft.save
-     flash[:notice] = "作品を投稿しました"
-     redirect_to post_craft_path(@post_craft.id)
+    if params[:post]
+      if @post_craft.save(context: :publicize)
+       flash[:notice] = "作品を投稿しました"
+       redirect_to post_craft_path(@post_craft.id)
+      else
+       @tags = ActsAsTaggableOn::Tag.all
+       render :new, alert: "登録できませんでした。お手数ですが、入力内容をご確認の上再度お試しください"
+      end
     else
-     @tags = ActsAsTaggableOn::Tag.all
-     render :new
+      if @post_craft.save(is_draft: true)
+       redirect_to mypage_path(current_user)
+       flash[:notice] = "下書きを保存しました"
+      else
+        @tags = ActsAsTaggableOn::Tag.all
+       render :new, alert: "登録できませんでした。お手数ですが、入力内容をご確認の上再度お試しください"
+      end
     end
  end
 
@@ -61,29 +71,18 @@ class Public::PostCraftsController < ApplicationController
   @post_crafts = current_user.post_crafts.draft.page(params[:page]).per(12)
  end
 
- def search_by_tag
-  @tag = params[:tag]
-  @post_crafts = PostCraft.tagged_with(@tag)
- end
-
  def tags
    @post_crafts = PostCraft.published.page(params[:page]).per(12).order(created_at: :desc)
-   @tags = PostCraft.tag_counts_on(:tags).most_used(20).order(created_at: :desc)
+   @tags = PostCraft.published.tag_counts_on(:tags).most_used(20).order(created_at: :desc)
    if @tag = params[:tag]
-    @post_crafts = PostCraft.tagged_with(params[:tag]).page(params[:page]).per(12)
+    @post_crafts = PostCraft.published.tagged_with(params[:tag]).page(params[:page]).per(12)
    end
  end
 
- def post_crafts_by_tag
-    @tag_list = ActsAsTaggableOn::Tag.find_by(name: params[:name])
-    @post_crafts = PostCraft.tagged_with(@tag)
- end
-
-
  def self.search(keyword)
-    if params[:title, :introduction ,:tag].present?
-      @post_craft = PostCraft.published.where('title LIKE ? or introduction LIKE ? or tag_list LIKE ?', "%#{keyword}%", "%#{keyword}%", "%#{keyword}%")
-      @keyword = params[:title, :introduction, :tag_list]
+    if params[:title, :introduction].present?
+      @post_craft = PostCraft.published.where('title LIKE ? or introduction LIKE ?', "%#{keyword}%", "%#{keyword}%")
+      @keyword = params[:title, :introduction]
     else
       @post_crafts = PostCraft.all
     end

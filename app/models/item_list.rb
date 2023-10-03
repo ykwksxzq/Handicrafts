@@ -14,7 +14,9 @@ class ItemList < ApplicationRecord
     image
  end
 
-
+ def self.search(query)
+    where("item_name LIKE ? OR memo LIKE ?", "%#{query}%", "%#{query}%")
+ end
 
 
   def item_favorited_by?(user)

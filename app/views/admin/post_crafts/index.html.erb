@@ -7,11 +7,8 @@
 <% if @post_crafts.present? %>
 
 <div class="card-group py-5">
-<div class="d-flex flex-column">
-
-<div class="row">
 <% @post_crafts.each do |post_craft| %>
-<div class="col-12 col-md-6 col-lg-4">
+<div class="col-12 col-md-6 col-lg-4 mb-3">
 <div class="card h-100 w-100 mx-auto shadow-lg">
 
 <%= link_to admin_post_craft_path(post_craft.id) do %>
@@ -30,8 +27,6 @@
 </div>
 </div>
 <% end %>
-</div>
-</div>
 </div>
 
 <% else %>
