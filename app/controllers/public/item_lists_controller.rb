@@ -7,8 +7,10 @@ class Public::ItemListsController < ApplicationController
  def create
   @item_list = ItemList.new(item_list_params)
   @item_list.user_id = current_user.id
-  @item_list.save
-  redirect_to item_list_path(@item_list.id)
+  if @item_list.save
+   flash[:notice] = "アイテムを投稿しました"
+   redirect_to item_list_path(@item_list.id)
+  end
  end
 
 
@@ -49,8 +51,10 @@ class Public::ItemListsController < ApplicationController
 
  def destroy
   @item_list = ItemList.find(params[:id])
-  @item_list.destroy
-  redirect_to item_lists_path
+  if @item_list.destroy
+   flash[:notice] = "投稿を削除しました"
+   redirect_to item_lists_path
+  end
  end
 
 

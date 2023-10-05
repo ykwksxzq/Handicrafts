@@ -26,9 +26,10 @@ class Public::UsersController < ApplicationController
  def update
   @user = User.find(current_user.id)
   if @user.update(user_params)
-      redirect_to mypage_path(@user.id), notice: '会員情報の更新が完了しました。'
+    flash[:notice] = '会員情報の更新が完了しました'
+    redirect_to mypage_path(@user.id)
   else
-      render :edit
+    render :edit
   end
  end
 
@@ -38,11 +39,11 @@ class Public::UsersController < ApplicationController
  end
 
  def withdraw
-   @user = User.find(current_user.id)
-   @user.update(is_deleted: true)
-   reset_session
-   flash[:notice] = "退会処理を実行いたしました"
-   redirect_to root_path
+  @user = User.find(current_user.id)
+  @user.update(is_deleted: true)
+  reset_session
+  flash[:notice] = "退会処理を実行いたしました"
+  redirect_to root_path
  end
 
  def favorites

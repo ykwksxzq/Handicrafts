@@ -54,7 +54,7 @@ class Public::PostCraftsController < ApplicationController
  def update
   @post_craft = PostCraft.find(params[:id])
   if @post_craft.update(post_craft_params)
-   flash[:notice] = "投稿を更新しました"
+   flash[:notice] = "投稿を内容を更新しました"
    redirect_to post_craft_path(@post_craft.id)
   else
    render :edit
@@ -62,9 +62,11 @@ class Public::PostCraftsController < ApplicationController
  end
 
  def destroy
-    @post_craft = PostCraft.find(params[:id])
-    @post_craft.destroy
+   @post_craft = PostCraft.find(params[:id])
+   if @post_craft.destroy
+    flash[:notice] = "投稿を削除しました"
     redirect_to user_post_crafts_path
+   end
  end
 
  def confirm
