@@ -2,9 +2,7 @@ class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable
-
-  validates :email, uniqueness: { scope: :is_deleted, if: -> { is_deleted == false } }
+         :recoverable, :rememberable,:validatable
 
   has_many :post_crafts, dependent: :destroy
   has_many :post_comments, dependent: :destroy
@@ -17,6 +15,13 @@ class User < ApplicationRecord
   has_many :wish_lists, dependent: :destroy
 
   has_one_attached :profile_image
+
+  attr_accessor :is_withdrawn
+
+
+  validates :email, presence: true, uniqueness: true
+  validates :nick_name, presence: true, uniqueness: true, length: { maximum: 20 }
+  validates :introduction, length: { maximum: 100 }
 
   def get_profile_image(width,height)
    unless profile_image.attached?
@@ -34,5 +39,4 @@ class User < ApplicationRecord
     end
       # 例えば name を入力必須としているならば， user.name = "ゲスト" なども必要
   end
-
 end

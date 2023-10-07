@@ -82,6 +82,13 @@
     <div>
     <div class="container-fluid">
     <div class="row justify-content-center text-primary">
+
+     <% if flash[:danger].present? %>
+  　　<div class="alert alert-danger" role="alert">
+  　　<%= flash[:danger] %>
+  　　</div>
+　　 <% end %>
+
      <%= flash[:notice] %>
     </div>
     </div>

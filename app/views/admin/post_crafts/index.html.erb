@@ -17,7 +17,8 @@
 
 <div class="card-body">
 <h4 class="card-title">
-<%= post_craft.user.nick_name %></h4>
+<%= post_craft.user.nick_name %>
+</h4>
 <p class="card-text">
 <%= post_craft.title %><br>
 <span>♥<%= post_craft.favorites.count %> | </span>
@@ -30,8 +31,18 @@
 </div>
 
 <% else %>
-    投稿している作品はありません
- <% end %>
+<div class="container-fluid">
+<div class="row justify-content-center">
+<div class="cover">
+<div class="text-center">
+<h3 class="title mb-2">
+    投稿している作品はありません</h3>
+<% end %>
+</div>
+</div>
+</div>
+</div>
+
 <div class="pagination justify-content-center">
 <%= paginate @post_crafts, theme: 'twitter-bootstrap-4' %>
 </div>

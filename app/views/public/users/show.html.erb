@@ -15,7 +15,7 @@
 </div>
   <% if @user == current_user %>
   <p class="text m-3 text-right">
-  <%= link_to "プロフィール編集", edit_information_path(@user) %></p>
+  <%= link_to "プロフィール編集", edit_information_path(current_user.id) %></p>
   <% end %>
 </div>
 
@@ -79,7 +79,7 @@
 <div class="col-4"
 <div class="card mb-4 h-100">
 <%= link_to post_craft_path(post_craft.id) do %>
-<%= image_tag post_craft.get_image, class:"card-img-top img-fluid";%>
+<%= image_tag post_craft.get_image, class:"card-img-top img-fluid mb-1";%>
 <% end %>
 </div>
 <% end %>

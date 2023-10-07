@@ -12,9 +12,9 @@
 <div class="card-body">
 <h4 class="card-title">
 <%= link_to mypage_path(post_craft.user_id) do %>
-<i class="fa-solid fa-user"></i><span><%= post_craft.user.nick_name %></span><br>
+<i class="fa-solid fa-user"></i><span>  <%= post_craft.user.nick_name %></span><br>
 <% end %>
-<i class="fa-regular fa-flag"></i><%= post_craft.title %></h4>
+<i class="fa-regular fa-flag"></i>  <%= post_craft.title %></h4>
 <p class="card-text">
 <i class="fa-solid fa-calendar"></i>  <%= post_craft.created_at.strftime('%Y/%m/%d') %><br>
 <i class="fa-solid fa-scissors"></i>  <%= post_craft.genre.name %>

@@ -43,7 +43,6 @@ scope module: :public do
   get 'users/information/edit' => 'users#edit', as: 'edit_information'
   patch 'users/information' => 'users#update', as: 'update_information'
   get 'users/unsubscribe' => 'users#unsubscribe', as: 'confirm_unsubscribe'
-  patch 'users/withdraw' => 'users#withdraw', as: 'confirm_withdraw'
   get 'users/favorites' => 'users#favorites', as: 'favorites'
   get 'users/favorite_users' => 'users#favorite_users', as: 'favorite_users'
   get 'users/item_list' => 'users#item_list', as: 'user_item_list'

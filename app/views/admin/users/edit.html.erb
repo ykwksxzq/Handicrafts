@@ -3,7 +3,7 @@
 <div class="col-md-5 col-sm-10 p-5">
 <h4 class="text-dark p-4 mb-0"><%= @user.nick_name %>さんの会員情報編集</h4>
 
-<%= form_with model: @user, url:update_information_path do |f| %>
+<%= form_with model: @user, url:admin_user_path do |f| %>
 
   <div class="form-group row">
   <div class="field">
@@ -32,15 +32,6 @@
   <%= f.text_field :introduction, autofocus: true, id:"inputText", placeholder:"自己紹介", class: 'form-control-file'%>
   </div>
   </div>
-
-  会員ステータス　<% @user.is_deleted %>
-　<%= f.radio_button :is_deleted, "ture" %>
-　<%= f.label :is_deleted_false, "有効" %>
-
-　<%= f.radio_button :is_deleted, "false" %>
-　<%= f.label :is_deleted_false, "退会" %>
-
-　<br>
 
   <div class="actions">
    <%= f.submit "変更を保存", class: 'btn btn-success' %>

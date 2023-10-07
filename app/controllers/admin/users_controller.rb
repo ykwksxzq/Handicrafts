@@ -5,7 +5,8 @@ class Admin::UsersController < ApplicationController
 
   def show
      @user = User.find(params[:id])
-     @post_crafts = PostCraft.published.where(user_id: params[:id]).page(params[:page]).per(12)
+     @post_crafts = PostCraft.published.where(user_id: params[:id]).page(params[:page]).per(6)
+     @item_lists = ItemList.where(user_id: params[:id]).page(params[:page]).per(6)
   end
 
   def edit
@@ -24,7 +25,7 @@ class Admin::UsersController < ApplicationController
  private
 
  def user_params
-   params.require(:user).permit(:nick_name, :introduction, :profile_image, :is_deleted)
+   params.require(:user).permit(:nick_name, :introduction, :profile_image)
  end
 
 end

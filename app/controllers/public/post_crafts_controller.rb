@@ -9,7 +9,7 @@ class Public::PostCraftsController < ApplicationController
     @post_craft = PostCraft.new(post_craft_params)
     @post_craft.user_id = current_user.id
     if params[:post]
-      if @post_craft.save(context: :publicize)
+      if @post_craft.save(is_published: true)
        flash[:notice] = "作品を投稿しました"
        redirect_to post_craft_path(@post_craft.id)
       else

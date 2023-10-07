@@ -32,6 +32,11 @@ class Public::SessionsController < Devise::SessionsController
   end
 
 
+  def soft_delete
+    update(is_deleted: true)
+  end
+
+
 
 
   protected

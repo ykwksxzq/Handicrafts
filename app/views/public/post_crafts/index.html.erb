@@ -30,9 +30,9 @@
 </div>
 
 <div class="row justify-content-end">
- <div class="col-auto mb-5">タグ一覧
+ <div class="col-auto">タグ一覧
 	<% @tags.each do |tag|%>
-	<button type="button" class="btn btn-primary">
+	<button type="button" class="btn btn-primary btn-sm">
   <%= link_to post_crafts_tags_path(tag: tag.name), class:"text-light", method: :get do %>
   <%= tag %>
   </button>

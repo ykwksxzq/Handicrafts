@@ -13,9 +13,9 @@
 		<th>#</th>
 		<th></th>
 		<th><i class="fa-solid fa-user"></i></th>
+		<th><i class="fa-regular fa-envelope"></i></th>
 		<th><i class="fa-solid fa-heart"></i></th>
 		<th><i class="fa-regular fa-comment"></i></th>
-		<th><i class="fa-solid fa-user-check"></i></th>
 	</tr>
  </thead>
  <tbody>
@@ -26,15 +26,9 @@
      <strong><%= user.nick_name %></strong>
      <% end %>
  </td>
+ <td><%= user.email %></td>
  <td>♥<%= user.favorites.count %></td>
  <td><%= user.post_comments.count %></td>
- <td>
-  <% if user.is_deleted? %>
-    有効
-	<% else %>
-	　退会
-	<% end %>
- </td>
 </tbody>
 <% end %>
 </table>

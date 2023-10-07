@@ -1,4 +1,5 @@
 class Public::UsersController < ApplicationController
+ before_action :authenticate_user!
 
  def show
    @user = User.find(params[:id])
@@ -35,13 +36,12 @@ class Public::UsersController < ApplicationController
 
 
  def unsubscribe
-   @user = User.find(current_user.id)
- end
-
- def withdraw
   @user = User.find(current_user.id)
-  @user.update(is_deleted: true)
-  reset_session
+ end
+ 
+ def destroy
+  current_user.update(is_withdrawn: true)
+  sign_out_and_redirect(current_user)
   flash[:notice] = "退会処理を実行いたしました"
   redirect_to root_path
  end
@@ -57,7 +57,7 @@ class Public::UsersController < ApplicationController
  private
 
  def user_params
-   params.require(:user).permit(:nick_name, :introduction, :profile_image, :is_deleted)
+   params.require(:user).permit(:nick_name, :introduction, :profile_image)
  end
 
  def is_matching_login_user
