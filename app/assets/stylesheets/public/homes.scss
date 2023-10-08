@@ -2,22 +2,6 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
 
-.header-content {
-    display: flex;
-    justify-content: space-between;
-    width: 960px;
-    margin: 0 auto;
-    .logo {
-      padding: 10px 10px;
-      font-family: "Century";
-      text-decoration: none;
-    }
-
-    .image_tag {
-       height: 20px;
-       width: 20px;
-    }
-}
 
 .main-title {
   font-family: cursive;
@@ -38,45 +22,41 @@ sub-title {
   background-size: 100% 100%;
 }
 
-.cover2 {
-  height: 700px;
-  width: 900px;
-  justify-content: center;
-  display: table;
-  background-image: url(/assets/23673185.png);
-  background-color:rgba(255,255,255,0.4);
-  background-blend-mode:lighten;
-  background-size: 100% 100%;
-}
-
-.cover3 {
-  height: 50px;
-  width: 900px;
-  justify-content: center;
-  display: table;
-  background-image: url(/assets/23673185.png);
-  background-color:rgba(255,255,255,0.4);
-  background-blend-mode:lighten;
-  background-size: 100% 100%;
-}
-
-
 
 .text-center {
   display: table-cell;
   vertical-align: middle;
 }
 
-.card-group {
-   padding: 10px;
-   margin: 10px auto;
-}
-
-
-
 footer {
   padding: 15px 0;
   font-size: 14px;
   text-align: center;
   background-color: #ccc;
+}
+
+/* エラーメッセージのスタイルを設定 */
+.alert-danger {
+  color: #FF0000; /* エラーメッセージのテキスト色を赤に設定 */
+  background-color: #F8D7DA; /* エラーメッセージの背景色を淡い赤に設定 */
+  border-color: #EF9A9A; /* エラーメッセージのボーダーカラーを赤に設定 */
+}
+
+
+.flash-message {
+  border-radius: 5px;
+  padding: 16px 24px;
+  margin: 16px 0px;
+}
+
+.flash-message.notice {
+  background-color: #bcdfff;
+  color: #0067C0;
+  border: solid 1px #0067C0;
+}
+
+.flash-message.alert {
+  background-color: #ffd4d1;
+  color: #930403;
+  border: solid 1px #930403;
 }

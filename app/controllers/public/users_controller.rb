@@ -30,6 +30,7 @@ class Public::UsersController < ApplicationController
     flash[:notice] = '会員情報の更新が完了しました'
     redirect_to mypage_path(@user.id)
   else
+    flash.now[:alert] ="登録できませんでした。お手数ですが、入力内容をご確認の上再度お試しください"
     render :edit
   end
  end
@@ -38,7 +39,7 @@ class Public::UsersController < ApplicationController
  def unsubscribe
   @user = User.find(current_user.id)
  end
- 
+
  def destroy
   current_user.update(is_withdrawn: true)
   sign_out_and_redirect(current_user)
@@ -57,7 +58,7 @@ class Public::UsersController < ApplicationController
  private
 
  def user_params
-   params.require(:user).permit(:nick_name, :introduction, :profile_image)
+   params.require(:user).permit(:nick_name, :introduction, :email, :profile_image)
  end
 
  def is_matching_login_user

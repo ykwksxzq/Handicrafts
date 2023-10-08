@@ -10,6 +10,9 @@ class Public::ItemListsController < ApplicationController
   if @item_list.save
    flash[:notice] = "アイテムを投稿しました"
    redirect_to item_list_path(@item_list.id)
+  else
+   flash.now[:alert] ="登録できませんでした。お手数ですが、入力内容をご確認の上再度お試しください"
+   render :new
   end
  end
 
@@ -45,6 +48,7 @@ class Public::ItemListsController < ApplicationController
    flash[:notice] = "投稿を更新しました"
    redirect_to item_list_path(@item_list.id)
   else
+   flash.now[:alert] ="登録できませんでした。お手数ですが、入力内容をご確認の上再度お試しください"
    render :edit
   end
  end

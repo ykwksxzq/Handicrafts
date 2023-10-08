@@ -1,21 +1,15 @@
 <div class="container">
-<div class="row justify-content-center m-3">
-<div class="col-md-5 col-sm-10 p-5 m-5">
-<h4 class="text-dark p-4 mb-0">新規投稿</h4>
-
-<%= form_with model: @post_craft, url:post_crafts_path, method: :post do |f| %>
-
- <%= render partial: 'public/post_crafts/post_form', locals: {f:f } %>
-
-<div class="actions">
-<%= f.submit '投稿',class: "btn btn-primary"%>
-</div>
-
-
-<% end %>
-  <br>
-  <p><%= link_to "作品一覧に戻る", post_crafts_path, class: "underline" %></p>
-
-</div>
-</div>
+  <div class="row justify-content-center m-3">
+    <div class="col-md-5 col-sm-10 p-5 m-5">
+      <h4 class="text-dark p-4 mb-0">新規投稿</h4>
+      <%= form_with model: @post_craft, url:post_crafts_path, method: :post do |f| %>
+        <%= render partial: 'public/post_crafts/post_form', locals: {f:f } %>
+        <div class="actions">
+          <%= f.submit '投稿',class: "btn btn-primary"%>
+        </div>
+      <% end %>
+      <br>
+      <p><%= link_to "作品一覧に戻る", post_crafts_path, class: "underline" %></p>
+    </div>
+  </div>
 </div>

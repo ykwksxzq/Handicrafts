@@ -15,9 +15,13 @@ class Public::WishListsController < ApplicationController
   def create
     @wish_list = WishList.new(wish_list_params)
     @wish_list.user_id = current_user.id
-    @wish_list.save
-    flash[:notice] ='ほしいものリストに登録いたしました'
-    redirect_to wish_list_path(current_user.id)
+    if @wish_list.save
+      flash[:notice] ='ほしいものリストに登録いたしました'
+      redirect_to wish_list_path(current_user.id)
+    else
+      flash[:alert] ="登録できませんでした。お手数ですが、入力内容をご確認の上再度お試しください"
+      redirect_to wish_list_path(current_user.id)
+    end
   end
 
   def edit
@@ -30,6 +34,7 @@ class Public::WishListsController < ApplicationController
       flash[:notice] = 'ほしいものリストの更新が完了いたしました'
       redirect_to wish_list_path(current_user.id)
     else
+      flash[:alert] ="登録できませんでした。お手数ですが、入力内容をご確認の上再度お試しください"
       render :edit
     end
   end

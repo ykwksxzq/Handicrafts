@@ -3,12 +3,9 @@
 <div class="col-md-5 col-sm-10">
 <h5 class="text-dark p-4 mb-0">ログイン</h5>
 
-<% if flash[:danger] %>
-  <p class="text-red"><%= flash[:danger] %></p>
-<% end %>
-
-
 <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+
+<%= render "devise/shared/error_messages", resource: @user %>
 
   <div class="form-group row">
   <div class="field">

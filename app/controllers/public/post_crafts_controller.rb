@@ -8,21 +8,24 @@ class Public::PostCraftsController < ApplicationController
  def create
     @post_craft = PostCraft.new(post_craft_params)
     @post_craft.user_id = current_user.id
-    if params[:post]
+
+    if params[:post_craft][:status] == "published"
       if @post_craft.save(is_published: true)
        flash[:notice] = "作品を投稿しました"
        redirect_to post_craft_path(@post_craft.id)
       else
        @tags = ActsAsTaggableOn::Tag.all
-       render :new, alert: "登録できませんでした。お手数ですが、入力内容をご確認の上再度お試しください"
+       flash.now[:alert] ="登録できませんでした。お手数ですが、入力内容をご確認の上再度お試しください"
+       render :new
       end
     else
       if @post_craft.save(is_draft: true)
-       redirect_to mypage_path(current_user)
        flash[:notice] = "下書きを保存しました"
+       redirect_to mypage_path(current_user)
       else
         @tags = ActsAsTaggableOn::Tag.all
-       render :new, alert: "登録できませんでした。お手数ですが、入力内容をご確認の上再度お試しください"
+        flash.now[:alert] = "登録できませんでした。お手数ですが、入力内容をご確認の上再度お試しください"
+        render :new
       end
     end
  end
@@ -57,6 +60,7 @@ class Public::PostCraftsController < ApplicationController
    flash[:notice] = "投稿を内容を更新しました"
    redirect_to post_craft_path(@post_craft.id)
   else
+   flash.now[:alert] ="登録できませんでした。お手数ですが、入力内容をご確認の上再度お試しください"
    render :edit
   end
  end

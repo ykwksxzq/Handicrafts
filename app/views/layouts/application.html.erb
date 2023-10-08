@@ -79,17 +79,13 @@
   </header>
 
    <main>
-    <div>
     <div class="container-fluid">
     <div class="row justify-content-center text-primary">
 
-     <% if flash[:danger].present? %>
-  　　<div class="alert alert-danger" role="alert">
-  　　<%= flash[:danger] %>
-  　　</div>
-　　 <% end %>
+　　<% flash.each do |message_type, message| %>
+      <div class="flash-message <%= message_type %>"><%= message %></div>
+    <% end %>
 
-     <%= flash[:notice] %>
     </div>
     </div>
 

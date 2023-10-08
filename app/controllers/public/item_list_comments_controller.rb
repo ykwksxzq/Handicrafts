@@ -4,9 +4,13 @@ def create
   item_list = ItemList.find(params[:item_list_id])
   comment = current_user.item_list_comments.new(item_list_comment_params)
   comment.item_list_id = item_list.id
-  comment.save
-  flash[:notice] = "コメントを送信しました"
-  redirect_to item_list_path(item_list)
+  if comment.save
+    flash[:notice] = "コメントを送信しました"
+    redirect_to item_list_path(item_list.id)
+  else
+    flash[:alert] = "コメントを送信できませんでした。お手数ですが、入力内容をご確認の上再度お試しください"
+    redirect_to item_list_path(item_list.id)
+  end
 end
 
 def destroy
@@ -20,7 +24,7 @@ private
 def ensure_correct_user
    @item_list_comment = ItemListComment.find(params[:id])
   unless @item_list_comment.user == current_end_user
-   flash[:notice] = "投稿者以外のコメントは削除できません"
+   flash[:alert] = "投稿者以外のコメントは削除できません"
    redirect_to item_list_path
   end
 end
