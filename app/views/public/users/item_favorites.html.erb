@@ -1,0 +1,58 @@
+<div class="container">
+ <div class="border-bottom border-info" style="padding:10px;">
+  <div class="row justify-content-center">
+   <h2 class="title mb-2">いいねしたアイテム一覧(全<%= @item_favorites.total_count %>件)</h2>
+  </div>
+  <div class="row justify-content-end">
+   <%= link_to "マイページに戻る", mypage_path(current_user.id), class: "underline" %>
+  </div>
+ </div>
+
+  <% if @item_favorites.present? %>
+
+  <div class="card-group py-5">
+   <div class="d-flex flex-column">
+    <div class="row">
+     <% @item_favorites.each do |item_favorite| %>
+
+     <div class="col-12 col-md-6 col-lg-4">
+      <div class="card h-100 w-100 mx-auto shadow-lg">
+       <%= link_to item_list_path(item_favorite.item_list.id) do %>
+        <%= image_tag item_favorite.item_list.get_image, class:"card-img-top img-fluid";%>
+       <% end %>
+        <div class="card-body">
+         <h4 class="card-title">
+          ♥<%= item_favorite.item_list.item_favorites.count %> いいね<br>
+           <%= link_to mypage_path(item_favorite.item_list.user_id) do %>
+           <i class="fa-solid fa-user"></i><span><%= item_favorite.item_list.user.nick_name %>
+           <% end %>
+         </h4>
+
+        <i class="fa-solid fa-calendar"></i> <%= item_favorite.item_list.created_at.strftime('%Y/%m/%d') %><br>
+        <i class="fa-regular fa-flag"></i><%= item_favorite.item_list.item_name %></p>
+       </div>
+     </div>
+    </div>
+    <% end %>
+   </div>
+  </div>
+ </div>
+
+ <% else %>
+
+  <div class="container-fluid">
+   <div class="row justify-content-center">
+    <div class="cover">
+     <div class="text-center">
+      <h3 class="title mb-2">
+       いいねした作品はありません
+ <% end %>
+     </div>
+    </div>
+   </div>
+ </div>
+
+ <div class="pagination justify-content-center">
+  <%= paginate @item_favorites, theme: 'twitter-bootstrap-4' %>
+ </div>
+</div>

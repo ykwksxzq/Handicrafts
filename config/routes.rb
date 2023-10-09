@@ -44,6 +44,7 @@ scope module: :public do
   patch 'users/information' => 'users#update', as: 'update_information'
   get 'users/unsubscribe' => 'users#unsubscribe', as: 'confirm_unsubscribe'
   get 'users/favorites' => 'users#favorites', as: 'favorites'
+  get 'ussers/item_favorites' => 'users#item_favorites', as: 'item_favorites'
   get 'users/favorite_users' => 'users#favorite_users', as: 'favorite_users'
   get 'users/item_list' => 'users#item_list', as: 'user_item_list'
   get 'post_crafts/confirm' => 'post_crafts#confirm', as: 'post_crafts_confirm'

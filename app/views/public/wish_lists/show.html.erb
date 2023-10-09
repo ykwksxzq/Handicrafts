@@ -2,7 +2,7 @@
  <div class="border-bottom border-info" style="padding:10px;">
   <div class="row justify-content-center">
    <% if params[:genre_id] %>
-    <h2 class="title mb-2"><%= current_user.nick_name %>さんの<%= @genre.name %>のほしいものリスト(全<%= @wish_lists.total_count %>件)</h2>
+    <h3 class="title mb-2"><%= current_user.nick_name %>さんの<%= @genre.name %>のほしいものリスト(全<%= @wish_lists.total_count %>件)</h3>
    <% else %>
     <h2 class="title mb-2"><%= current_user.nick_name %>さんのほしいものリスト</h2>
    <% end %>

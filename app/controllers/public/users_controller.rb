@@ -52,8 +52,8 @@ class Public::UsersController < ApplicationController
   @favorites = Favorite.where(user_id: current_user.id).page(params[:page]).per(12)
  end
 
- def favorite_users
-  @favorites = Favorite.where(user_id: current_user.id)
+ def item_favorites
+  @item_favorites = ItemFavorite.where(user_id: current_user.id).page(params[:page]).per(12)
  end
 
  private
