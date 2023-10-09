@@ -1,47 +1,46 @@
-
  <div class="form-group row">
   <div class="field">
-  <h5 class="text-dark p-3 mb-0">作品画像</h5>
-  <%= f.file_field :image, accept: "image/*", class: 'form-control-file'%>
+   <h5 class="text-dark p-3 mb-0">作品画像</h5>
+    <%= f.file_field :image, accept: "image/*", class: 'form-control-file'%>
   </div>
-  </div>
+ </div>
 
   <div class="form-group row">
-  <div class="field">
-  <h6 class="text-dark p-2 mb-0">タイトル</h5>
-  <%= f.text_field :title, class: 'form-control' %>
-  </div>
-  </div>
+   <div class="field">
+    <h6 class="text-dark p-2 mb-0">タイトル</h5>
+     <%= f.text_field :title, class: 'form-control' %>
+    </div>
+   </div>
 
-  <div class="form-group row">
-  <div class="field">
-  <h6 class="text-dark p-2 mb-0">説明</h6>
-  <%= f.text_area :introduction, class: 'form-control' %>
-  </div>
-  </div>
+   <div class="form-group row">
+    <div class="field">
+     <h6 class="text-dark p-2 mb-0">説明</h6>
+      <%= f.text_area :introduction, class: 'form-control' %>
+    </div>
+   </div>
 
-  <div class="form-group row">
-  <div class="field">
-  <h6 class="text-dark p-2 mb-0">ジャンル</h6>
-  <%= f.collection_select :genre_id, Genre.all, :id, :name, class: 'form-control' %>
-  </div>
-  </div>
+   <div class="form-group row">
+    <div class="field">
+     <h6 class="text-dark p-2 mb-0">ジャンル</h6>
+      <%= f.collection_select :genre_id, Genre.all, :id, :name, class: 'form-control' %>
+    </div>
+   </div>
 
-  <div class="form-group row">
-  <div class="field">
-  <h6 class="text-dark p-2 mb-0">タグ</h6>
-  <%= f.label :tag_list, "(,)コンマで区切って入力すれば、複数のタグを登録できます" %>
-  <%= f.text_field :tag_list, value: @post_craft.tag_list.join(',') ,class: 'form-control'%>
-  </div>
-  </div>
+   <div class="form-group row">
+    <div class="field">
+     <h6 class="text-dark p-2 mb-0">タグ</h6>
+      <%= f.label :tag_list, "(,)半角コンマで区切って入力すれば、複数のタグを登録できます" %>
+      <%= f.text_field :tag_list, value: @post_craft.tag_list.join(',') ,class: 'form-control'%>
+     </div>
+   </div>
 
-  <div class="form-group row">
+   <div class="form-group row">
     <div class="field">
       <h6 class="text-dark p-2 mb-0">投稿ステータス</h6>
       <%= f.select :status, options_for_select([["公開", "published"], ["下書き", "draft"]], "published"), {}, { class: "custom-select w-100", id: "post_status_select" } %>
       <%= f.hidden_field :is_published, value: "true", id: "is_published_input" %>
       <%= f.hidden_field :is_draft, value: "false", id: "is_draft_input" %>
-  </div>
+   </div>
   </div>
 
 

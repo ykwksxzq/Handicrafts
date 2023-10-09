@@ -1,37 +1,39 @@
 <div class="container">
-<div class="border-bottom border-info" style="padding:10px;">
-<div class="row justify-content-center">
-<h2 class="title mb-2">
-<%= current_user.nick_name %>さんのアイテム一覧(全<%= @item_lists.total_count %>件)</h>
-</div>
-<div class="row justify-content-start">
-<%= link_to new_item_list_path do %>
-<i class="fa-solid fa-circle-plus"> 新規投稿</i>
-<% end %>
-</div>
-<div class="row justify-content-end">
-<%= link_to "マイページに戻る", mypage_path(current_user.id), class: "underline" %>
-</div>
-</div>
+ <div class="border-bottom border-info" style="padding:10px;">
+  <div class="row justify-content-center">
+   <h2 class="title mb-2">
+    <%= current_user.nick_name %>さんのアイテム一覧(全<%= @item_lists.total_count %>件)</h>
+  </div>
+  
+  <div class="row justify-content-start">
+   <%= link_to new_item_list_path do %>
+    <i class="fa-solid fa-circle-plus"> 新規投稿</i>
+   <% end %>
+  </div>
+  <div class="row justify-content-end">
+   <%= link_to "マイページに戻る", mypage_path(current_user.id), class: "underline" %>
+  </div>
+ </div>
 
-<% if @item_lists.present? %>
+  <% if @item_lists.present? %>
 
-<%= render 'public/item_lists/index', item_lists: @item_lists %>
+    <%= render 'public/item_lists/index', item_lists: @item_lists %>
 
-<% else %>
-<div class="container-fluid">
-<div class="row justify-content-center">
-<div class="cover">
-<div class="text-center">
-<h3 class="title mb-2">
-    保存しているアイテムはありません
-<% end %>
-</div>
-</div>
-</div>
-</div>
-<div class="pagination justify-content-center">
-<%= paginate @item_lists, theme: 'twitter-bootstrap-4' %>
-</div>
-
+  <% else %>
+  
+  <div class="container-fluid">
+   <div class="row justify-content-center">
+    <div class="cover">
+     <div class="text-center">
+      <h3 class="title mb-2">
+       保存しているアイテムはありません
+  <% end %>
+     </div>
+    </div>
+   </div>
+  </div>
+  
+  <div class="pagination justify-content-center">
+   <%= paginate @item_lists, theme: 'twitter-bootstrap-4' %>
+  </div>
 </div>

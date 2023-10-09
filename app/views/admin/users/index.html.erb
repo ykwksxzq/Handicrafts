@@ -1,37 +1,37 @@
 <div class="container">
-<div class="border-bottom border-info" style="padding:10px;">
-<div class="row justify-content-center">
-<h2 class="title mb-2">会員一覧</h2>
-</div>
-</div>
+ <div class="border-bottom border-info" style="padding:10px;">
+  <div class="row justify-content-center">
+   <h2 class="title mb-2">会員一覧</h2>
+  </div>
+ </div>
 
-<div class="row justify-content-center">
-<div class="col-10 col-lg-8">
-<table class="table table-hover table-inverse m-4">
- <thead>
-	<tr>
-		<th>#</th>
-		<th></th>
-		<th><i class="fa-solid fa-user"></i></th>
-		<th><i class="fa-regular fa-envelope"></i></th>
-		<th><i class="fa-solid fa-heart"></i></th>
-		<th><i class="fa-regular fa-comment"></i></th>
-	</tr>
- </thead>
- <tbody>
- <% @users.each do |user| %>
- <td><%= user.id %></td>
- <td><%= image_tag user.get_profile_image(70,70), class:"card-img img-fluid"; %></td>
- <td><%= link_to admin_user_path(user.id) do %>
-     <strong><%= user.nick_name %></strong>
-     <% end %>
- </td>
- <td><%= user.email %></td>
- <td>♥<%= user.favorites.count %></td>
- <td><%= user.post_comments.count %></td>
-</tbody>
-<% end %>
-</table>
+ <div class="row justify-content-center">
+  <div class="col-10 col-lg-8">
+   <table class="table table-hover table-inverse m-3">
+    <thead>
+	    <tr>
+		    <th>#</th>
+		    <th></th>
+		    <th><i class="fa-solid fa-user"></i></th>
+		    <th><i class="fa-regular fa-envelope"></i></th>
+		    <th><i class="fa-solid fa-heart"></i></th>
+		    <th><i class="fa-regular fa-comment"></i></th>
+	    </tr>
+    </thead>
+    <tbody>
+     <% @users.each do |user| %>
+     <td><%= user.id %></td>
+     <td><%= image_tag user.get_profile_image(70,70), class:"card-img img-fluid"; %></td>
+     <td><%= link_to admin_user_path(user.id) do %>
+          <strong><%= user.nick_name %></strong>
+         <% end %>
+     </td>
+     <td><%= user.email %></td>
+     <td>♥<%= user.favorites.count %></td>
+     <td><%= user.post_comments.count %></td>
+    </tbody>
+    <% end %>
+   </table>
+  </div>
+ </div>
 </div>
-</div>
-</div

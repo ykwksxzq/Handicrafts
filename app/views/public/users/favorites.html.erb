@@ -1,62 +1,58 @@
 <div class="container">
-<div class="border-bottom border-info" style="padding:10px;">
-<div class="row justify-content-center">
-<h2 class="title mb-2">いいねした作品一覧(全<%= @favorites.total_count %>件)</h2>
-</div>
-<div class="row justify-content-end">
-<%= link_to "マイページに戻る", mypage_path(current_user.id), class: "underline" %>
-</div>
-</div>
+ <div class="border-bottom border-info" style="padding:10px;">
+  <div class="row justify-content-center">
+   <h2 class="title mb-2">いいねした作品一覧(全<%= @favorites.total_count %>件)</h2>
+  </div>
+  <div class="row justify-content-end">
+   <%= link_to "マイページに戻る", mypage_path(current_user.id), class: "underline" %>
+  </div>
+ </div>
 
+  <% if @favorites.present? %>
 
-<% if @favorites.present? %>
+  <div class="card-group py-5">
+   <div class="d-flex flex-column">
+    <div class="row">
+     <% @favorites.each do |favorite| %>
 
-<div class="card-group py-5">
-<div class="d-flex flex-column">
-<div class="row">
-<% @favorites.each do |favorite| %>
+     <div class="col-12 col-md-6 col-lg-4">
+      <div class="card h-100 w-100 mx-auto shadow-lg">
+       <%= link_to post_craft_path(favorite.post_craft.id) do %>
+        <%= image_tag favorite.post_craft.get_image, class:"card-img-top img-fluid";%>
+       <% end %>
+        <div class="card-body">
+         <h4 class="card-title">
+          ♥<%= favorite.post_craft.favorites.count %> いいね<br>
+           <%= link_to mypage_path(favorite.post_craft.user_id) do %>
+           <i class="fa-solid fa-user"></i><span><%= favorite.post_craft.user.nick_name %>
+           <% end %>
+         </h4>
 
-<div class="col-12 col-md-6 col-lg-4">
-<div class="card h-100 w-100 mx-auto shadow-lg">
-
-<%= link_to post_craft_path(favorite.post_craft.id) do %>
-<%= image_tag favorite.post_craft.get_image, class:"card-img-top img-fluid";%>
-<% end %>
-<div class="card-body">
-<h4 class="card-title">
-♥<%= favorite.post_craft.favorites.count %> いいね<br>
-<%= link_to mypage_path(favorite.post_craft.user_id) do %>
- <i class="fa-solid fa-user"></i><span><%= favorite.post_craft.user.nick_name %>
-<% end %>
-</h4>
-
-<i class="fa-solid fa-calendar"></i> <%= favorite.post_craft.created_at.strftime('%Y/%m/%d') %><br>
-<i class="fa-regular fa-flag"></i><%= favorite.post_craft.title %></p>
-</div>
-</div>
-</div>
-<% end %>
-</div>
-</div>
-</div>
+        <i class="fa-solid fa-calendar"></i> <%= favorite.post_craft.created_at.strftime('%Y/%m/%d') %><br>
+        <i class="fa-regular fa-flag"></i><%= favorite.post_craft.title %></p>
+       </div>
+     </div>
+    </div>
+    <% end %>
+   </div>
+  </div>
+ </div>
 
  <% else %>
- <div class="container-fluid">
- <div class="row justify-content-center">
- <div class="cover">
- <div class="text-center">
- <h3 class="title mb-2">
-    いいねした作品はありません
+ 
+  <div class="container-fluid">
+   <div class="row justify-content-center">
+    <div class="cover">
+     <div class="text-center">
+      <h3 class="title mb-2">
+       いいねした作品はありません
  <% end %>
- </div>
- </div>
- </div>
+     </div>
+    </div>
+   </div>
  </div>
 
-
-<div class="pagination justify-content-center">
-<%= paginate @favorites, theme: 'twitter-bootstrap-4' %>
-</div>
-
-
+ <div class="pagination justify-content-center">
+  <%= paginate @favorites, theme: 'twitter-bootstrap-4' %>
+ </div>
 </div>

@@ -1,18 +1,18 @@
 <div class="container">
-<div class="row justify-content-center m-3">
-<div class="col-md-5 col-sm-10">
-<h4 class="text-dark p-4 mb-0">アイテム投稿フォーム</h4>
-<%= form_with model: @item_list, url:item_lists_path, method: :post do |f| %>
+ <div class="row justify-content-center m-3">
+  <div class="col-md-5 col-sm-10">
+   <h4 class="text-dark p-4 mb-0">アイテム投稿フォーム</h4>
+    <%= form_with model: @item_list, url:item_lists_path, method: :post do |f| %>
 
-  <%= render partial: 'public/item_lists/post_form', locals: {f:f} %>
+     <%= render partial: 'public/item_lists/post_form', locals: {f:f} %>
 
-<div class="actions">
-<%= f.submit '投稿',class: "btn btn-primary"%>
-</div>
+     <div class="actions">
+      <%= f.submit '投稿',class: "btn btn-primary"%>
+     </div>
 
-<% end %>
-  </br>
-  <p><%= link_to "アイテム一覧に戻る", item_lists_path, class: "underline" %></p>
-
-</div>
+    <% end %>
+    </br>
+    <p><%= link_to "アイテム一覧に戻る", item_lists_path, class: "underline" %></p>
+  </div>
+ </div>
 </div>

@@ -1,66 +1,64 @@
 <div class="container">
-<div class="border-bottom border-info m-2 p-1">
-<div class="row justify-content-center">
-<h2 class="title mb-2">
-  作品一覧 (全<%= @post_crafts.total_count %>件)</h2>
-</div>
-<div class="row justify-content-end">
-<%= form_tag(post_crafts_path, method: :get) do %>
-  <%= text_field_tag(:q, params[:q], placeholder: "キーワードを入力") %>
-  <%= submit_tag("検索") %>
-<% end %>
-</div>
-<br>
-<div class="row justify-content-end">
-<div class="col-auto">ジャンル一覧
-	<% @genres.each do |genre| %>
-	<button type="button" class="btn btn-outline-primary">
-	<%= link_to genres_path(genre_id: genre.id) do %>
-	<%= genre.name %>
-	</button>
-	<% end %>
-	<% end %>
-</div>
-</div>
-<div class="row justify-content-start">
-<%= link_to new_post_craft_path do %>
-<i class="fa-solid fa-circle-plus"> 新規投稿</i>
-<% end %>
-</div>
-</div>
-
-<div class="row justify-content-end">
- <div class="col-auto">タグ一覧
-	<% @tags.each do |tag|%>
-	<button type="button" class="btn btn-primary btn-sm">
-  <%= link_to post_crafts_tags_path(tag: tag.name), class:"text-light", method: :get do %>
-  <%= tag %>
-  </button>
-  <% end %>
-  <% end %>
+ <div class="border-bottom border-info m-2 p-1">
+  <div class="row justify-content-center">
+   <h2 class="title mb-2">
+    作品一覧 (全<%= @post_crafts.total_count %>件)</h2>
+  </div>
+  <div class="row justify-content-end">
+    <%= form_tag(post_crafts_path, method: :get) do %>
+      <%= text_field_tag(:q, params[:q], placeholder: "キーワードを入力") %>
+      <%= submit_tag("検索") %>
+    <% end %>
+  </div>
+  <br>
+  <div class="row justify-content-end">
+   <div class="col-auto">ジャンル一覧
+	 <% @genres.each do |genre| %>
+	 <button type="button" class="btn btn-outline-primary">
+      <%= link_to genres_path(genre_id: genre.id) do %>
+      <%= genre.name %>
+	 </button>
+	  <% end %>
+	 <% end %>
+   </div>
+  </div>
+  <div class="row justify-content-start">
+   <%= link_to new_post_craft_path do %>
+   <i class="fa-solid fa-circle-plus"> 新規投稿</i>
+   <% end %>
+  </div>
  </div>
-</div>
 
-<% if @post_crafts.present? %>
+  <div class="row justify-content-end">
+   <div class="col-auto">タグ一覧
+	<% @tags.each do |tag|%>
+	 <button type="button" class="btn btn-primary btn-sm">
+      <%= link_to post_crafts_tags_path(tag: tag.name), class:"text-light", method: :get do %>
+      <%= tag %>
+     </button>
+      <% end %>
+    <% end %>
+   </div>
+  </div>
 
-<%= render 'index', post_crafts: @post_crafts %>
+  <% if @post_crafts.present? %>
 
-<% else %>
-<div class="container-fluid">
-<div class="row justify-content-center">
-<div class="cover">
-<div class="text-center">
-<h3 class="title mb-2">
-    投稿している作品はありません</h3>
- <% end %>
-</div>
-</div>
-</div>
-</div>
+    <%= render 'index', post_crafts: @post_crafts %>
 
+  <% else %>
+   <div class="container-fluid">
+    <div class="row justify-content-center">
+     <div class="cover">
+      <div class="text-center">
+       <h3 class="title mb-2">
+         投稿している作品はありません</h3>
+   <% end %>
+      </div>
+     </div>
+    </div>
+   </div>
 
-<div class="pagination justify-content-center">
-<%= paginate @post_crafts, theme: 'twitter-bootstrap-4' %>
-</div>
-
+   <div class="pagination justify-content-center">
+    <%= paginate @post_crafts, theme: 'twitter-bootstrap-4' %>
+   </div>
 </div>

@@ -1,47 +1,46 @@
 <div class="container">
-<div class="border-bottom border-info" style="padding:10px;">
-<div class="row justify-content-center">
-<h2 class="title mb-2"><%= @genre.name %>のアイテム一覧 (全<%= @item_lists.total_count %>件)</h2>
-</div>
-<div class="row justify-content-end">
- <%= link_to new_item_list_path do %>
-<i class="fa-solid fa-circle-plus"> 新規投稿</i>
-<% end %>
-</div>
-<div class="row justify-content-end">
-<%= link_to "アイテム一覧に戻る", item_lists_path, class: "underline" %>
+ <div class="border-bottom border-info" style="padding:10px;">
+  <div class="row justify-content-center">
+   <h2 class="title mb-2"><%= @genre.name %>のアイテム一覧 (全<%= @item_lists.total_count %>件)</h2>
+  </div>
+  <div class="row justify-content-end">
+    <%= link_to new_item_list_path do %>
+     <i class="fa-solid fa-circle-plus"> 新規投稿</i>
+    <% end %>
+  </div>
+  <div class="row justify-content-end">
+   <%= link_to "アイテム一覧に戻る", item_lists_path, class: "underline" %>
+  </div>
+
+  <div class="row justify-content-start">
+   <h5 class="col-auto">ジャンル一覧
+	  <% @genres.each do |genre| %>
+	   <button type="button" class="btn btn-outline-primary">
+	    <%= link_to genre.name, item_lists_genre_path(genre_id: genre.id), method: :get %>
+     </button>
+	  <% end %>
+   </h5>
+  </div>
 </div>
 
-<div class="row justify-content-start">
- <h5 class="col-auto">ジャンル一覧
-	<% @genres.each do |genre| %>
-	<button type="button" class="btn btn-outline-primary">
-	<%= link_to genre.name, item_lists_genre_path(genre_id: genre.id), method: :get %>
-  </button>
-	<% end %>
-</h5>
-</div>
-</div>
+ <% if @item_lists.present? %>
 
-<% if @item_lists.present? %>
+ <%= render 'public/item_lists/index', item_lists: @item_lists %>
 
-<%= render 'public/item_lists/index', item_lists: @item_lists %>
+ <% else %>
+  <div class="container-fluid">
+   <div class="row justify-content-center">
+    <div class="cover">
+     <div class="text-center">
+      <h3 class="title mb-2">
+       保存しているアイテムはありません
+ <% end %>
+     </div>
+    </div>
+   </div>
+  </div>
 
-<% else %>
-<div class="container-fluid">
-<div class="row justify-content-center">
-<div class="cover">
-<div class="text-center">
-<h3 class="title mb-2">
-    保存しているアイテムはありません
-<% end %>
-</div>
-</div>
-</div>
-</div>
-
-<div class="pagination justify-content-center">
-<%= paginate @item_lists, theme: 'twitter-bootstrap-4' %>
-</div>
-
+ <div class="pagination justify-content-center">
+  <%= paginate @item_lists, theme: 'twitter-bootstrap-4' %>
+ </div>
 </div>

@@ -1,94 +1,98 @@
 <div class="container">
-<div class="border-bottom border-info" style="padding:10px;">
-<div class="row justify-content-center">
-<h2 class="title mb-2"><%= @user.nick_name %>さんのマイページ</div>
-</div>
+ <div class="border-bottom border-info" style="padding:10px;">
+  <div class="row justify-content-center">
+   <h2 class="title mb-2"><%= @user.nick_name %>さんのマイページ</div>
+ </div>
 
-<div class="row">
-<div class="col-lg-4">
-<div class="card m-3 p-2 shadow-lg">
-  <%= image_tag @user.get_profile_image(300,300),class:"card-img-top img-fluid" %>
-  <div class="card-body">
-  <h2 class="card-title"><%= @user.nick_name %></h2>
-  <h5 class="card-text"><%= @user.introduction %></h5>
-</div>
-</div>
-  <% if @user == current_user %>
-  <p class="text m-3 text-right">
-  <%= link_to "プロフィール編集", edit_information_path(current_user.id) %></p>
-  <% end %>
-</div>
+ <div class="row">
+  <div class="col-lg-4">
+   <div class="card m-3 p-2 shadow-lg">
+    <%= image_tag @user.get_profile_image(300,300),class:"card-img-top img-fluid" %>
+     <div class="card-body">
+      <h2 class="card-title"><%= @user.nick_name %></h2>
+       <h5 class="card-text"><%= @user.introduction %></h5>
+     </div>
+    </div>
+    <!--current_user 且つ guest_user でなかったら-->
+    <% if @user == current_user && !current_user.guest_user? %>
+    <p class="text m-3 text-right">
+     <%= link_to "プロフィール編集", edit_information_path(current_user.id) %></p>
+    <% end %>
+   </div>
 
-<% if @user == current_user %>
+    <% if @user == current_user %>
 
-<div class="col-lg-7 m-3 offset-md-1">
-<div class="list-group">
-<li class="list-group-item">
-<h4 class="list-title">
- <%= link_to new_post_craft_path do %>
- <i class="fa-solid fa-circle-plus"></i> 新規投稿
- <% end %>
- </h4>
- </li>
+     <div class="col-lg-7 m-3 offset-md-1">
+      <div class="list-group">
+       <li class="list-group-item">
+        <h4 class="list-title">
+         <%= link_to new_post_craft_path do %>
+          <i class="fa-solid fa-circle-plus"></i> 新規投稿
+         <% end %>
+        </h4>
+       </li>
+
+       <li class="list-group-item">
+        <h4 class="list-title">
+         <%= link_to "作品投稿一覧", user_post_crafts_path %>
+        </h4>
+        <div class="row">
+          <% @post_crafts.each do |post_craft| %>
+          <div class="col-4">
+          <div class="card h-100">
+           <%= link_to post_craft_path(post_craft.id) do %>
+            <%= image_tag post_craft.get_image, class:"card-img-top img-fluid";%>
+           <% end %>
+           </div>
+           </div>
+          <% end %>
+          </div>
+        </li>
+
+        <li class="list-group-item">
+         <h5 class="list-title">
+          <%= link_to "下書き一覧", post_crafts_confirm_path %></h5>
+        </li>
+
+        <li class="list-group-item">
+        <h5 class="list-title">
+         <%= link_to "いいねした作品一覧", favorites_path %></h5>
+        </li>
+        <li class="list-group-item">
+         <h5 class="list-title">
+          <%= link_to "アイテム一覧", user_item_list_path %></h5>
+        </li>
+        <li class="list-group-item">
+         <h5 class="list-title">
+          <%= link_to "ほしいものリスト", wish_list_path(@user.id) %></h5>
+        </li>
+        </div>
+
+     <% else %>
 
 
-<li class="list-group-item">
-<h4 class="list-title">
-<%= link_to "作品投稿一覧", user_post_crafts_path %>
-</h4>
-<div class="row">
-<% @post_crafts.each do |post_craft| %>
-<div class="col-4"
-<div class="card mb-4 h-100">
-<%= link_to post_craft_path(post_craft.id) do %>
-<%= image_tag post_craft.get_image, class:"card-img-top img-fluid";%>
-<% end %>
-</div>
-<% end %>
-</div>
-</li>
+     <div class="col-lg-7 m-3 offset-md-1">
+      <div class="list-group">
+       <li class="list-group-item">
+        <h4 class="list-title">
+          <%= link_to "作品投稿一覧", user_post_lists_path(@user.id) %>
+        </h4>
+         <div class="row">
+          <% @post_crafts.each do |post_craft| %>
+         <div class="col-4">
+          <div class="card mb-4 h-100">
+           <%= link_to post_craft_path(post_craft.id) do %>
+            <%= image_tag post_craft.get_image, class:"card-img-top img-fluid mb-1";%>
+           <% end %>
+          </div>
+          <% end %>
+         </div>
+        </li>
+    <% end %>
 
-<li class="list-group-item">
-<h5 class="list-title">
-<%= link_to "下書き一覧", post_crafts_confirm_path %></h5>
-</li>
-
-<li class="list-group-item">
-<h5 class="list-title">
-<%= link_to "いいねした作品一覧", favorites_path %></h5>
-</li>
-<li class="list-group-item">
-<h5 class="list-title">
-<%= link_to "アイテム一覧", user_item_list_path %></h5>
-</li>
-<li class="list-group-item">
-<h5 class="list-title">
-<%= link_to "ほしいものリスト", wish_list_path(@user.id) %></h5>
-</li>
-<% else %>
-
-
-<div class="col-lg-7 m-3 offset-md-1">
-<div class="list-group">
-<li class="list-group-item">
-<h4 class="list-title">
-<%= link_to "作品投稿一覧", user_post_lists_path(@user.id) %>
-</h4>
-<div class="row">
-<% @post_crafts.each do |post_craft| %>
-<div class="col-4"
-<div class="card mb-4 h-100">
-<%= link_to post_craft_path(post_craft.id) do %>
-<%= image_tag post_craft.get_image, class:"card-img-top img-fluid mb-1";%>
-<% end %>
-</div>
-<% end %>
-</div>
-</li>
-<% end %>
-
-</div>
-</div>
-
-</div>
-</div>
+        </div>
+       </div>
+     </div>
+    </div>
+  </div>
+ </div>

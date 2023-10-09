@@ -1,32 +1,35 @@
-
 <div class="container">
-<div class="border-bottom border-info" style="padding:10px;">
-<div class="row justify-content-center">
-<h2 class="title mb-2">
-<%= @user.nick_name %>さんの作品一覧(全<%= @post_crafts.total_count %>件)</h2>
-</div>
+ <div class="border-bottom border-info" style="padding:10px;">
+  <div class="row justify-content-center">
+   <h2 class="title mb-2">
+    <%= @user.nick_name %>さんの作品一覧(全<%= @post_crafts.total_count %>件)</h2>
+  </div>
+ </div>
+
+ <% if @post_crafts.present? %>
+
+  <%= render 'public/post_crafts/index', post_crafts: @post_crafts %>
+
+ <% else %>
+ 
+ <div class="container-fluid">
+  <div class="row justify-content-center">
+   <div class="cover">
+    <div class="text-center">
+     <h3 class="title mb-2">
+      <%= post_craft.user.nick_name %>さんの投稿はありません</h3>
+  
+  <% end %>
+    
+    </div>
+   </div>
+ </div>
 </div>
 
-<% if @post_crafts.present? %>
+ <div class="pagination justify-content-center">
+  <%= paginate @post_crafts, theme: 'twitter-bootstrap-4' %>
+ </div>
 
-<%= render 'public/post_crafts/index', post_crafts: @post_crafts %>
-
-<% else %>
-<div class="container-fluid">
-<div class="row justify-content-center">
-<div class="cover">
-<div class="text-center">
-<h3 class="title mb-2">
-  <%= post_craft.user.nick_name %>さんの投稿はありません</h3>
- <% end %>
-</div>
-</div>
-</div>
-</div>
-
-<div class="pagination justify-content-center">
-<%= paginate @post_crafts, theme: 'twitter-bootstrap-4' %>
-</div>
 </div>
 
 

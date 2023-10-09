@@ -1,102 +1,102 @@
 <div class="container">
-<div class="border-bottom border-info" style="padding:10px;">
-<div class="row justify-content-center">
-<h2 class="title mb-2">作品詳細</h2>
-</div>
-<div class="row justify-content-end">
-<%= link_to "作品一覧に戻る", post_crafts_path, class: "underline" %>
-</div>
-</div>
-<div class="card w-70 mx-auto m-5 shadow-lg">
-<%= image_tag @post_craft.get_image, class:"card-img-top img-fluid" %>
-<div class="card-body">
-<div class="row">
-<div class="col-3 col-md-3 col-lg-3 mx-auto">
-<%= link_to mypage_path(@post_craft.user.id) do %>
-<%= image_tag @post_craft.user.get_profile_image(120,120), class:"card-img img-fluid mt-3 rounded-circle"; %>
-<% end %>
-<h3 class="card-title">
-<i class="fa-solid fa-user"></i><span>  <%= @post_craft.user.nick_name %></span></h3>
-</div>
+ <div class="border-bottom border-info" style="padding:10px;">
+  <div class="row justify-content-center">
+   <h2 class="title mb-2">作品詳細</h2>
+  </div>
+  <div class="row justify-content-end">
+   <%= link_to "作品一覧に戻る", post_crafts_path, class: "underline" %>
+  </div>
+ </div>
 
-<div class="col-10 col-md-8 col-lg-6 mx-auto">
-<h4 class="card-title">
-  <% if @post_craft.favorited_by?(current_user) %>
-      <%= link_to post_craft_favorites_path(@post_craft), method: :delete do %>
-        <i class="fa-solid fa-heart"></i> <%= @post_craft.favorites.count %> いいね
+ <div class="card w-70 mx-auto m-5 shadow-lg">
+  <%= image_tag @post_craft.get_image, class:"card-img-top img-fluid" %>
+   <div class="card-body">
+    <div class="row">
+     <div class="col-3 col-md-3 col-lg-3 mx-auto">
+      <%= link_to mypage_path(@post_craft.user.id) do %>
+      <%= image_tag @post_craft.user.get_profile_image(120,120), class:"card-img img-fluid mt-3 rounded-circle"; %>
       <% end %>
-    <% else %>
-      <%= link_to post_craft_favorites_path(@post_craft), method: :post do %>
-        <i class="fa-regular fa-heart"></i> <%= @post_craft.favorites.count %> いいね
-      <% end %>
-  <% end %>
-</h4>
-<h4 class="card-title">
-<i class="fa-regular fa-flag"></i>  <%= @post_craft.title %></h4>
-<p class="card-text">
-<i class="fa-solid fa-calendar"></i>  <%= @post_craft.created_at.strftime('%Y/%m/%d') %></p>
-<h5 class="card-text">
-<i class="fa-solid fa-feather-pointed"></i> 説明:  <%= @post_craft.introduction %></h5>
-<p class="card-text">
-<i class="fa-solid fa-scissors"></i> ジャンル: <%= @post_craft.genre.name %><br>
-<i class="fa-solid fa-tag"></i> タグ:
-<% if @tags.present? %>
-  <% @tags.each do |tag| %>
-  <%= link_to "#{tag.name}(#{tag.taggings_count})", post_crafts_tags_path(tag: tag.name) %>
-  <% end %>
-  <% else %>
-   登録されているタグはありません
-<% end %>
-<br>
-<i class="fa-regular fa-comment"></i> コメント件数：<%= @post_craft.post_comments.count %><br>
+       <h3 class="card-title">
+        <i class="fa-solid fa-user"></i><span>  <%= @post_craft.user.nick_name %></span></h3>
+     </div>
 
-<% if @post_craft.user == current_user %>
-<h5 class="card-text">
-<i class="fa-solid fa-pen-to-square"></i><%= link_to "編集", edit_post_craft_path %>
-<i class="fa-solid fa-trash"></i><%= link_to "削除", post_craft_path(@post_craft.id), method: :delete, "data-confirm" => "本当に投稿を削除しますか？" %>
-<% end %>
-</h5>
-</div>
-</div>
-</div>
-</div>
+     <div class="col-10 col-md-8 col-lg-6 mx-auto">
+      <h4 class="card-title">
+       <% if @post_craft.favorited_by?(current_user) %>
+         <%= link_to post_craft_favorites_path(@post_craft), method: :delete do %>
+         <i class="fa-solid fa-heart"></i> <%= @post_craft.favorites.count %> いいね
+         <% end %>
+       <% else %>
+         <%= link_to post_craft_favorites_path(@post_craft), method: :post do %>
+         <i class="fa-regular fa-heart"></i> <%= @post_craft.favorites.count %> いいね
+         <% end %>
+       <% end %>
+      </h4>
+      <h4 class="card-title">
+      <i class="fa-regular fa-flag"></i>  <%= @post_craft.title %></h4>
+      <p class="card-text">
+      <i class="fa-solid fa-calendar"></i>  <%= @post_craft.created_at.strftime('%Y/%m/%d') %></p>
+      <h5 class="card-text">
+      <i class="fa-solid fa-feather-pointed"></i> 説明:  <%= @post_craft.introduction %></h5>
+      <p class="card-text">
+      <i class="fa-solid fa-scissors"></i> ジャンル: <%= @post_craft.genre.name %><br>
+      <i class="fa-solid fa-tag"></i> タグ:
+       <% if @tags.present? %>
+         <% @tags.each do |tag| %>
+           <%= link_to "#{tag.name}(#{tag.taggings_count})", post_crafts_tags_path(tag: tag.name) %>
+         <% end %>
+       <% else %>
+          登録されているタグはありません
+       <% end %>
+      <br>
+      <i class="fa-regular fa-comment"></i> コメント件数：<%= @post_craft.post_comments.count %><br>
+
+     <% if @post_craft.user == current_user %>
+      <h5 class="card-text">
+      <i class="fa-solid fa-pen-to-square"></i><%= link_to "編集", edit_post_craft_path %>
+      <i class="fa-solid fa-trash"></i><%= link_to "削除", post_craft_path(@post_craft.id), method: :delete, "data-confirm" => "本当に投稿を削除しますか？" %>
+     <% end %>
+      </h5>
+    </div>
+   </div>
+  </div>
+ </div>
 
   <div class="card mx-auto m-3">
-  <div class="card-body">
-  <div class="row justify-content-center">
-  <div class="comments card-text">
-    <% if @post_craft.post_comments.present? %>
-    <% @post_craft.post_comments.each do |post_comment| %>
-    <div class="media border mb-3 p-3">
-    <%= link_to mypage_path(@post_craft.user.id) do %>
-    <%= image_tag post_comment.user.get_profile_image(60,60), class:"card-img img-fluid mt-3 rounded-circle";%>
-    <%= post_comment.user.nick_name %>
-    <% end %>
+   <div class="card-body">
+    <div class="row justify-content-center">
+     <div class="comments card-text">
+       <% if @post_craft.post_comments.present? %>
+         <% @post_craft.post_comments.each do |post_comment| %>
+          <div class="media border mb-3 p-3">
+           <%= link_to mypage_path(@post_craft.user.id) do %>
+            <%= image_tag post_comment.user.get_profile_image(60,60), class:"card-img img-fluid mt-3 rounded-circle";%>
+            <%= post_comment.user.nick_name %>
+           <% end %>
 
-    <div class="media-body ml-4 p-3">
-    <p><%= post_comment.created_at.strftime('%Y/%m/%d') %></p>
-    <h5><%= post_comment.comment %></h5>
-    <% if post_comment.user == current_user %>
-      <%= link_to "削除", post_craft_post_comment_path(post_comment.post_craft, post_comment), method: :delete, "data-confirm" => "本当にコメントを削除しますか?" %>
-    <% end %>
+           <div class="media-body ml-4 p-3">
+            <p><%= post_comment.created_at.strftime('%Y/%m/%d') %></p>
+              <h5><%= post_comment.comment %></h5>
+              <% if post_comment.user == current_user %>
+                 <%= link_to "削除", post_craft_post_comment_path(post_comment.post_craft, post_comment), method: :delete, "data-confirm" => "本当にコメントを削除しますか?" %>
+              <% end %>
+           </div>
+          </div>
+         <% end %>
+       <% else %>
+         投稿されているコメントはありません
+       <% end %>
     </div>
-    </div>
-    <% end %>
-    <% else %>
-    投稿されているコメントはありません
-    <% end %>
-  </div>
-  </div>
-  <div class="new-comment card-text">
-  <%= form_with model: [@post_craft, @post_comment] do |f| %>
-  <div class="form-group">
-   <label for="exampleFormControlTextarea1">コメントする</label>
-    <%= f.text_area :comment, rows: '5', class: "form-control", placeholder: "コメントをここに" %>
    </div>
-    <%= f.submit "送信する", class:"btn btn-lg btn-info mt-2 float-right" %>
-  <% end %>
-</div>
-</div>
-</div>
-</div>
+    <div class="new-comment card-text">
+      <%= form_with model: [@post_craft, @post_comment] do |f| %>
+       <div class="form-group">
+        <label for="exampleFormControlTextarea1">コメントする</label>
+          <%= f.text_area :comment, rows: '5', class: "form-control", placeholder: "コメントをここに" %>
+       </div>
+       <%= f.submit "送信する", class:"btn btn-lg btn-info mt-2 float-right" %>
+      <% end %>
+    </div>
+  </div>
+ </div>
 </div>

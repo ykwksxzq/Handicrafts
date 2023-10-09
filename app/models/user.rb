@@ -16,8 +16,6 @@ class User < ApplicationRecord
 
   has_one_attached :profile_image
 
-  attr_accessor :is_withdrawn
-
 
   validates :email, presence: true, uniqueness: true
   validates :nick_name, presence: true, uniqueness: true, length: { maximum: 20 }
@@ -28,15 +26,22 @@ class User < ApplicationRecord
      file_path = Rails.root.join('app/assets/images/no_image.jpg')
      profile_image.attach(io: File.open(file_path), filename: 'no_image.jpg', content_type: 'image/jpeg')
    end
-    profile_image.variant(resize_to_limit: [width, height]).processed
+     profile_image.variant(resize_to_limit: [width, height]).processed
   end
 
+  GUEST_MEMBER_EMAIL = "guest@example.com"
+
   def self.guest
-    find_or_create_by!(email: 'guest@example.com') do |user|
-      user.password = SecureRandom.urlsafe_base64
+    find_or_create_by!(email: GUEST_MEMBER_EMAIL ) do |user|
+     user.password = SecureRandom.urlsafe_base64
       # user.confirmed_at = Time.now  # Confirmable を使用している場合は必要
-      user.nick_name = "ゲスト"
+     user.nick_name = "ゲスト"
     end
       # 例えば name を入力必須としているならば， user.name = "ゲスト" なども必要
   end
+
+  def guest_user?
+    email == GUEST_MEMBER_EMAIL
+  end
+
 end

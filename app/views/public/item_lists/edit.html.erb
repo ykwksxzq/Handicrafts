@@ -1,19 +1,18 @@
 <div class="container">
-<div class="row justify-content-center m-3">
-<div class="col-md-5 col-sm-10">
-<h4 class="text-dark p-4 mb-0">アイテム編集フォーム</h4>
-<%= form_with model: @item_list, url:item_list_path(@item_list.id), method: :patch do |f| %>
+ <div class="row justify-content-center m-3">
+  <div class="col-md-5 col-sm-10">
+   <h4 class="text-dark p-4 mb-0">アイテム編集フォーム</h4>
+    <%= form_with model: @item_list, url:item_list_path(@item_list.id), method: :patch do |f| %>
 
- <%= render partial: 'public/item_lists/post_form', locals: {f:f} %>
+     <%= render partial: 'public/item_lists/post_form', locals: {f:f} %>
 
-<div class="actions">
-<%= f.submit '更新',class: "btn btn-success"%>
-</div>
+     <div class="actions">
+     <%= f.submit '更新',class: "btn btn-success"%>
+     </div>
 
-<% end %>
+     <% end %>
 
-  </br>
-  <p><%= link_to "アイテム詳細に戻る", item_list_path(@item_list.id), class: "underline" %></p>
-
-</div>
+     </br>
+     <p><%= link_to "アイテム詳細に戻る", item_list_path(@item_list.id), class: "underline" %></p>
+  </div>
 </div>

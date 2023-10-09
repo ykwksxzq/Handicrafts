@@ -1,5 +1,6 @@
 class Public::UsersController < ApplicationController
  before_action :authenticate_user!
+ before_action :ensure_guest_user, only: [:edit, :destroy]
 
  def show
    @user = User.find(params[:id])
@@ -61,10 +62,11 @@ class Public::UsersController < ApplicationController
    params.require(:user).permit(:nick_name, :introduction, :email, :profile_image)
  end
 
- def is_matching_login_user
-    user = User.find(params[:id])
-    unless user.id == current_user.id
-    redirect_to user_path(current_user.id)
-    end
+
+ def ensure_guest_user
+  if current_user.guest_user?
+    flash[:alert] =  "ゲストユーザーはプロフィール編集できません"
+    redirect_to mypage_path(current_user.id)
+  end
  end
 end

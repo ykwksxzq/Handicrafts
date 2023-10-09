@@ -1,95 +1,93 @@
 <div class="container">
-<div class="border-bottom border-info" style="padding:10px;">
-<div class="row justify-content-center">
-<h2 class="title mb-2">アイテム詳細</h2>
-</div>
-<div class="row justify-content-end">
-<%= link_to "アイテム一覧に戻る", item_lists_path, class: "underline" %>
-</div>
-</div>
-<div class="card w-70 mx-auto m-5 shadow-lg">
-<%= image_tag @item_list.get_image, class:"card-img-top img-fluid" %>
+ <div class="border-bottom border-info" style="padding:10px;">
+  <div class="row justify-content-center">
+   <h2 class="title mb-2">アイテム詳細</h2>
+  </div>
+  <div class="row justify-content-end">
+   <%= link_to "アイテム一覧に戻る", item_lists_path, class: "underline" %>
+  </div>
+ </div>
+ <div class="card w-70 mx-auto m-5 shadow-lg">
+  <%= image_tag @item_list.get_image, class:"card-img-top img-fluid" %>
+  <div class="card-body">
+   <div class="row">
+    <div class="col-3 col-md-3 col-lg-3 mx-auto">
+     <%= link_to mypage_path(@item_list.user.id) do %>
+      <%= image_tag @item_list.user.get_profile_image(120,120),class:"card-img img-fluid mt-3 rounded-circle"; %>
+     <% end %>
 
-<div class="card-body">
-<div class="row">
-<div class="col-3 col-md-3 col-lg-3 mx-auto">
-<%= link_to mypage_path(@item_list.user.id) do %>
-<%= image_tag @item_list.user.get_profile_image(120,120),class:"card-img img-fluid mt-3 rounded-circle"; %>
-<% end %>
+     <h3 class="card-title">
+      <i class="fa-solid fa-user"></i><span>  <%= @item_list.user.nick_name %></span></h3>
+    </div>
+    <div class="col-10 col-md-8 col-lg-6 mx-auto">
+    <h4 class="card-title">
 
-<h3 class="card-title">
-<i class="fa-solid fa-user"></i><span>  <%= @item_list.user.nick_name %></span></h3>
+     <% if @item_list.item_favorited_by?(current_user) %>
+        <%= link_to item_list_item_favorites_path(@item_list), method: :delete do %>
+         <i class="fa-solid fa-heart"></i><%= @item_list.item_favorites.count %> いいね
+        <% end %>
+     <% else %>
+        <%= link_to item_list_item_favorites_path(@item_list), method: :post do %>
+         <i class="fa-regular fa-heart"></i><%= @item_list.item_favorites.count %> いいね
+        <% end %>
+     <% end %>
+    </h4>
+
+     <h4 class="card-title">
+     <i class="fa-regular fa-flag"></i>  <%= @item_list.item_name %></h4>
+     <p class="card-text">
+     <i class="fa-solid fa-calendar"></i>  <%= @item_list.created_at.strftime('%Y/%m/%d') %></p>
+     <h5 class="card-text">
+     <i class="fa-solid fa-feather-pointed"></i> 備考:  <%= @item_list.memo %></h5>
+     <p class="card-text">
+     <i class="fa-solid fa-scissors"></i> ジャンル: <%= @item_list.genre.name %></p>
+
+    <% if @item_list.user == current_user %>
+     <i class="fa-solid fa-pen-to-square"></i><%= link_to "編集", edit_item_list_path %>
+     <i class="fa-solid fa-trash"></i><%= link_to "削除", item_list_path(@item_list.id), method: :delete, "data-confirm" => "本当に削除しますか？" %>
+    <% end %>
+    <br>
+    <i class="fa-regular fa-comment"></i> コメント件数：<%= @item_list.item_list_comments.count %></p>
+   </div>
+  </div>
+ </div>
 </div>
-<div class="col-10 col-md-8 col-lg-6 mx-auto">
-<h4 class="card-title">
 
-  <% if @item_list.item_favorited_by?(current_user) %>
-      <%= link_to item_list_item_favorites_path(@item_list), method: :delete do %>
-        <i class="fa-solid fa-heart"></i><%= @item_list.item_favorites.count %> いいね
+ <div class="card mx-auto m-5">
+  <div class="card-body">
+   <div class="row justify-content-center">
+    <div class="comments card-text">
+     <% if @item_list.item_list_comments.present? %>
+      <% @item_list.item_list_comments.each do |item_list_comment| %>
+      <div class="media border mb-3 p-3">
+      <%= link_to mypage_path(item_list_comment.user.id) do %>
+       <%= image_tag item_list_comment.user.get_profile_image(60,60),class:"card-img img-fluid mt-3 rounded-circle"; %>
+       <%= item_list_comment.user.nick_name %>
       <% end %>
+
+     <div class="media-body ml-4 p-3">
+     <p><%= item_list_comment.created_at.strftime('%Y/%m/%d') %></p>
+     <h5><%= item_list_comment.comment %></h5>
+     <% if item_list_comment.user == current_user %>
+      <%= link_to "削除", item_list_item_list_comment_path(item_list_comment.item_list, item_list_comment), method: :delete,"data-confirm" => "本当にコメントを削除しますか?" %>
+     <% end %>
+     </div>
+     </div>
+    <% end %>
    <% else %>
-      <%= link_to item_list_item_favorites_path(@item_list), method: :post do %>
-        <i class="fa-regular fa-heart"></i><%= @item_list.item_favorites.count %> いいね
-      <% end %>
-  <% end %>
-</h4>
-
-<h4 class="card-title">
-<i class="fa-regular fa-flag"></i>  <%= @item_list.item_name %></h4>
-<p class="card-text">
-<i class="fa-solid fa-calendar"></i>  <%= @item_list.created_at.strftime('%Y/%m/%d') %></p>
-<h5 class="card-text">
-<i class="fa-solid fa-feather-pointed"></i> 備考:  <%= @item_list.memo %></h5>
-<p class="card-text">
-<i class="fa-solid fa-scissors"></i> ジャンル: <%= @item_list.genre.name %></p>
-
-
-<% if @item_list.user == current_user %>
-<i class="fa-solid fa-pen-to-square"></i><%= link_to "編集", edit_item_list_path %>
-<i class="fa-solid fa-trash"></i><%= link_to "削除", item_list_path(@item_list.id), method: :delete, "data-confirm" => "本当に削除しますか？" %>
-<% end %>
-<br>
-<i class="fa-regular fa-comment"></i> コメント件数：<%= @item_list.item_list_comments.count %></p>
-</div>
-</div>
-</div>
-</div>
-
-<div class="card mx-auto m-5">
-<div class="card-body">
-<div class="row justify-content-center">
-<div class="comments card-text">
-  <% if @item_list.item_list_comments.present? %>
-  <% @item_list.item_list_comments.each do |item_list_comment| %>
-  <div class="media border mb-3 p-3">
-  <%= link_to mypage_path(item_list_comment.user.id) do %>
-  <%= image_tag item_list_comment.user.get_profile_image(60,60),class:"card-img img-fluid mt-3 rounded-circle"; %>
-  <%= item_list_comment.user.nick_name %>
-  <% end %>
-
-  <div class="media-body ml-4 p-3">
-  <p><%= item_list_comment.created_at.strftime('%Y/%m/%d') %></p>
-  <h5><%= item_list_comment.comment %></h5>
-  <% if item_list_comment.user == current_user %>
-   <%= link_to "削除", item_list_item_list_comment_path(item_list_comment.item_list, item_list_comment), method: :delete,"data-confirm" => "本当にコメントを削除しますか?" %>
-  <% end %>
+     投稿されているコメントはありません
+   <% end %>
+   </div>
   </div>
+  <div class="new-comment card-text">
+   <%= form_with model: [@item_list, @item_list_comment] do |f| %>
+   <div class="form-group">
+   <label for="exampleFormControlTextarea1">コメントする</label>
+    <%= f.text_area :comment, rows: '5', class: "form-control", placeholder: "コメントをここに" %>
+    <%= f.submit "送信する", class:"btn btn-lg btn-info mt-2 float-right" %>
+   <% end %>
+   </div>
   </div>
-  <% end %>
-  <% else %>
-    投稿されているコメントはありません
-  <% end %>
-</div>
-</div>
-<div class="new-comment card-text">
-  <%= form_with model: [@item_list, @item_list_comment] do |f| %>
-<div class="form-group">
-  <label for="exampleFormControlTextarea1">コメントする</label>
-  <%= f.text_area :comment, rows: '5', class: "form-control", placeholder: "コメントをここに" %>
-  <%= f.submit "送信する", class:"btn btn-lg btn-info mt-2 float-right" %>
-  <% end %>
-</div>
-</div>
-</div>
-</div>
+ </div>
+ </div>
 </div>

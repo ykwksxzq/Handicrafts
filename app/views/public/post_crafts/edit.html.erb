@@ -1,19 +1,19 @@
 <div class="container">
-<div class="row justify-content-center m-3">
-<div class="col-md-5 col-sm-10">
-<h4 class="text-dark p-4 mb-0">編集</h4>
+ <div class="row justify-content-center m-3">
+  <div class="col-md-5 col-sm-10">
+   <h4 class="text-dark p-4 mb-0">編集</h4>
 
-<%= form_with model: @post_craft, url:post_craft_path(@post_craft.id), method: :patch do |f| %>
+    <%= form_with model: @post_craft, url:post_craft_path(@post_craft.id), method: :patch do |f| %>
 
-<%= render partial: 'public/post_crafts/post_form', locals: {f:f} %>
+     <%= render partial: 'public/post_crafts/post_form', locals: {f:f} %>
 
-<div class="actions">
-<%= f.submit '更新',class: "btn btn-success"%>
-</div>
+     <div class="actions">
+      <%= f.submit '更新',class: "btn btn-success"%>
+     </div>
 
-<% end %>
-  </br>
-  <p><%= link_to "作品詳細に戻る", post_craft_path(@post_craft.id), class: "underline" %></p>
-
-</div>
+    <% end %>
+    <br>
+   <p><%= link_to "作品詳細に戻る", post_craft_path(@post_craft.id), class: "underline" %></p>
+  </div>
+ </div>
 </div>

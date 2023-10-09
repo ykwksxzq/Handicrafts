@@ -1,56 +1,54 @@
 <div class="container">
-<div class="border-bottom border-info" style="padding:10px;">
-<div class="row justify-content-center">
-<h2 class="title mb-2">アイテム一覧(全<%= @item_lists.total_count %>件)</h2>
-</div>
+ <div class="border-bottom border-info" style="padding:10px;">
+  <div class="row justify-content-center">
+   <h2 class="title mb-2">アイテム一覧(全<%= @item_lists.total_count %>件)</h2>
+  </div>
 
-<div class="row justify-content-end">
-<%= form_tag(item_lists_path, method: :get) do %>
-  <%= text_field_tag(:q, params[:q], placeholder: "キーワードを入力") %>
-  <%= submit_tag("検索") %>
-<% end %>
-</div>
-<br>
+  <div class="row justify-content-end">
+   <%= form_tag(item_lists_path, method: :get) do %>
+    <%= text_field_tag(:q, params[:q], placeholder: "キーワードを入力") %>
+    <%= submit_tag("検索") %>
+   <% end %>
+  </div>
+  <br>
 
-<div class="row justify-content-end">
-  <div class="col-auto">ジャンル一覧
-	<% @genres.each do |genre| %>
-	<button type="button" class="btn btn-outline-primary">
-	<%= link_to item_lists_genre_path(genre_id: genre.id) do %>
-	<%= genre.name %>
-    </button>
-	<% end %>
-	<% end %>
-</div>
-</div>
+  <div class="row justify-content-end">
+   <div class="col-auto">ジャンル一覧
+	  <% @genres.each do |genre| %>
+	   <button type="button" class="btn btn-outline-primary">
+	    <%= link_to item_lists_genre_path(genre_id: genre.id) do %>
+	    <%= genre.name %>
+     </button>
+	   <% end %>
+	  <% end %>
+   </div>
+  </div>
 
+  <div class="row justify-content-start">
+   <%= link_to new_item_list_path do %>
+    <i class="fa-solid fa-circle-plus"> 新規投稿</i>
+   <% end %>
+  </div>
+ </div>
 
-<div class="row justify-content-start">
-<%= link_to new_item_list_path do %>
-<i class="fa-solid fa-circle-plus"> 新規投稿</i>
-<% end %>
-</div>
-</div>
+ <% if @item_lists.present? %>
 
-<% if @item_lists.present? %>
+  <%= render 'public/item_lists/index', item_lists: @item_lists %>
 
-<%= render 'public/item_lists/index', item_lists: @item_lists %>
+ <% else %>
+  <div class="container-fluid">
+   <div class="row justify-content-center">
+    <div class="cover">
+     <div class="text-center">
+      <h3 class="title mb-2">
+       保存しているアイテムはありません</h3>
+ <% end %>
+     </div>
+    </div>
+   </div>
+  </div>
 
-<% else %>
-<div class="container-fluid">
-<div class="row justify-content-center">
-<div class="cover">
-<div class="text-center">
-<h3 class="title mb-2">
-    保存しているアイテムはありません</h3>
-<% end %>
-</div>
-</div>
-</div>
-</div>
-
-<div class="pagination justify-content-center">
-<%= paginate @item_lists, theme: 'twitter-bootstrap-4' %>
-</div>
-
+  <div class="pagination justify-content-center">
+   <%= paginate @item_lists, theme: 'twitter-bootstrap-4' %>
+  </div>
 </div>
