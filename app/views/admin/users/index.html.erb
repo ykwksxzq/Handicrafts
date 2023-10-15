@@ -13,7 +13,6 @@
 		    <th>#</th>
 		    <th></th>
 		    <th><i class="fa-solid fa-user"></i></th>
-		    <th><i class="fa-regular fa-envelope"></i></th>
 		    <th><i class="fa-solid fa-heart"></i></th>
 		    <th><i class="fa-regular fa-comment"></i></th>
 	    </tr>
@@ -26,7 +25,6 @@
           <strong><%= user.nick_name %></strong>
          <% end %>
      </td>
-     <td><%= user.email %></td>
      <td>♥<%= user.favorites.count %></td>
      <td><%= user.post_comments.count %></td>
     </tbody>

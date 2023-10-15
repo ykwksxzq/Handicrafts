@@ -16,7 +16,7 @@
     <!--current_user 且つ guest_user でなかったら-->
     <% if @user == current_user && !current_user.guest_user? %>
     <p class="text m-3 text-right">
-     <%= link_to "プロフィール編集", edit_information_path(current_user.id) %></p>
+     <%= link_to "プロフィール編集", edit_information_path %></p>
     <% end %>
    </div>
 

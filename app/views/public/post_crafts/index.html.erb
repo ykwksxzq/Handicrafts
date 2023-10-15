@@ -15,8 +15,8 @@
    <div class="col-auto">ジャンル一覧
 	 <% @genres.each do |genre| %>
 	 <button type="button" class="btn btn-outline-primary">
-      <%= link_to genres_path(genre_id: genre.id) do %>
-      <%= genre.name %>
+    <%= link_to genres_path(genre_id: genre.id) do %>
+    <%= genre.name %>
 	 </button>
 	  <% end %>
 	 <% end %>
@@ -31,8 +31,8 @@
 
   <div class="row justify-content-end">
    <div class="col-auto">タグ一覧
-	<% @tags.each do |tag|%>
-	 <button type="button" class="btn btn-primary btn-sm">
+	   <% @tags.each do |tag|%>
+	    <button type="button" class="btn btn-primary btn-sm">
       <%= link_to post_crafts_tags_path(tag: tag.name), class:"text-light", method: :get do %>
       <%= tag %>
      </button>

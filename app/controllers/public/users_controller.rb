@@ -1,10 +1,10 @@
 class Public::UsersController < ApplicationController
- before_action :authenticate_user!
- before_action :ensure_guest_user, only: [:edit, :destroy]
+  before_action :authenticate_user!
+  before_action :ensure_guest_user, only: [:edit, :destroy]
 
  def show
-   @user = User.find(params[:id])
-   @post_crafts = PostCraft.published.where(user_id: params[:id]).page(params[:page]).per(3).order(created_at: :desc)
+  @user = User.find(params[:id])
+  @post_crafts = PostCraft.published.where(user_id: params[:id]).page(params[:page]).per(3).order(created_at: :desc)
  end
 
  def index
@@ -28,10 +28,10 @@ class Public::UsersController < ApplicationController
  def update
   @user = User.find(current_user.id)
   if @user.update(user_params)
-    flash[:notice] = '会員情報の更新が完了しました'
+    flash[:notice] = "会員情報の更新が完了しました"
     redirect_to mypage_path(@user.id)
   else
-    flash.now[:alert] ="登録できませんでした。お手数ですが、入力内容をご確認の上再度お試しください"
+    flash.now[:alert] = "登録できませんでした。お手数ですが、入力内容をご確認の上再度お試しください"
     render :edit
   end
  end
@@ -59,9 +59,8 @@ class Public::UsersController < ApplicationController
  private
 
  def user_params
-   params.require(:user).permit(:nick_name, :introduction, :email, :profile_image)
+  params.require(:user).permit(:nick_name, :introduction, :email, :profile_image)
  end
-
 
  def ensure_guest_user
   if current_user.guest_user?
