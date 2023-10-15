@@ -1,6 +1,5 @@
 class Public::PostCommentsController < ApplicationController
   before_action :authenticate_user!
-  before_action :ensure_current_user, only: [:destroy]
 
  def create
   post_craft = PostCraft.find(params[:post_craft_id])
@@ -22,14 +21,6 @@ class Public::PostCommentsController < ApplicationController
  end
 
  private
-
- def ensure_correct_user
-   @post_comment = PostComment.find(params[:id])
-   unless @post_comment.user == current_end_user
-    flash[:alert] = "投稿者以外のコメントは削除できません"
-    redirect_to post_craft_path
-   end
- end
 
  def post_comment_params
   params.require(:post_comment).permit(:user_id, :post_craft_id,:comment)

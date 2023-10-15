@@ -1,6 +1,5 @@
 class Public::ItemListCommentsController < ApplicationController
   before_action :authenticate_user!
-  before_action :ensure_current_user, only: [:destroy]
 
  def create
   item_list = ItemList.find(params[:item_list_id])
@@ -19,16 +18,6 @@ class Public::ItemListCommentsController < ApplicationController
   ItemListComment.find(params[:id]).destroy
   flash[:notice] = "コメントを削除しました"
   redirect_to item_list_path(params[:item_list_id])
- end
-
- private
-
- def ensure_correct_user
-   @item_list_comment = ItemListComment.find(params[:id])
-   unless @item_list_comment.user == current_end_user
-    flash[:alert] = "投稿者以外のコメントは削除できません"
-    redirect_to item_list_path
-   end
  end
 
  private
