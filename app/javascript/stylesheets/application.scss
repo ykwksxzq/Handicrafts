@@ -1,3 +1,22 @@
 @use '~bootstrap/scss/bootstrap';
 
+@import 'admin/genres.scss';
+@import 'admin/homes.scss';
+@import 'admin/item_list_comments.scss';
+@import 'admin/item_lists.scss';
+@import 'admin/post_comments.scss';
+@import 'admin/post_crafts.scss';
+@import 'admin/users.scss';
+
+@import 'public/homes.scss';
+@import 'public/favorites.scss';
+@import 'public/genres.scss';
+@import 'public/item_lists.scss';
+@import 'public/post_crafts.scss';
+@import 'public/users.scss';
+@import 'public/wish_lists.scss';
+
+
+
+
 // aspp/assets/stylesheets/application.scss
