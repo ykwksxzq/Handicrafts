@@ -1,3 +1,5 @@
+<%= render 'layouts/error_messages', model: @wish_list %>
+
 <div class="container">
  <div class="border-bottom border-info" style="padding:10px;">
   <div class="row justify-content-center">
@@ -11,7 +13,6 @@
     <%= link_to "マイページに戻る", mypage_path(current_user.id), class: "underline" %>
   </div>
  </div>
-
  <div class="row">
   <div class="col-md-2 m-4 p-2">
    <%= form_with model: @wish_list, url:wish_lists_path, method: :post do |f| %>
@@ -29,7 +30,7 @@
  <div class="col-auto m-2"><strong>ジャンル一覧</strong>
   <% @genres.each do |genre| %>
 	<button type="button" class="btn btn-outline-primary">
-	<%= link_to genre.name, wish_list_path(genre_id: genre.id), method: :get %>
+	<%= link_to genre.name, wish_list_path(current_user.id, genre_id: genre.id), method: :get %>
 	</button>
 	<% end %>
 </div>

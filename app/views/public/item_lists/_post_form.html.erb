@@ -7,15 +7,15 @@
 
  <div class="form-group row">
   <div class="field">
-   <h6 class="text-dark p-2 mb-0">アイテム名</h6>
-    <%= f.text_field :item_name, class: 'form-control'%>
+   <h6 class="text-dark p-2 mb-0">アイテム名 (30文字以内）</h6>
+    <%= f.text_field :item_name, class: 'form-control', placeholder:"30文字以内で入力"%>
   </div>
  </div>
 
  <div class="form-group row">
   <div class="field">
-   <h6 class="text-dark p-2 mb-0">備考</h6>
-    <%= f.text_area :memo, class: 'form-control' %>
+   <h6 class="text-dark p-2 mb-0">メモ（100文字以内）</h6>
+    <%= f.text_area :memo, class: 'form-control', placeholder:"100文字以内で入力" %>
   </div>
  </div>
 

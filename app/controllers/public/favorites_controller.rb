@@ -1,6 +1,6 @@
 class Public::FavoritesController < ApplicationController
  before_action :authenticate_user!
- 
+
  def create
   post_craft = PostCraft.find(params[:post_craft_id])
   favorite = current_user.favorites.new(post_craft_id: post_craft.id)
@@ -16,6 +16,5 @@ class Public::FavoritesController < ApplicationController
   flash[:notice] = "いいねを外しました"
   redirect_to post_craft_path(post_craft)
  end
-
 
 end

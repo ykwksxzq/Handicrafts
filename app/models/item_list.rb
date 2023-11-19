@@ -6,7 +6,7 @@ class ItemList < ApplicationRecord
   has_many :item_list_comments, dependent: :destroy
   has_many :item_favorites, dependent: :destroy
 
-  validates :item_name, presence: true, length: { maximum: 20 }
+  validates :item_name, presence: true, length: { maximum: 30 }
   validates :memo, length: { maximum: 100 }
 
 

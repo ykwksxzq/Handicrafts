@@ -82,12 +82,12 @@ class Public::ItemListsController < ApplicationController
  def genre_rarams
    params.require(:genre).permit(:name)
  end
-
+ 
  def is_matching_login_user
    @item_list = ItemList.find(params[:id])
    unless @item_list.user.id == current_user.id
     redirect_to item_lists_path
    end
  end
-
+ 
 end

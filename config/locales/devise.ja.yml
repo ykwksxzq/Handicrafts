@@ -2,6 +2,16 @@ ja:
   activerecord:
     attributes:
       user:
+        nick_name: ニックネーム
+      post_craft:
+        title: タイトル
+        introduction: 説明文
+      item_list:
+        item_name: アイテム名
+        memo: メモ欄
+      wish_list:
+        item_name: アイテム名
+        memo: メモ欄
         confirmation_sent_at: パスワード確認送信時刻
         confirmation_token: パスワード確認用トークン
         confirmed_at: パスワード確認時刻

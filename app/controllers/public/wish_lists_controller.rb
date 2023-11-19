@@ -16,12 +16,16 @@ class Public::WishListsController < ApplicationController
   def create
    @wish_list = WishList.new(wish_list_params)
    @wish_list.user_id = current_user.id
+   @wish_lists = WishList.where(user_id: current_user.id).page(params[:page]).per(10)
+
+
    if @wish_list.save
      flash[:notice] = 'ほしいものリストに登録いたしました'
-     redirect_to wish_list_path(current_user.id)
+     redirect_to wish_list_path(@wish_list.id)
    else
+     @genres = Genre.all
      flash[:alert] = '登録できませんでした。お手数ですが、入力内容をご確認の上再度お試しください'
-     redirect_to wish_list_path(current_user.id)
+     render :show
    end
   end
 
@@ -35,6 +39,7 @@ class Public::WishListsController < ApplicationController
      flash[:notice] = 'ほしいものリストの更新が完了いたしました'
      redirect_to wish_list_path(current_user.id)
    else
+     @genres = Genre.all
      flash[:alert] = '登録できませんでした。お手数ですが、入力内容をご確認の上再度お試しください'
      render :edit
    end

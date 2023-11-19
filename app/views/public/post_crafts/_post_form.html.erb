@@ -1,3 +1,4 @@
+
  <div class="form-group row">
   <div class="field">
    <h5 class="text-dark p-3 mb-0">作品画像</h5>
@@ -7,15 +8,15 @@
 
   <div class="form-group row">
    <div class="field">
-    <h6 class="text-dark p-2 mb-0">タイトル</h5>
-     <%= f.text_field :title, class: 'form-control' %>
+    <h6 class="text-dark p-2 mb-0">タイトル(30文字以内）</h5>
+     <%= f.text_field :title, class: 'form-control', placeholder:"30文字以内で入力" %>
     </div>
    </div>
 
    <div class="form-group row">
     <div class="field">
-     <h6 class="text-dark p-2 mb-0">説明</h6>
-      <%= f.text_area :introduction, class: 'form-control' %>
+     <h6 class="text-dark p-2 mb-0">紹介文(100文字以内)</h6>
+      <%= f.text_area :introduction, class: 'form-control', placeholder:"100文字以内で入力" %>
     </div>
    </div>
 
