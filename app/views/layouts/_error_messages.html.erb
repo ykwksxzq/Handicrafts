@@ -1,12 +1,12 @@
   <div class="row justify-content-center m-3">
     <% if model.errors.any? %>
-    <div class="flash-message alert">
+     <div class="flash-message alert">
         <%= model.errors.count %>件のエラーが発生しました
-     <ul>
+      <ul>
         <% model.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
+         <li><%= message %></li>
         <% end %>
-     </ul>
+      </ul>
      <% end %>
-    </div>
+     </div>
   </div>

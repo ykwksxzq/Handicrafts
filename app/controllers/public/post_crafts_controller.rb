@@ -1,6 +1,6 @@
 class Public::PostCraftsController < ApplicationController
  before_action :authenticate_user!
- before_action :is_matching_login_user, only: [:edit, :update, :destroy]
+ before_action :is_matching_login_user, only: [:edit, :update, :destroy, :show]
 
  def new
   @post_craft = PostCraft.new
