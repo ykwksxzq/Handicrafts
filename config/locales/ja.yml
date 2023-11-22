@@ -3,6 +3,7 @@ ja:
     attributes:
       user:
         nick_name: ニックネーム
+        introduction: 自己紹介
   activerecord:
     errors:
       messages:

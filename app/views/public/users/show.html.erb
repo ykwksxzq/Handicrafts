@@ -11,7 +11,7 @@
      <div class="card-body">
       <h2 class="card-title"><%= @user.nick_name %></h2>
 
-       <h5 class="card-text"><%= @user.introduction %></h5>
+       <h6 class="card-text"><%= h(@user.introduction).gsub(/\n|\r|\r\n/, "<br>").html_safe %></h6>
      </div>
     </div>
     <!--current_user 且つ guest_user でなかったら-->

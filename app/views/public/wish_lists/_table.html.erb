@@ -12,7 +12,7 @@
 <tbody>
   <td><%= wish_list.genre.name %></td>
   <td><%= wish_list.item_name %></td>
-  <td><%= wish_list.memo %></td>
+  <td><%= h(wish_list.memo).gsub(/\n|\r|\r\n/, "<br>").html_safe %></td>
   <td><%= link_to '編集', edit_wish_list_path(wish_list.id), class: "btn btn-success" %></td>
   <td><%= link_to "削除", wish_list_path(wish_list.id), class: "btn btn-danger", method: :delete, data: { confirm: "本当に削除しますか？" } %></td>
 <% end %>
