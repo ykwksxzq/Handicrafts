@@ -16,7 +16,7 @@
  </div>
  <div class="row">
   <div class="col-md-2 m-4 p-2">
-   <%= form_with model: @wish_list, url:wish_lists_path, method: :post do |f| %>
+   <%= form_with model: @wish_list, url: wish_lists_path, method: :post do |f| %>
 
     <%= render partial: 'form',  locals: {f:f } %>
 
@@ -29,9 +29,12 @@
 
 <div class="col-md-8-sm-4 m-4 offset-md-1">
  <div class="col-auto m-2"><strong>ジャンル一覧</strong>
+ 	<button type="button" class="btn btn-outline-primary">
+ 	 <%= link_to "全て", wish_lists_path, class: "text-center" %>
+	 </button>
   <% @genres.each do |genre| %>
 	<button type="button" class="btn btn-outline-primary">
-	<%= link_to genre.name, wish_list_path(current_user.id, genre_id: genre.id), method: :get %>
+	<%= link_to genre.name, wish_lists_path(genre_id: genre.id) %>
 	</button>
 	<% end %>
 </div>

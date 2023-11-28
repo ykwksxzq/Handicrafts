@@ -2,7 +2,7 @@ class Public::WishListsController < ApplicationController
   before_action :authenticate_user!
   before_action :is_matching_login_user, only: [:edit, :update]
 
-  def show
+  def index
    @wish_list = WishList.new
    @wish_lists = WishList.where(user_id: current_user.id).page(params[:page]).per(10)
    @genres = Genre.all
@@ -21,11 +21,11 @@ class Public::WishListsController < ApplicationController
 
    if @wish_list.save
      flash[:notice] = 'ほしいものリストに登録いたしました'
-     redirect_to wish_list_path(@wish_list.id)
+     redirect_to wish_lists_path
    else
      @genres = Genre.all
      flash[:alert] = '登録できませんでした。お手数ですが、入力内容をご確認の上再度お試しください'
-     render :show
+     render :index
    end
   end
 
@@ -37,7 +37,7 @@ class Public::WishListsController < ApplicationController
    @wish_list = WishList.find(params[:id])
    if @wish_list.update(wish_list_params)
      flash[:notice] = 'ほしいものリストの更新が完了いたしました'
-     redirect_to wish_list_path(current_user.id)
+     redirect_to wish_lists_path
    else
      @genres = Genre.all
      flash[:alert] = '登録できませんでした。お手数ですが、入力内容をご確認の上再度お試しください'
@@ -49,7 +49,7 @@ class Public::WishListsController < ApplicationController
    @wish_list = WishList.find(params[:id])
    @wish_list.destroy
    flash[:notice] = 'ほしいものリストの項目を１件削除いたしました'
-   redirect_to wish_list_path(current_user.id)
+   redirect_to wish_lists_path
   end
 
   private
@@ -65,7 +65,7 @@ class Public::WishListsController < ApplicationController
   def is_matching_login_user
    @wish_list = WishList.find(params[:id])
    unless @wish_list.user.id == current_user.id
-    redirect_to wish_list_path(current_user.id)
+    redirect_to wish_lists_path
    end
   end
 
