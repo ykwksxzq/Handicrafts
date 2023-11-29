@@ -22,7 +22,8 @@
        <% end %>
         <div class="card-body">
          <h4 class="card-title">
-          ♥<%= item_favorite.item_list.item_favorites.count %> いいね<br>
+          <span class="glyphicon glyphicon-heart" aria-hidden="true" style="color: red;">
+          ♥<%= item_favorite.item_list.item_favorites.count %> いいね</span><br>
            <%= link_to mypage_path(item_favorite.item_list.user_id) do %>
            <i class="fa-solid fa-user"></i><span><%= item_favorite.item_list.user.nick_name %>
            <% end %>

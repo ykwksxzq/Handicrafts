@@ -22,7 +22,8 @@
        <% end %>
         <div class="card-body">
          <h4 class="card-title">
-          ♥<%= favorite.post_craft.favorites.count %> いいね<br>
+          <span class="glyphicon glyphicon-heart" aria-hidden="true" style="color: red;">
+          ♥<%= favorite.post_craft.favorites.count %> いいね</span><br>
            <%= link_to mypage_path(favorite.post_craft.user_id) do %>
            <i class="fa-solid fa-user"></i><span><%= favorite.post_craft.user.nick_name %>
            <% end %>
@@ -38,7 +39,7 @@
   </div>
 
  <% else %>
- 
+
   <div class="container-fluid">
    <div class="row justify-content-center">
     <div class="cover">

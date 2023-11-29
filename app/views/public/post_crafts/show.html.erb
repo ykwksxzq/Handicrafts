@@ -24,11 +24,12 @@
       <h4 class="card-title">
        <% if @post_craft.favorited_by?(current_user) %>
          <%= link_to post_craft_favorites_path(@post_craft), method: :delete do %>
-         <i class="fa-solid fa-heart"></i> <%= @post_craft.favorites.count %> いいね
+         <span class="glyphicon glyphicon-heart" aria-hidden="true" style="color: red;">
+         <i class="fa-solid fa-heart"></i> <%= @post_craft.favorites.count %> いいね</span>
          <% end %>
        <% else %>
          <%= link_to post_craft_favorites_path(@post_craft), method: :post do %>
-         <i class="fa-regular fa-heart"></i> <%= @post_craft.favorites.count %> いいね
+         <i class="fa-regular fa-heart"></i> <%= @post_craft.favorites.count %> いいね</span>
          <% end %>
        <% end %>
       </h4>
