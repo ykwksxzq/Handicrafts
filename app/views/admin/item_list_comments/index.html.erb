@@ -30,16 +30,12 @@
     </table>
    </div>
   </div>
+
  <% else %>
-  <div class="container-fluid">
-   <div class="row justify-content-center">
-    <div class="cover">
-     <div class="text-center">
-      <h3 class="title mb-2">
-          投稿しているコメントはありません</h3>
+
+ <% @comment = '投稿しているコメントはありません' %>
+ <%= render 'layouts/space' %>
+
  <% end %>
-     </div>
-    </div>
-   </div>
-  </div>
+
 </div>

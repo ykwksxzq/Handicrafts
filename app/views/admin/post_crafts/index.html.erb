@@ -24,20 +24,16 @@
       </div>
      </div>
     </div>
-<% end %>
- </div>
-<% else %>
- <div class="container-fluid">
-  <div class="row justify-content-center">
-   <div class="cover">
-    <div class="text-center">
-     <h3 class="title mb-2">
-        投稿している作品はありません</h3>
-<% end %>
-     </div>
-    </div>
+   <% end %>
   </div>
- </div>
+
+ <% else %>
+
+  <% @comment = '投稿している作品はありません' %>
+  <%= render 'layouts/space' %>
+
+ <% end %>
+
  <div class="pagination justify-content-center">
   <%= paginate @post_crafts, theme: 'twitter-bootstrap-4' %>
  </div>
