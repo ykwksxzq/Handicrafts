@@ -53,7 +53,7 @@
       <br>
       <i class="fa-regular fa-comment"></i> コメント件数：<%= @post_craft.post_comments.count %><br>
 
-     <% if @post_craft.written_by?(current_user) %>
+     <% if @post_craft.user.owns?(current_user) %>
       <h5 class="card-text">
       <i class="fa-solid fa-pen-to-square"></i><%= link_to "編集", edit_post_craft_path(@post_craft.id) %>
       <i class="fa-solid fa-trash"></i><%= link_to "削除", post_craft_path(@post_craft.id), method: :delete, "data-confirm" => "本当に投稿を削除しますか？" %>

@@ -1,6 +1,6 @@
 class Public::PostCraftsController < ApplicationController
  before_action :authenticate_user!
- before_action :is_matching_login_user, only:[]
+ before_action :is_matching_login_user, only:[:show, :edit, :update, :destroy]
 
  def new
    @post_craft = PostCraft.new
@@ -124,7 +124,7 @@ class Public::PostCraftsController < ApplicationController
 
  def is_matching_login_user
    @post_craft = PostCraft.find(params[:id])
-   unless @post_craft.writtten_by?(current_user)
+   unless @post_craft.user.id == current_user.id
     redirect_to post_crafts_path
    end
  end

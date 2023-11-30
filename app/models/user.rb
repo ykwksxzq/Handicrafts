@@ -47,4 +47,11 @@ class User < ApplicationRecord
     self == other_user
   end
 
+# current_user 且つ guest_user でなかったら
+# if @user == current_user && !current_user.guest_user?
+
+  def matches_current_user?(other_user)
+    self == other_user && !other_user.guest_user?
+  end
+
 end

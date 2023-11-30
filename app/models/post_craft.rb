@@ -29,9 +29,9 @@ class PostCraft < ApplicationRecord
   end
 
 
-  def written_by?(current_user)
-    user == current_user
-  end
+  # def written_by?(current_user)
+  #   user == current_user
+  # end
 
   def self.search_by(keyword)
     published.where('title LIKE ? or introduction LIKE ?', "%#{keyword}%", "%#{keyword}%")

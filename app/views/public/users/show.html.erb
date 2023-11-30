@@ -14,14 +14,18 @@
        <h6 class="card-text"><%= h(@user.introduction).gsub(/\n|\r|\r\n/, "<br>").html_safe %></h6>
      </div>
     </div>
+
     <!--current_user 且つ guest_user でなかったら-->
-    <% if @user == current_user && !current_user.guest_user? %>
+    <!--<if @user == current_user && !current_user.guest_user? >-->
+
+    <% if @user.matches_current_user?(current_user) %>
+
     <p class="text m-3 text-right">
      <%= link_to "プロフィール編集", edit_information_path %></p>
     <% end %>
    </div>
 
-    <% if @user == current_user %>
+    <% if @user.owns?(current_user) %>
 
      <div class="col-lg-7 m-3 offset-md-1">
       <div class="list-group">
