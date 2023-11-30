@@ -42,6 +42,7 @@ scope module: :public do
   get 'users/mypage/:id' => 'users#show', as: 'mypage'
   get 'users/post_crafts' => 'users#index', as: 'user_post_crafts'
   get 'users/user_post_lists/:id' => 'users#user_post_lists', as: 'user_post_lists'
+  get 'users/user_item_lists/:id' => 'users#user_item_lists', as: 'user_item_lists'
   get 'users/information/edit' => 'users#edit', as: 'edit_information'
   patch 'users/information' => 'users#update', as: 'update_information'
   get 'users/unsubscribe' => 'users#unsubscribe', as: 'confirm_unsubscribe'

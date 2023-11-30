@@ -17,6 +17,11 @@ class Public::UsersController < ApplicationController
    @post_crafts = PostCraft.published.where(user_id: params[:id]).page(params[:page]).per(12).order(created_at: :desc)
  end
 
+ def user_item_lists
+   @user = User.find(params[:id])
+   @item_lists = ItemList.where(user_id: params[:id]).page(params[:page]).per(12).order(created_at: :desc)
+ end
+
  def item_list
    @item_lists = current_user.item_lists.page(params[:page]).per(12)
  end

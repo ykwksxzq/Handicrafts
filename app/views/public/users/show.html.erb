@@ -97,11 +97,15 @@
           <% end %>
          </div>
         </li>
-    <% end %>
-
+        <li class="list-group-item">
+         <h5 class="list-title">
+          <%= link_to "アイテム一覧", user_item_lists_path(@user.id) %></h5>
+        </li>
         </div>
        </div>
      </div>
+     <% end %>
+
     </div>
   </div>
  </div>
