@@ -1,6 +1,6 @@
 class Public::PostCraftsController < ApplicationController
  before_action :authenticate_user!
- before_action :is_matching_login_user, only:[:show, :edit, :update, :destroy]
+ before_action :is_matching_login_user, only:[:edit, :update, :destroy]
 
  def new
    @post_craft = PostCraft.new
@@ -50,6 +50,11 @@ class Public::PostCraftsController < ApplicationController
    @post_craft = PostCraft.find(params[:id])
    @post_comment = PostComment.new
    @tags = @post_craft.tag_counts_on(:tags)
+
+　　# 投稿のuserが現在のuserとことなる場合、かつ投稿のステータスが "draft" の場合
+   if @post_craft.user.id != current_user.id && @post_craft.status == "draft"
+    redirect_to post_crafts_path
+   end
  end
 
  def edit
