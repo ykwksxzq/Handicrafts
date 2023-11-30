@@ -27,4 +27,8 @@ class ItemList < ApplicationRecord
     item_favorites.exists?(user_id: user.id)
   end
 
+  def self.search_by(keyword)
+    where('item_name LIKE ? OR memo LIKE ?', "%#{keyword}%", "%#{keyword}%")
+  end
+  
 end

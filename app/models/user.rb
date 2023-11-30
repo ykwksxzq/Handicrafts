@@ -43,4 +43,8 @@ class User < ApplicationRecord
     email == GUEST_MEMBER_EMAIL
   end
 
+  def owns?(other_user)
+    self == other_user
+  end
+
 end

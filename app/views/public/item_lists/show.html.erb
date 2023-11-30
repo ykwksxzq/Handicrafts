@@ -44,7 +44,7 @@
      <p class="card-text">
      <i class="fa-solid fa-scissors"></i> ジャンル: <%= @item_list.genre.name %></p>
 
-    <% if @item_list.user == current_user %>
+    <% if @item_list.user.owns?(current_user) %>
      <i class="fa-solid fa-pen-to-square"></i><%= link_to "編集", edit_item_list_path %>
      <i class="fa-solid fa-trash"></i><%= link_to "削除", item_list_path(@item_list.id), method: :delete, "data-confirm" => "本当に削除しますか？" %>
     <% end %>
@@ -55,41 +55,6 @@
  </div>
 </div>
 
- <div class="card mx-auto m-5">
-  <div class="card-body">
-   <div class="row justify-content-center">
-    <div class="comments card-text">
-     <% if @item_list.item_list_comments.present? %>
-      <% @item_list.item_list_comments.each do |item_list_comment| %>
-      <div class="media border mb-3 p-3">
-      <%= link_to mypage_path(item_list_comment.user.id) do %>
-       <%= image_tag item_list_comment.user.get_profile_image(60,60),class:"card-img img-fluid mt-3 rounded-circle"; %>
-       <%= item_list_comment.user.nick_name %>
-      <% end %>
+<%= render 'public/item_lists/post_comment', item_lists: @item_lists %>
 
-     <div class="media-body ml-4 p-3">
-     <p><%= item_list_comment.created_at.strftime('%Y/%m/%d') %></p>
-     <h5><%= h(item_list_comment.comment).gsub(/\n|\r|\r\n/, "<br>").html_safe %></h5>
-     <% if item_list_comment.user == current_user %>
-      <%= link_to "削除", item_list_item_list_comment_path(item_list_comment.item_list, item_list_comment), method: :delete,"data-confirm" => "本当にコメントを削除しますか?" %>
-     <% end %>
-     </div>
-     </div>
-    <% end %>
-   <% else %>
-     投稿されているコメントはありません
-   <% end %>
-   </div>
-  </div>
-  <div class="new-comment card-text">
-   <%= form_with model: [@item_list, @item_list_comment] do |f| %>
-   <div class="form-group">
-   <label for="exampleFormControlTextarea1">コメントする</label>
-    <%= f.text_area :comment, rows: '5', class: "form-control", placeholder: "コメントをここに(100文字以内)" %>
-    <%= f.submit "送信する", class:"btn btn-lg btn-info mt-2 float-right" %>
-   <% end %>
-   </div>
-  </div>
- </div>
- </div>
 </div>

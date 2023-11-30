@@ -17,17 +17,11 @@
     <%= render 'index', post_crafts: @post_crafts %>
 
   <% else %>
-   <div class="container-fluid">
-    <div class="row justify-content-center">
-     <div class="cover">
-      <div class="text-center">
-       <h4 class="title mb-2">
-         下書きに保存している投稿はありません</h4>
+  <% @comment = '下書きに保存している投稿はありません' %>
+  <%= render 'layouts/space' %>
+
   <% end %>
-      </div>
-     </div>
-    </div>
-   </div>
+
   <div class="pagination justify-content-center">
    <%= paginate @post_crafts, theme: 'twitter-bootstrap-4' %>
   </div>

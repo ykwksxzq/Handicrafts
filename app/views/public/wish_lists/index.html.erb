@@ -43,19 +43,13 @@
 
 <%= render 'table', wish_list: @wish_lists %>
 
-<% else %>
-<div class="container-fluid">
- <div class="row justify-content-center">
-  <div class="cover">
-   <div class="text-center">
-    <h3 class="title mb-2">
-     保存しているアイテムはありません
-    </h3>
+ <% else %>
+
+ <% @comment = '保存しているアイテムはありません' %>
+ <%= render 'layouts/space' %>
+
  <% end %>
-   </div>
-  </div>
- </div>
-</div>
+
 
 <div class="pagination justify-content-center">
  <%= paginate @wish_lists, theme: 'twitter-bootstrap-4' %>

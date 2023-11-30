@@ -28,6 +28,19 @@ class PostCraft < ApplicationRecord
     where("title LIKE ? OR introduction LIKE ?", "%#{query}%", "%#{query}%")
   end
 
+
+  def written_by?(current_user)
+    user == current_user
+  end
+
+  def self.search_by(keyword)
+    published.where('title LIKE ? or introduction LIKE ?', "%#{keyword}%", "%#{keyword}%")
+  end
+
+  def favorite_count
+    favorites.count
+  end
+
   acts_as_taggable_on :tags
 
 end

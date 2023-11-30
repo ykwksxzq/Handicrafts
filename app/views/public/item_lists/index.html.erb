@@ -36,17 +36,11 @@
   <%= render 'public/item_lists/index', item_lists: @item_lists %>
 
  <% else %>
-  <div class="container-fluid">
-   <div class="row justify-content-center">
-    <div class="cover">
-     <div class="text-center">
-      <h3 class="title mb-2">
-       保存しているアイテムはありません</h3>
+
+ <% @comment = '保存しているアイテムはありません' %>
+ <%= render 'layouts/space' %>
+
  <% end %>
-     </div>
-    </div>
-   </div>
-  </div>
 
   <div class="pagination justify-content-center">
    <%= paginate @item_lists, theme: 'twitter-bootstrap-4' %>

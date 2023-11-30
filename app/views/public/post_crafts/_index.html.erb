@@ -1,6 +1,6 @@
 <div class="card-group py-5">
  <% post_crafts.each do |post_craft| %>
-   <div class="col-12 col-md-6 col-lg-4 mb-3">
+  <div class="col-12 col-md-6 col-lg-4 mb-3">
    <div class="card h-100 w-100 mx-auto shadow-lg">
 
     <%= link_to post_craft_path(post_craft.id) do %>
@@ -18,7 +18,7 @@
       <i class="fa-solid fa-calendar"></i>  <%= post_craft.created_at.strftime('%Y/%m/%d') %><br>
       <i class="fa-solid fa-scissors"></i>  <%= post_craft.genre.name %>
       <i class="fa-solid fa-tag"></i> <%= post_craft.tag_list %><br>
-      <span>♥<%= post_craft.favorites.count %> | </span>
+      <span>♥<%= post_craft.favorite_count %> | </span>
       <%= link_to "#{post_craft.post_comments.count} コメント", post_craft_path(post_craft.id) %>
      </P>
     </div>

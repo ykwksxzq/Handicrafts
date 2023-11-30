@@ -15,22 +15,15 @@
  </div>
 
   <% if @post_craft.present? %>
-   
+
    <%= render 'public/post_crafts/index', post_crafts: @post_crafts %>
 
   <% else %>
-  
-  <div class="container-fluid">
-   <div class="row justify-content-center">
-    <div class="cover">
-     <div class="text-center">
-      <h3 class="title mb-2">
-       投稿している作品はありません</h3>
+
+  <% @comment = '投稿している作品はありません' %>
+  <%= render 'layouts/space' %>
+
   <% end %>
-     </div>
-    </div>
-   </div>
-  </div>
 
   <div class="pagination justify-content-center">
    <%= paginate @post_crafts, theme: 'twitter-bootstrap-4' %>

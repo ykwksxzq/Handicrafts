@@ -11,25 +11,15 @@
   <%= render 'public/post_crafts/index', post_crafts: @post_crafts %>
 
  <% else %>
- 
- <div class="container-fluid">
-  <div class="row justify-content-center">
-   <div class="cover">
-    <div class="text-center">
-     <h3 class="title mb-2">
-      <%= post_craft.user.nick_name %>さんの投稿はありません</h3>
-  
-  <% end %>
-    
-    </div>
-   </div>
- </div>
+
+  <% @comment = '投稿している作品はありません' %>
+  <%= render 'layouts/space' %>
+
+ <% end %>
+
+<div class="pagination justify-content-center">
+ <%= paginate @post_crafts, theme: 'twitter-bootstrap-4' %>
 </div>
-
- <div class="pagination justify-content-center">
-  <%= paginate @post_crafts, theme: 'twitter-bootstrap-4' %>
- </div>
-
 </div>
 
 
