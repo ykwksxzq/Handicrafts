@@ -51,7 +51,7 @@ class Public::PostCraftsController < ApplicationController
    @post_comment = PostComment.new
    @tags = @post_craft.tag_counts_on(:tags)
 
-　　# 投稿のuserが現在のuserとことなる場合、かつ投稿のステータスが "draft" の場合
+   # 投稿のuserが現在のuserとことなる場合、かつ投稿のステータスが "draft" の場合
    if @post_craft.user.id != current_user.id && @post_craft.status == "draft"
     redirect_to post_crafts_path
    end
