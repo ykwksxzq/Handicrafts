@@ -2,11 +2,11 @@ class Admin::ItemListCommentsController < ApplicationController
   before_action :authenticate_admin!
 
   def index
-   @item_list_comments = ItemListComment.all
+    @item_list_comments = ItemListComment.all
   end
 
   def show
-   @item_list_comment = ItemListComment.find(params[:id])
+    @item_list_comment = ItemListComment.find(params[:id])
   end
 
   def destroy

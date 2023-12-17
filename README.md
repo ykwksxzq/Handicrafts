@@ -26,7 +26,9 @@
 - ほしいものリストに予め必要な材料を登録し、買い物時に参照する
 ​
 ## 設計書
--
+- ER図 https://drive.google.com/file/d/1kTSICqwEXwSdXddehIAUI21xSslOpHjN/view?usp=sharing
+- テーブル定義書 https://docs.google.com/spreadsheets/d/1cdcaO13dq5yUSRDSqQJaQzxegPfrUw64k55eI1RJ35w/edit?usp=sharing
+- アプリケーション詳細設計書 https://docs.google.com/spreadsheets/d/1ekRzDt0TM3dsoxOFtKeq6Qi0trZrUH-7ikuo_4XWmqA/edit?usp=sharing
 
 ## 開発環境
 - OS：Linux(CentOS)
